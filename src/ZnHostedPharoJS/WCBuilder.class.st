@@ -25,7 +25,7 @@ WCBuilder >> closeDocument: aDocument [
 		ifFalse: [ 
 			"hack to make it work"
 			(aDocument isKindOf: WCHtmlDocument)
-				ifTrue: [ aDocument scriptGenerator closeOn: aDocument ] ]
+				ifTrue: [ aDocument close ] ]
 ]
 
 { #category : #accessing }

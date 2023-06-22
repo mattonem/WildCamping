@@ -43,14 +43,14 @@ ZnHostedHelloWorldApp >> start [
 	greetingMessageContainer := document getElementById:
 		                            #greetingMessageContainer.
 	sayHelloButton addEventListener: #click block: [ 
- 
-		console log: (WCHtmlCanvas builder
-				 fullDocument: true;
+ 	greetingMessageContainer innerHTML: 
+		(WCHtmlCanvas builder
+				 fullDocument: false;
 				 rootBlock: [ :root | 
 					 root beHtml5.
 					 root title: 'yolo'.
 					 root javascript url: 'index.js' ];
-				 render: [ :html |  ]) ].
+				 render: [ :html | html div with: 'Hello ' , user name ]) ].
 
 	maps := self startMap
 ]
