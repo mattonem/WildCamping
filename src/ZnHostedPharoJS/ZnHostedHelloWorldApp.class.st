@@ -42,9 +42,15 @@ ZnHostedHelloWorldApp >> start [
 		block: [ user name: nameInput value ].
 	greetingMessageContainer := document getElementById:
 		                            #greetingMessageContainer.
-	sayHelloButton
-		addEventListener: #click
-		block: [ greetingMessageContainer innerHTML: 'Hello ' , user name ].
+	sayHelloButton addEventListener: #click block: [ 
+ 
+		console log: (WCHtmlCanvas builder
+				 fullDocument: true;
+				 rootBlock: [ :root | 
+					 root beHtml5.
+					 root title: 'yolo'.
+					 root javascript url: 'index.js' ];
+				 render: [ :html |  ]) ].
 
 	maps := self startMap
 ]
@@ -53,7 +59,6 @@ ZnHostedHelloWorldApp >> start [
 ZnHostedHelloWorldApp >> startMap [
 
 	| map |
-	console log: 'hehe'.
 	map := (L map: 'map') setView: { 51.505. -0.09 } with: 13.
 	(L
 		 tileLayer: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'

@@ -11,6 +11,7 @@ ZnHostedCodeGenerator >> generateHtmlUsing: aCanvas [
 		  fullDocument: true;
 		  rootBlock: [ :root | 
 			  root beHtml5.
+			  root title: 'yolo'.
 			  root javascript url: 'index.js'.
 			  self appClass updateHtmlRoot: root ];
 		  render: [ :html | self appClass generateHtmlUsing: html ]
@@ -25,5 +26,5 @@ ZnHostedCodeGenerator >> html [
 { #category : #accessing }
 ZnHostedCodeGenerator >> htmlGenerator [
 
-	^ htmlGenerator ifNil: [ htmlGenerator := WAHtmlCanvas builder ]
+	^ htmlGenerator ifNil: [ htmlGenerator := WCHtmlCanvas builder ]
 ]
