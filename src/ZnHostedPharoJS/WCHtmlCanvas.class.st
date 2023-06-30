@@ -60,6 +60,13 @@ WCHtmlCanvas >> flush [
 	currentBrush := nil
 ]
 
+{ #category : #accessing }
+WCHtmlCanvas >> label [
+	"Defines a label for a form control."
+
+	^ self brush: WCLabelTag new
+]
+
 { #category : #private }
 WCHtmlCanvas >> nest: aBlock [
 	parentBrush := currentBrush.
@@ -74,6 +81,13 @@ WCHtmlCanvas >> paragraph [
 	"Defines a paragraph."
 
 	^ self tag: 'p'
+]
+
+{ #category : #'tags-output' }
+WCHtmlCanvas >> preformatted [
+	"Defines preformatted text."
+
+	^ self tag: 'pre'
 ]
 
 { #category : #rendering }

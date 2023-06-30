@@ -20,6 +20,12 @@ PjZnHostedBrowserBridgeClient >> defaultAppClass [
 	^ PjMinimalFileBasedWebApp
 ]
 
+{ #category : #'accessing - defaults' }
+PjZnHostedBrowserBridgeClient >> exporterClass [
+
+	^ PjFileExporter
+]
+
 { #category : #'as yet unclassified' }
 PjZnHostedBrowserBridgeClient >> initZnServer [
 		|stream|
