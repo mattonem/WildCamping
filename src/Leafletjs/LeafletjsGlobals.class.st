@@ -4,5 +4,5 @@ Class {
 	#classVars : [
 		'L'
 	],
-	#category : #ZnHostedPharoJS
+	#category : #Leafletjs
 }

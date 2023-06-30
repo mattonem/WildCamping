@@ -16,5 +16,6 @@ BaselineOfCamping >> baseline: spec [
 			spec
 				loads: #( 'Seaside-Canvas' );
 				repository: 'github://SeasideSt/Seaside:master/repository' ].
+		spec package: #Leafletjs.
 		spec package: #ZnHostedPharoJS ]
 ]
