@@ -29,7 +29,7 @@ PjFileExporterWithIndexHtml >> generateHtmlUsing: aCanvas [
 		  fullDocument: true;
 		  rootBlock: [ :root | 
 			  root beHtml5.
-			  root title: 'yolo'.
+			  root title: self appClass title.
 			  root javascript url: 'index.js'.
 			  self appClass updateHtmlRoot: root ];
 		  render: [ :html | self appClass generateHtmlUsing: html ]
