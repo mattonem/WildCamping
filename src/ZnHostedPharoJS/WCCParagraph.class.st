@@ -10,7 +10,7 @@ Class {
 { #category : #rendering }
 WCCParagraph >> content: aString [
 
-	(self getComponentRoot querySelector: '#main') innerHTML: aString
+	(self getElementById: 'main') innerHTML: aString
 ]
 
 { #category : #rendering }

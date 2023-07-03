@@ -7,6 +7,13 @@ Trait {
 }
 
 { #category : #accessing }
+ComponentHolder classSide >> _resetComponents [
+
+	<pharoJsSkip>
+	^ staticComponents := Dictionary new.
+]
+
+{ #category : #accessing }
 ComponentHolder classSide >> _staticComponents [
 
 	<pharoJsSkip>
@@ -31,11 +38,16 @@ ComponentHolder classSide >> staticComponents [
 ComponentHolder classSide >> staticComponentsSerialized [
 
 	<jsLiteralGenerator>
-	^ staticComponents asPhxJsonString
+	^ self _staticComponents asPhxJsonString
 ]
 
 { #category : #'initialize-release' }
 ComponentHolder >> initComponents [
+	self class staticComponents do: [ :component | component start ]
+]
+
+{ #category : #'initialize-release' }
+ComponentHolder >> initializeComponentHolder [
 	self class staticComponents do: [ :component | component start ]
 ]
 

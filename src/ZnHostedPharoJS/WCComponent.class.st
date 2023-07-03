@@ -1,8 +1,6 @@
 Class {
 	#name : #WCComponent,
 	#superclass : #Object,
-	#traits : 'ComponentHolder',
-	#classTraits : 'ComponentHolder classTrait',
 	#instVars : [
 		'uuid'
 	],
@@ -30,6 +28,16 @@ WCComponent class >> on: aWCHtmlCanvas [
 WCComponent >> getComponentRoot [
 
 	^ document getElementById: uuid
+]
+
+{ #category : #rendering }
+WCComponent >> getElementById: aSymbol [
+	^ self getComponentRoot querySelector: '#', aSymbol
+]
+
+{ #category : #'initialize-release' }
+WCComponent >> initialize [
+	super initialize.
 ]
 
 { #category : #'instance creation' }

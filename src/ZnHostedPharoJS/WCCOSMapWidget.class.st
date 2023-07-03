@@ -20,7 +20,7 @@ WCCOSMapWidget >> renderHtmlOn: html [
 WCCOSMapWidget >> start [
 
 	| map |
-	map := (L map: (self getComponentRoot querySelector: '#map'))
+	map := (L map: (self getElementById: 'map'))
 		       setView: { 51.505. -0.09 }
 		       with: 13.
 	(L

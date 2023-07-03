@@ -42,11 +42,17 @@ ZnHostedHelloWorldApp >> greetingParagraph [
 ]
 
 { #category : #'initialize-release' }
+ZnHostedHelloWorldApp >> initialize [
+
+	super initialize.
+	self initializeComponentHolder
+]
+
+{ #category : #'initialize-release' }
 ZnHostedHelloWorldApp >> start [
 
 	| nameInput sayHelloButton |
 	super start.
-	self initComponents.
 	user := PjUser new.
 	nameInput := document getElementById: #nameTextInput.
 	sayHelloButton := document getElementById: #sayHelloButton.

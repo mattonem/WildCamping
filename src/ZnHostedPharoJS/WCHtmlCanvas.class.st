@@ -67,6 +67,13 @@ WCHtmlCanvas >> label [
 	^ self brush: WCLabelTag new
 ]
 
+{ #category : #'tags-lists' }
+WCHtmlCanvas >> listItem [
+	"Defines a list item."
+
+	^ self tag: 'li'
+]
+
 { #category : #private }
 WCHtmlCanvas >> nest: aBlock [
 	parentBrush := currentBrush.
@@ -98,6 +105,13 @@ WCHtmlCanvas >> render: anObject [
 ]
 
 { #category : #accessing }
+WCHtmlCanvas >> span [
+	"Defines a section in a document."
+
+	^ self tag: 'span'
+]
+
+{ #category : #accessing }
 WCHtmlCanvas >> tag: aString [
 	"Defines a generic tag with the name aString."
 
@@ -116,4 +130,11 @@ WCHtmlCanvas >> text: anObject [
 { #category : #accessing }
 WCHtmlCanvas >> textInput [
 	^ self brush: WCTextInputTag new
+]
+
+{ #category : #'tags-lists' }
+WCHtmlCanvas >> unorderedList [
+	"Defines an unordered list."
+
+	^ self brush: WCUnorderedListTag new
 ]
