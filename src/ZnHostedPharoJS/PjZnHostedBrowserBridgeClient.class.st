@@ -28,15 +28,19 @@ PjZnHostedBrowserBridgeClient >> exporterClass [
 
 { #category : #'as yet unclassified' }
 PjZnHostedBrowserBridgeClient >> initZnServer [
-		|stream|
-		stream := String new writeStream.
 
-		exporter writeJsCodeOn: stream.
-		
-		self server delegate map: 'web' to: [ :request | 
-			ZnResponse ok: (ZnEntity html: codeGenerator html) ].
-		self server delegate map: 'index.js' to: [ :request | 
-			ZnResponse ok: (ZnEntity javascript: stream contents) ].
+	| stream html |
+	html := codeGenerator html.
+	stream := String new writeStream.
+	exporter writeJsCodeOn: stream.
+	self server delegate
+		map: 'web'
+		to: [ :request | ZnResponse ok: (ZnEntity html: html) ].
+
+	self server delegate
+		map: 'index.js'
+		to: [ :request | 
+		ZnResponse ok: (ZnEntity javascript: stream contents) ]
 ]
 
 { #category : #actions }

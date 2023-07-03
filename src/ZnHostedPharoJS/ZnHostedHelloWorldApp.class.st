@@ -2,7 +2,12 @@ Class {
 	#name : #ZnHostedHelloWorldApp,
 	#superclass : #PjFileBasedWebApp,
 	#instVars : [
-		'user'
+		'user',
+		'comp'
+	],
+	#classVars : [
+		'AngryGreetingParagraph',
+		'GreetingParagraph'
 	],
 	#pools : [
 		'LeafletjsGlobals'
@@ -13,7 +18,7 @@ Class {
 { #category : #description }
 ZnHostedHelloWorldApp class >> appClasses [
 	<pharoJsSkip>
-	^super appClasses, { PjUser }
+	^super appClasses, { WCCParagraph }
 ]
 
 { #category : #description }
@@ -30,6 +35,16 @@ ZnHostedHelloWorldApp class >> bridgeClientClass [
 ]
 
 { #category : #'initialize-release' }
+ZnHostedHelloWorldApp >> angryGreetingParagraph [
+	^ self class angryGreetingParagraph
+]
+
+{ #category : #'initialize-release' }
+ZnHostedHelloWorldApp >> greetingParagraph [
+	^ self class greetingParagraph
+]
+
+{ #category : #'initialize-release' }
 ZnHostedHelloWorldApp >> start [
 
 	| nameInput sayHelloButton greetingMessageContainer maps |
@@ -42,15 +57,10 @@ ZnHostedHelloWorldApp >> start [
 		block: [ user name: nameInput value ].
 	greetingMessageContainer := document getElementById:
 		                            #greetingMessageContainer.
-	sayHelloButton addEventListener: #click block: [ 
- 	greetingMessageContainer innerHTML: 
-		(WCHtmlCanvas builder
-				 fullDocument: false;
-				 rootBlock: [ :root | 
-					 root beHtml5.
-					 root title: 'yolo'.
-					 root javascript url: 'index.js' ];
-				 render: [ :html | html div with: 'Hello ' , user name ]) ].
+	sayHelloButton
+		addEventListener: #click
+		block: [ self greetingParagraph content: 'Hello there ', user name.
+			self angryGreetingParagraph content: 'Seriously, ', user name. ].
 
 	maps := self startMap
 ]
