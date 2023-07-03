@@ -1,6 +1,8 @@
 Class {
 	#name : #WCComponent,
 	#superclass : #Object,
+	#traits : 'ComponentHolder',
+	#classTraits : 'ComponentHolder classTrait',
 	#instVars : [
 		'uuid'
 	],
@@ -9,6 +11,12 @@ Class {
 	],
 	#category : #ZnHostedPharoJS
 }
+
+{ #category : #'as yet unclassified' }
+WCComponent class >> for: aClass on: aWCHtmlCanvas named: aString [
+	<pharoJsSkip>
+	^ aClass addStaticComponent: (self on: aWCHtmlCanvas) named: aString
+]
 
 { #category : #'instance creation' }
 WCComponent class >> on: aWCHtmlCanvas [
@@ -40,4 +48,8 @@ WCComponent >> renderComponentOn: html [
 { #category : #rendering }
 WCComponent >> renderHtmlOn: html [
 	self subclassResponsibility
+]
+
+{ #category : #'instance creation' }
+WCComponent >> start [
 ]
