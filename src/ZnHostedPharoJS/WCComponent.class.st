@@ -11,9 +11,8 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-WCComponent class >> for: aClass on: aWCHtmlCanvas named: aString [
-	<pharoJsSkip>
-	^ aClass addStaticComponent: (self on: aWCHtmlCanvas) named: aString
+WCComponent class >> for: anObject on: aWCHtmlCanvas named: aString [
+	^ anObject addComponent: (self on: aWCHtmlCanvas) named: aString
 ]
 
 { #category : #'instance creation' }
