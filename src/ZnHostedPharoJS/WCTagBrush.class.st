@@ -16,6 +16,11 @@ WCTagBrush >> after [
 ]
 
 { #category : #accessing }
+WCTagBrush >> attributeAt: aKey put: aValue [
+	^ self attributes at: aKey put: aValue
+]
+
+{ #category : #accessing }
 WCTagBrush >> attributes [
 	^ attributes ifNil: [ attributes := WCHtmlAttributes new ]
 ]
