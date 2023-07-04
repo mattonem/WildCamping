@@ -33,14 +33,25 @@ PjZnHostedBrowserBridgeClient >> initZnServer [
 	html := codeGenerator html.
 	stream := String new writeStream.
 	exporter writeJsCodeOn: stream.
-	self server delegate
-		map: 'web'
-		to: [ :request | ZnResponse ok: (ZnEntity html: html) ].
+	self server delegate map: 'web' to: [ :request | 
+		| response |
+		response := ZnResponse ok: (ZnEntity html: html).
+		response headers
+			at: 'Cache-Control'
+			put: 'no-cache, no-store, must-revalidate'.
+		response headers at: 'Pragma' put: 'no-cache'.
+		response headers at: 'Expires' put: '0'.
+		response ].
 
-	self server delegate
-		map: 'index.js'
-		to: [ :request | 
-		ZnResponse ok: (ZnEntity javascript: stream contents) ]
+	self server delegate map: 'index.js' to: [ :request | 
+		| response |
+		response := ZnResponse ok: (ZnEntity javascript: stream contents).
+		response headers
+			at: 'Cache-Control'
+			put: 'no-cache, no-store, must-revalidate'.
+		response headers at: 'Pragma' put: 'no-cache'.
+		response headers at: 'Expires' put: '0'.
+		response ]
 ]
 
 { #category : #actions }
