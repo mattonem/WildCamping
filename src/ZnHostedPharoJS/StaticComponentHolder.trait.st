@@ -1,8 +1,5 @@
 Trait {
 	#name : #StaticComponentHolder,
-	#classInstVars : [
-		'staticComponents'
-	],
 	#traits : 'ComponentHolder',
 	#classTraits : 'ComponentHolder classTrait',
 	#category : #ZnHostedPharoJS
