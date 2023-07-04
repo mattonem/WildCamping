@@ -61,6 +61,11 @@ WCHtmlCanvas >> flush [
 ]
 
 { #category : #accessing }
+WCHtmlCanvas >> form [
+	^ self brush: WCFormTag new
+]
+
+{ #category : #accessing }
 WCHtmlCanvas >> label [
 	"Defines a label for a form control."
 
