@@ -14,6 +14,12 @@ WCFormInputTag >> tag [
 	^ 'input'
 ]
 
+{ #category : #accessing }
+WCFormInputTag >> value: anObject [
+	anObject isNil
+		ifFalse: [ self attributes at: 'value' put: anObject ]
+]
+
 { #category : #testing }
 WCFormInputTag >> with: aBlock [
 	self type isNil ifFalse: [

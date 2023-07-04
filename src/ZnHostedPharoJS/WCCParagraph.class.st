@@ -1,9 +1,6 @@
 Class {
 	#name : #WCCParagraph,
 	#superclass : #WCComponent,
-	#pools : [
-		'PjDomGlobals'
-	],
 	#category : #ZnHostedPharoJS
 }
 

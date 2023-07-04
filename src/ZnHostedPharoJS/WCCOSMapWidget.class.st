@@ -2,8 +2,7 @@ Class {
 	#name : #WCCOSMapWidget,
 	#superclass : #WCComponent,
 	#pools : [
-		'LeafletjsGlobals',
-		'PjDomGlobals'
+		'LeafletjsGlobals'
 	],
 	#category : #ZnHostedPharoJS
 }

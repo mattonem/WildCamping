@@ -23,6 +23,12 @@ StaticComponentHolder classSide >> _staticComponents [
 ]
 
 { #category : #accessing }
+StaticComponentHolder classSide >> addComponent: aWCCParagraph named: aString [ 
+	<pharoJsSkip>
+	^ self addStaticComponent: aWCCParagraph named: aString 
+]
+
+{ #category : #accessing }
 StaticComponentHolder classSide >> addStaticComponent: aWCCParagraph named: aString [ 
 	<pharoJsSkip>
 	^ self _staticComponents at: aString put: aWCCParagraph
