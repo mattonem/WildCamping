@@ -1,8 +1,8 @@
 Class {
 	#name : #ZnHostedHelloWorldApp,
 	#superclass : #PjFileBasedWebApp,
-	#traits : 'ComponentHolder',
-	#classTraits : 'ComponentHolder classTrait',
+	#traits : 'StaticComponentHolder',
+	#classTraits : 'StaticComponentHolder classTrait',
 	#instVars : [
 		'user',
 		'comp'
@@ -38,7 +38,7 @@ ZnHostedHelloWorldApp class >> bridgeClientClass [
 
 { #category : #'initialize-release' }
 ZnHostedHelloWorldApp >> greetingParagraph [
-	^ self staticComponentNamed: #greetingParagraph
+	^ self componentNamed: #greetingParagraph
 ]
 
 { #category : #'initialize-release' }
