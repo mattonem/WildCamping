@@ -102,6 +102,11 @@ WCHtmlCanvas >> paragraph [
 	^ self tag: 'p'
 ]
 
+{ #category : #accessing }
+WCHtmlCanvas >> path [
+	^ self brush: WCPathTag new
+]
+
 { #category : #'tags-output' }
 WCHtmlCanvas >> preformatted [
 	"Defines preformatted text."
@@ -121,6 +126,11 @@ WCHtmlCanvas >> span [
 	"Defines a section in a document."
 
 	^ self tag: 'span'
+]
+
+{ #category : #'as yet unclassified' }
+WCHtmlCanvas >> svg [
+	^ self brush: WCSVGTag new
 ]
 
 { #category : #accessing }
