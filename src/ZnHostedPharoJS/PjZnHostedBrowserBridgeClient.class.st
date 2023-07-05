@@ -3,6 +3,9 @@ Class {
 	#superclass : #PjFileBasedBridgeClient,
 	#traits : 'PjTWebBridgeClient',
 	#classTraits : 'PjTWebBridgeClient classTrait',
+	#instVars : [
+		'uuid'
+	],
 	#category : #ZnHostedPharoJS
 }
 

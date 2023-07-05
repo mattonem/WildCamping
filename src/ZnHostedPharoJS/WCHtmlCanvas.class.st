@@ -65,6 +65,13 @@ WCHtmlCanvas >> form [
 	^ self brush: WCFormTag new
 ]
 
+{ #category : #'t - rotating' }
+WCHtmlCanvas >> heading [
+	"Defines header 1 to header 6."
+
+	^ self brush: WCHeadingTag new
+]
+
 { #category : #accessing }
 WCHtmlCanvas >> label [
 	"Defines a label for a form control."
