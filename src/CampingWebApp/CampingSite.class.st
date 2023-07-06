@@ -19,6 +19,14 @@ CampingSite class >> defaultSite [
 		  yourself
 ]
 
+{ #category : #'as yet unclassified' }
+CampingSite class >> defaultSite: aUID ifPresent: aBlock ifAbsent: anotherBlock [
+	^ { ('123' -> self defaultSite) } asDictionary
+		  at: aUID
+		  ifPresent: aBlock
+		  ifAbsent: anotherBlock
+]
+
 { #category : #accessing }
 CampingSite >> coordinates [
 

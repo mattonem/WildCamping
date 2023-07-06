@@ -1,11 +1,11 @@
 Class {
-	#name : #ZnHostedCodeGenerator,
-	#superclass : #PjClientCodeGenerator,
+	#name : #PjLoggingWithHtmlClientCodeGenerator,
+	#superclass : #PjLoggingClientCodeGenerator,
 	#category : #ZnHostedPharoJS
 }
 
-{ #category : #accessing }
-ZnHostedCodeGenerator >> generateHtmlUsing: aCanvas [
+{ #category : #generating }
+PjLoggingWithHtmlClientCodeGenerator >> generateHtmlUsing: aCanvas [
 
 	^ aCanvas
 		  fullDocument: true;
@@ -17,20 +17,14 @@ ZnHostedCodeGenerator >> generateHtmlUsing: aCanvas [
 		  render: [ :html | self appClass generateHtmlUsing: html ]
 ]
 
-{ #category : #accessing }
-ZnHostedCodeGenerator >> html [
+{ #category : #generating }
+PjLoggingWithHtmlClientCodeGenerator >> html [
 
 	^ self generateHtmlUsing: self htmlGenerator.
 ]
 
-{ #category : #accessing }
-ZnHostedCodeGenerator >> htmlGenerator [
+{ #category : #generating }
+PjLoggingWithHtmlClientCodeGenerator >> htmlGenerator [
 
 	^ htmlGenerator ifNil: [ htmlGenerator := WCHtmlCanvas builder ]
-]
-
-{ #category : #accessing }
-ZnHostedCodeGenerator >> withClientLogging [
-
-	^ PjLoggingWithHtmlClientCodeGenerator new
 ]

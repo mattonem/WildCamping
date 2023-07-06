@@ -77,5 +77,5 @@ PjZnHostedBrowserBridgeClient >> start [
 { #category : #accessing }
 PjZnHostedBrowserBridgeClient >> urlString [
 
-	^ (self server url / 'web' / 'index.html') asString
+	^ (self server url / 'web' / 'index.html') asString .
 ]
