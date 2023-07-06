@@ -22,6 +22,13 @@ WCHtmlCanvas class >> configureRenderContext: aWARenderContext [
 	"Do nothing, subclasses might specify what to do, if needed."
 ]
 
+{ #category : #accessing }
+WCHtmlCanvas >> anchor [
+	"Defines an anchor."
+
+	^ self brush: WCAnchorTag new
+]
+
 { #category : #public }
 WCHtmlCanvas >> brush: aBrush [
 	self flush.

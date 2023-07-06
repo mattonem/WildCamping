@@ -15,7 +15,7 @@ CampingSite class >> defaultSite [
 	^ self new
 		  coordinates: 50 @ 20;
 		  name: 'Lovely campsite';
-		  qualities: {CampsiteDrinkinWater instance};
+		  qualities: {CampsiteDrinkingWater instance. CampsiteRunningWater instance};
 		  yourself
 ]
 

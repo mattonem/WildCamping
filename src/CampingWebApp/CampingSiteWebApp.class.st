@@ -61,7 +61,7 @@ CampingSiteWebApp >> openCampsite: aString [
 	| client |
 	client := PjHttpClient new.
 	client onLoad: [ 
-		console log: 'yolo: ', (self getLocationHash at: 1 ifAbsent: '').
+		console log: 'yolo: ' , (self getLocationHash at: 1 ifAbsent: '').
 		CampingSite
 			defaultSite: (self getLocationHash at: 1 ifAbsent: '')
 			ifPresent: [ :campsite | 
@@ -71,7 +71,10 @@ CampingSiteWebApp >> openCampsite: aString [
 							 CampsiteWidget new
 								 campsite: campsite;
 								 on: html ]) ]
-			ifAbsent: [  ] ].
+			ifAbsent: [ 
+				(self componentNamed: #container) content: (WCHtmlCanvas builder
+						 fullDocument: false;
+						 render: [ :html | CampsiteNotFoundWidget on: html ]) ] ].
 
 
 	(client method: 'GET' url: 'https://ipinfo.io/') send: ''

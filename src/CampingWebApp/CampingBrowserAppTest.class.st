@@ -23,7 +23,7 @@ CampingBrowserAppTest >> test1 [
 	location hash: '#/1'.
 	location reload.
 	1 second wait.
-	self assert: (document querySelector:'.card-title') innerHTML equals: 'Site not found'.
+	self assert: (document querySelector:'.card-title') innerHTML equals: 'Campsite not found'.
 ]
 
 { #category : #accessing }

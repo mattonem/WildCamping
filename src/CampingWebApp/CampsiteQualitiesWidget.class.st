@@ -19,12 +19,11 @@ CampsiteQualitiesWidget >> renderHtmlOn: html [
 	html div
 		class: 'row row-cols-10 g-4';
 		with: [ 
-			10 timesRepeat: [ 
-					qualities do: [ :qual | 
-							html div
-								class: 'col';
-								with: [ 
-									CampsiteQualityWidget new
-										quality: qual;
-										on: html ] ] ] ]
+			qualities do: [ :qual | 
+					html div
+						class: 'col';
+						with: [ 
+							CampsiteQualityWidget new
+								quality: qual;
+								on: html ] ] ]
 ]

@@ -37,6 +37,10 @@ CampsiteWidget >> renderHtmlOn: html [
 			html div
 				class: 'card-body';
 				with: [ 
+					html span
+						class: 'badge text-bg-secondary';
+						with: campsite coordinates x asString , 'N'
+							, campsite coordinates y asString , 'E'.
 					CampsiteQualitiesWidget new
 						list: (campsite qualities select: [ :aQual | 
 									 aQual categories includes: #waterAccess ]);
