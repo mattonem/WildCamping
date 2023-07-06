@@ -2,7 +2,8 @@ Class {
 	#name : #WCCOSMapWidget,
 	#superclass : #WCComponent,
 	#instVars : [
-		'map'
+		'map',
+		'view'
 	],
 	#pools : [
 		'LeafletjsGlobals'
@@ -19,6 +20,14 @@ WCCOSMapWidget >> addMarker: aPoint [
 ]
 
 { #category : #rendering }
+WCCOSMapWidget >> jsPoint: aPoint [
+
+	^ { 
+		  aPoint x.
+		  aPoint y }
+]
+
+{ #category : #rendering }
 WCCOSMapWidget >> renderHtmlOn: html [
 
 	html div
@@ -28,14 +37,14 @@ WCCOSMapWidget >> renderHtmlOn: html [
 
 { #category : #rendering }
 WCCOSMapWidget >> setView: aPoint [
-	map setView: { aPoint x. aPoint y}
+
+	map setView: (self jsPoint: aPoint)
 ]
 
 { #category : #rendering }
 WCCOSMapWidget >> start [
-
 	map := (L map: (self getElementById: 'map'))
-		       setView: { 51.505. -0.09 }
+		       setView: (self jsPoint: 0 @ 0)
 		       with: 13.
 	(L
 		 tileLayer: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -45,5 +54,6 @@ WCCOSMapWidget >> start [
 				  ->
 				  '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>') }
 				 asJsObject) addTo: map.
+	super start.
 	^ map
 ]
