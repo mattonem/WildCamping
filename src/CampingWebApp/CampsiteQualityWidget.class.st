@@ -41,5 +41,5 @@ CampsiteQualityWidget >> renderHtmlOn: html [
 				with: [ 
 					html anchor
 						url: 'https://lnt.org/';
-						with: 'more about it...' ] ]
+						with: 'learn about it...' ] ]
 ]
