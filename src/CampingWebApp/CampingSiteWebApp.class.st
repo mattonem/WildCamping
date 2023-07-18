@@ -27,6 +27,13 @@ CampingSiteWebApp class >> exporterClass [
 	^ PjFileExporterWithIndexHtml
 ]
 
+{ #category : #testing }
+CampingSiteWebApp class >> generateHtmlUsing: html [
+
+	<pharoJsSkip>
+	CampsiteRootContainer for: self on: html named: #container
+]
+
 { #category : #accessing }
 CampingSiteWebApp class >> updateHtmlRoot: root [
 

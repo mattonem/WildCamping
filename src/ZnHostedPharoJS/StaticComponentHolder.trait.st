@@ -7,7 +7,7 @@ Trait {
 
 { #category : #accessing }
 StaticComponentHolder classSide >> _resetComponents [
-
+	<script>
 	<pharoJsSkip>
 	^ staticComponents := Dictionary new.
 ]
