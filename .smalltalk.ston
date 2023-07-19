@@ -1,0 +1,19 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'Camping',
+      #load : ['ZnHostedPharoJS-Tests'],
+      #directory : 'src',  
+      #platforms : [ #pharo ]
+    }
+  ],
+  #preTesting : [
+    'scripts/setup.st'
+  ],
+  #testing : { 
+    #packages : [ 'ZnHostedPharoJS.*' ],
+    #coverage : {
+      #packages : [ 'ZnHostedPharoJS.*' ]
+    }
+  }
+}
