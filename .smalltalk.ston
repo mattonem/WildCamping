@@ -2,7 +2,7 @@ SmalltalkCISpec {
   #loading : [
     SCIMetacelloLoadSpec {
       #baseline : 'Camping',
-      #packages : ['ZnHostedPharoJS-Tests'],
+      #load : ['ZnHostedPharoJS-Tests'],
       #directory : 'Pharo',  
       #platforms : [ #pharo ]
     }
