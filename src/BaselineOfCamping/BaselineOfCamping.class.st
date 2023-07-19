@@ -20,7 +20,8 @@ BaselineOfCamping >> baseline: spec [
 		spec package: #ZnHostedPharoJS with: [ 
 			spec
 				requires: #Leafletjs;
-				requires: 'PharoJS' ].
+				requires: 'PharoJS';
+				requires: 'Seaside3' ].
 		spec
 			package: #'ZnHostedPharoJS-Tests'
 			with: [ spec requires: #ZnHostedPharoJS ] ]
