@@ -42,6 +42,13 @@ WCHtmlAttributes >> at: aKey append: aValue separator: aSeparator [
 ]
 
 { #category : #accessing }
+WCHtmlAttributes >> at: aKey put: anObject [
+
+	anObject ifNil: [ ^ nil ].
+	^ super at: aKey put: anObject
+]
+
+{ #category : #accessing }
 WCHtmlAttributes >> encodeOn: aDocument [
 	"Encode the receivers attribute onto aDocument. Note that this implementation reqires those two checks for true and false exactly the way they are here, to reliable encode boolean attributes in an XHTML compliant way."
 
