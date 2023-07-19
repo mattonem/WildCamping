@@ -48,6 +48,11 @@ WCBuilder >> fullDocument: aBoolean [
 	fullDocument := aBoolean
 ]
 
+{ #category : #accessing }
+WCBuilder >> initialize [ 
+	fullDocument := false
+]
+
 { #category : #'as yet unclassified' }
 WCBuilder >> openDocument: aDocument [
 	| documentRoot |
