@@ -11,9 +11,9 @@ SmalltalkCISpec {
     'scripts/setup.st'
   ],
   #testing : { 
-    #packages : [ 'PharoJs.*' ],
+    #packages : [ 'ZnHostedPharoJS.*' ],
     #coverage : {
-      #packages : [ 'PharoJs.*' ]
+      #packages : [ 'ZnHostedPharoJS.*' ]
     }
   }
 }
