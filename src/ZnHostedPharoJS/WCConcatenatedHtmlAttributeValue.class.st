@@ -28,3 +28,8 @@ WCConcatenatedHtmlAttributeValue >> initializeWithSeparator: aSeparator value: a
 	values add: anFirstObject.
 	values add: aSecondObject
 ]
+
+{ #category : #initialization }
+WCConcatenatedHtmlAttributeValue >> isConcatenatedHtmlAttributeValue [
+	^ true
+]

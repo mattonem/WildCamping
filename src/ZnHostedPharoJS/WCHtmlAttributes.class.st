@@ -4,11 +4,11 @@ Class {
 	#category : #ZnHostedPharoJS
 }
 
-{ #category : #'pharoJs support' }
+{ #category : #'pharojs support' }
 WCHtmlAttributes class >> jsTranspilationImportMethodsNonstandard [
 
 	<pharoJsSkip>
-	^ { (Object -> #( isConcatenatedHtmlAttributeValue )) }
+	^ {" (Object -> #( isConcatenatedHtmlAttributeValue ))" }
 ]
 
 { #category : #adding }
@@ -73,13 +73,6 @@ WCHtmlAttributes >> encodeOn: aDocument [
 { #category : #accessing }
 WCHtmlAttributes >> errorKeyNotFound [
 	^ nil
-]
-
-{ #category : #accessing }
-WCHtmlAttributes >> jsTranspilationImportMethodsNonstandard [
-
-	<pharoJsSkip>
-	^ { (Object -> #( isConcatenatedHtmlAttributeValue )) }
 ]
 
 { #category : #accessing }
