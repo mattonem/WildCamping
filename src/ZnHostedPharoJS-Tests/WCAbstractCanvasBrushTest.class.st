@@ -18,8 +18,3 @@ WCAbstractCanvasBrushTest >> assert: aBlock gives: aString [
 		description:	 'Expected: ', aString printString, ', Actual: ', html printString
 		resumable: true
 ]
-
-{ #category : #private }
-WCAbstractCanvasBrushTest >> builder [
-	^ WCHtmlCanvas builder
-]
