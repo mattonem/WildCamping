@@ -16,7 +16,7 @@ WCUrlEncoder class >> codePoint: anInteger [
 WCUrlEncoder class >> encode: aCharacter on: aStream [ 
 	('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~' includes: aCharacter) ifTrue: [ ^ aStream nextPut: aCharacter ].
 	aStream nextPut: $%.
-	self print: aCharacter greaseInteger on: aStream
+	self print: aCharacter charCode on: aStream
 ]
 
 { #category : #initialization }
@@ -31,13 +31,13 @@ WCUrlEncoder class >> initializeTable [
 	characterLimit := self maximumCharacterValue.
 	"character values at zero so we need to add 1"
 	table := Array new: characterLimit + 1.
-
-	0 to: characterLimit do: [ :index | 
+	table at: 1 put: '%00'.
+	1 to: characterLimit do: [ :index | 
 		| character value string|
 		character := self codePoint: index.
 		string := String new: 6 streamContents: [ :stream | self encode: character on: stream ].
 		"Smalltalk indices are one based but character values start at 0"
-		value := string = (String with: character)
+		value := string = character asString
 			ifTrue: [ nil ]
 			ifFalse: [ string ].
 		table at: index + 1 put: value ]
@@ -62,6 +62,7 @@ WCUrlEncoder class >> printString: anInteger base: b nDigits: n [
 	Should be invoked with: 0 <= self < (b raisedToInteger: n)."
 	
 	| integer next result |
+	integer ifNil: [ ^ '' ].
 	result := String new: n.
 	integer := anInteger.
 	n to: 1 by: -1 do: [:i |
@@ -83,7 +84,7 @@ WCUrlEncoder >> maximumCharacterValue [
 { #category : #accessing }
 WCUrlEncoder >> nextPut: aCharacter [ 
 	| value encoded |
-	value := aCharacter greaseInteger.
+	value := aCharacter charCode.
 	encoded := table at: value + 1.
 "	encoded notNil ifTrue: [ 1halt. ]."
 	"Issue 482: use #notNil because it is faster than #isString because it is not actually sent"

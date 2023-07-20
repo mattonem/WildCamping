@@ -4,6 +4,13 @@ Class {
 	#category : #ZnHostedPharoJS
 }
 
+{ #category : #'pharoJs support' }
+WCHtmlAttributes class >> jsTranspilationImportMethodsNonstandard [
+
+	<pharoJsSkip>
+	^ { (Object -> #( isConcatenatedHtmlAttributeValue )) }
+]
+
 { #category : #adding }
 WCHtmlAttributes >> addClass: aString [
 	"Add an additional CSS class aString to the receiver."
@@ -66,6 +73,13 @@ WCHtmlAttributes >> encodeOn: aDocument [
 { #category : #accessing }
 WCHtmlAttributes >> errorKeyNotFound [
 	^ nil
+]
+
+{ #category : #accessing }
+WCHtmlAttributes >> jsTranspilationImportMethodsNonstandard [
+
+	<pharoJsSkip>
+	^ { (Object -> #( isConcatenatedHtmlAttributeValue )) }
 ]
 
 { #category : #accessing }

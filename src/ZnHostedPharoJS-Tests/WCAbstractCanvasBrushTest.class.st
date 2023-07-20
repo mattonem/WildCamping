@@ -12,8 +12,7 @@ WCAbstractCanvasBrushTest class >> isAbstract [
 { #category : #private }
 WCAbstractCanvasBrushTest >> assert: aBlock gives: aString [
 	| html |
-	html := self builder
-		render: aBlock.
+	html := aBlock value.
 	self
 		assert: html = aString
 		description:	 'Expected: ', aString printString, ', Actual: ', html printString

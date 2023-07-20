@@ -15,7 +15,7 @@ WCAnchorTagJSTest class >> appClass [
 { #category : #'tests-tags-anchors' }
 WCAnchorTagJSTest >> assert: aBlock gives: aString [
 	| html |
-	self bridge evalBlock:  aBlock.
+	html := self bridge evalBlock:  aBlock.
 	self
 		assert: html = aString
 		description:	 'Expected: ', aString printString, ', Actual: ', html printString
