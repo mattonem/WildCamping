@@ -266,7 +266,7 @@ WCUrl >> encodePathOn: aDocument [
 	path isNil ifFalse: [
 		path keysAndValuesDo: [ :index :each |
 			aDocument nextPut: $/.
-			aDocument nextPutAll: each.
+			aDocument urlEncoder nextPutAll: each.
 			pathParameters isNil ifFalse: [
 				self encodePathParametersAt: index on: aDocument ] ] ].
 	(path isNil or: [ path isEmpty or: [ slash ] ])
@@ -296,10 +296,10 @@ WCUrl >> encodeQueryOn: aDocument [
 	self queryFields keysAndValuesDo: [ :key :value |
 		first ifFalse: [ aDocument xmlEncoder nextPut: $& ].
 		first := false.
-		aDocument nextPutAll: key.
+		aDocument urlEncoder nextPutAll: key.
 		value isNil ifFalse: [
 			aDocument nextPut: $=.
-			aDocument nextPutAll: value greaseString ] ]
+			aDocument urlEncoder nextPutAll: value greaseString ] ]
 ]
 
 { #category : #encoding }
@@ -312,7 +312,7 @@ WCUrl >> encodeSchemeAndAuthorityOn: aDocument [
 			aDocument nextPut: $:.
 			aDocument urlEncoder nextPutAll: password ].
 		aDocument nextPut: $@ ].
-	aDocument nextPutAll: host.
+	aDocument urlEncoder nextPutAll: host.
 	port notNil ifTrue: [
 		((self scheme = 'http' and: [ port = 80 ])
 			or: [ self scheme = 'https' and: [ port = 443 ] ])
@@ -743,14 +743,8 @@ WCUrl >> postCopy [
 
 { #category : #printing }
 WCUrl >> printOn: aStream [ 
-	| document codec |
-	codec := [ self requestContext codec ] 
-		on: WARequestContextNotFound
-		do: [ :e | GRNullCodec new ].
-	document := WAUnescapedDocument 
-		on: aStream
-		codec: codec.
-	self encodeOn: document
+
+	self encodeOn: aStream
 ]
 
 { #category : #private }

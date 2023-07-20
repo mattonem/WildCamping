@@ -95,6 +95,11 @@ WCHtmlDocument >> print: anObject [
 ]
 
 { #category : #accessing }
+WCHtmlDocument >> urlEncoder [
+	^ urlEncoder
+]
+
+{ #category : #accessing }
 WCHtmlDocument >> xmlEncoder [
 	"Answer an encoder for XML data."
 
