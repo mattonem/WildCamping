@@ -16,128 +16,6 @@ Class {
 	#category : #ZnHostedPharoJS
 }
 
-{ #category : #parsing }
-WCUrl class >> absolute: aString [
-	"Parse aString as an absolute URL."
-
-	^ self basicNew initializeFromString: aString
-]
-
-{ #category : #parsing }
-WCUrl class >> absolute: aString relative: aRelativeString [
-	"Take absolute URL aString and combine it with a relative path aRelativeString."
-
-	^ (self absolute: aString)
-		parsePath: aRelativeString;
-		yourself
-]
-
-{ #category : #decoding }
-WCUrl class >> decodePercent: aString [
-	"percent decodes the given String"
-	| input output char |
-	input := aString readStream.
-	output := WriteStream on: (String new: aString size).
-	[ input atEnd ] whileFalse: [
-		char := input next.
-		output nextPut: (char = $+
-			ifTrue: [ Character space ]
-			ifFalse: [
-				char = $%
-					ifTrue: [
-						| firstByte secondByte |
-						firstByte :=  self readHexFrom: input errorDetail: aString.
-						secondByte :=  self readHexFrom: input errorDetail: aString.
-						Character codePoint: firstByte * 16 + secondByte ]
-					ifFalse: [ char ] ]) ].
-	^ output contents
-]
-
-{ #category : #decoding }
-WCUrl class >> decodePercent: aString from: start [
-	"percent decodes the fragment string starting at the given index
-	/?:@-._~!$&'()*+,;= are allowed unescaped anywhere within a fragment part"
-	^ self decodePercent: aString from: start to: aString size + 1
-]
-
-{ #category : #decoding }
-WCUrl class >> decodePercent: aString from: start to: end [
-	"percent decodes the string starting at the given index"
-	| input output index left |
-	index := aString indexOf: $% startingAt: start.
-	(index = 0 or: [ index >= end ])
-		ifTrue: [ ^ aString copyFrom: start to: end - 1 ].
-	input := aString readStream.
-	input skip: start - 1. "start index 1 -> skip 0"
-	output := WriteStream on: (String new: aString size).
-	left := end - start.
-	[ left > 0 and: [ input atEnd not ] ] whileTrue: [
-		| char |
-		char := input next.
-		output nextPut: (char = $%
-			ifTrue: [
-				| firstByte secondByte |
-				firstByte :=  self readHexFrom: input errorDetail: aString.
-				secondByte :=  self readHexFrom: input errorDetail: aString.
-				left := left - 3.
-				Character codePoint:firstByte * 16 + secondByte ]
-			ifFalse: [
-				left := left - 1.
-				char ]) ].
-	^ output contents
-]
-
-{ #category : #decoding }
-WCUrl class >> decodePercentAndPlus: aString from: start to: end [
-	"percent decodes the given String"
-	| percentIndex input output left |
-	"check if we contain %"
-	percentIndex := aString indexOf: $% startingAt: start.
-	(percentIndex = 0 or: [ percentIndex >= end ]) ifTrue: [
-		| plusIndex |
-		"check if we contain +"
-		plusIndex := aString indexOf: $+ startingAt: start.
-		(plusIndex = 0 or: [ plusIndex >= end ]) ifTrue: [
-			^ aString copyFrom: start to: end - 1 ] ].
-	
-	"we contain either % or +"
-	input := aString readStream.
-	input skip: start - 1. "start index 1 -> skip 0"
-	output := WriteStream on: (String new: aString size).
-	left := end - start.
-	[ left > 0 and: [ input atEnd not ] ] whileTrue: [
-		| char |
-		char := input next.
-		output nextPut: (char = $+
-			ifTrue: [
-				left := left - 1.
-				Character space ]
-			ifFalse: [
-				char = $%
-					ifTrue: [
-						| firstByte secondByte |
-						firstByte :=  self readHexFrom: input errorDetail: aString.
-						secondByte :=  self readHexFrom: input errorDetail: aString.
-						left := left - 3.
-						Character codePoint:firstByte * 16 + secondByte ]
-					ifFalse: [
-						left := left - 1.
-						char ] ]) ].
-	^ output contents
-]
-
-{ #category : #private }
-WCUrl class >> readHexFrom: aStream errorDetail: aString [
-	| hexChar |
-	aStream atEnd ifTrue: [
-		WAInvalidUrlSyntaxError signal: aString ].
-	hexChar := aStream next.
-	((hexChar between: $0 and: $9)
-		or: [ (hexChar between: $a and: $f)
-		or: [ hexChar between: $A and: $F ] ]) ifFalse: [ WAInvalidUrlSyntaxError signal: aString ].
-	^ hexChar asUppercase digitValue
-]
-
 { #category : #comparing }
 WCUrl >> = aUrl [
 	^ self class = aUrl class and: [ self printString = aUrl printString ]
@@ -355,66 +233,6 @@ WCUrl >> initialize [
 	slash := false
 ]
 
-{ #category : #initialization }
-WCUrl >> initializeFromString: aString [
-	| fragmentIndex queryIndex schemeIndex pathStart stringSize pathEnd authorityStart authorityEnd startWithPath |
-	self initialize.
-	stringSize := aString size.
-	fragmentIndex := aString indexOf: $#.
-	fragmentIndex > 0 ifTrue: [
-		self
-			parseFragment: aString
-			from: fragmentIndex + 1 ].
-	queryIndex := aString indexOf: $?.
-	(queryIndex > 0 and: [ fragmentIndex = 0 or: [ queryIndex < fragmentIndex ] ]) ifTrue: [
-		self
-			parseQuery: aString 
-			from: queryIndex + 1
-			to: (fragmentIndex = 0 ifTrue: [ stringSize + 1 ] ifFalse: [ fragmentIndex ]) ].
-	schemeIndex := aString indexOfSubCollection: '://'.
-	
-	(schemeIndex > 0 and: [ fragmentIndex = 0 or: [ schemeIndex < fragmentIndex ] ])
-		ifTrue: [
-			startWithPath := false.
-			self scheme: (aString copyFrom: 1 to: schemeIndex - 1).
-			pathStart := aString indexOf: $/ startingAt: schemeIndex + 3.
-			authorityStart := schemeIndex + 3 ]
-		ifFalse: [
-			startWithPath := true.
-			pathStart := aString indexOf: $/ startingAt: 1.
-			authorityStart := 0 ].
-	
-	pathStart > 0
-		ifTrue: [
-			(pathStart > fragmentIndex and: [ fragmentIndex > 0 ]) ifTrue: [
-				WAInvalidUrlSyntaxError signal: aString ].
-			(pathStart > queryIndex and: [ queryIndex > 0 ]) ifTrue: [
-				WAInvalidUrlSyntaxError signal: aString ].
-			authorityEnd := pathStart ]
-		ifFalse: [
-			(fragmentIndex > 0 or: [ queryIndex > 0 ]) ifTrue: [
-				WAInvalidUrlSyntaxError signal: aString ].
-			authorityEnd := stringSize + 1 ].
-	
-	authorityStart > 0 ifTrue: [
-		self parseAuthority: aString from: authorityStart to: authorityEnd ].
-	
-	pathEnd := stringSize + 1.
-	fragmentIndex > 0 ifTrue: [
-		pathEnd := fragmentIndex ].
-	(queryIndex > 0 and: [ fragmentIndex = 0 or: [ queryIndex < fragmentIndex ] ]) ifTrue: [
-		pathEnd := queryIndex ].
-	
-	startWithPath
-		ifTrue: [
-			(stringSize > 0 and: [ (aString at: 1) = $/ ])
-				ifTrue: [ self parsePath: aString absolute: true from: 2 to: pathEnd ]
-				ifFalse: [ self parsePath: aString absolute: false from: 1 to: pathEnd ] ]
-		ifFalse: [
-			pathStart > 0 ifTrue: [
-				self parsePath: aString absolute: true from: pathStart + 1 to: pathEnd ] ]
-]
-
 { #category : #private }
 WCUrl >> isSeasideField: aString [
 	^ aString notEmpty
@@ -552,20 +370,6 @@ WCUrl >> parsePathParameters: aString at: anIndex from: start to: end [
 ]
 
 { #category : #parsing }
-WCUrl >> parsePort: aString from: start to: end [
-	| number |
-	number := nil.
-	start to: end - 1 do: [ :i |
-		| char |
-		char := aString at: i.
-		(char < $0 or: [ char > $9 ]) ifTrue: [
-			WAInvalidUrlSyntaxError signal: aString ].
-		number := (number isNil  ifTrue: [ 0 ] ifFalse: [ 10 * number ])
-			+ (char greaseInteger - $0 greaseInteger) ].
-	^ number
-]
-
-{ #category : #parsing }
 WCUrl >> parseQuery: aString from: queryStart to: queryEnd [
 	| parameterStart |
 	parameterStart := queryStart.
@@ -625,23 +429,6 @@ WCUrl >> path: aCollection [
 	path := aCollection
 ]
 
-{ #category : #private }
-WCUrl >> pathElementsIn: aString do: aOneArgumentBlock [
-	GRPlatform
-		subStringsIn: aString
-		splitBy: $/
-		do: aOneArgumentBlock
-]
-
-{ #category : #converting }
-WCUrl >> pathEncodedWith: aCodec on: aStream [
-	| document |
-	document := WAUnescapedDocument 
-		on: aStream
-		codec: aCodec.
-	self encodePathOn: document
-]
-
 { #category : #accessing }
 WCUrl >> pathParameterAllAt: anIndex key: aKey ifAbsent: aZeroArgumentBlock [
 	"Answer all the parameters at path index anIndex with key aKey evaluation aZeroArgumentBlock if none is found."
@@ -663,38 +450,31 @@ WCUrl >> pathParameterAt: anIndex key: aKey ifAbsent: aZeroArgumentBlock [
 ]
 
 { #category : #converting }
-WCUrl >> pathStringEncodedWith: aCodec [
-	| size |
-	"estimate the buffer size"
-	size := (self pathStringUnencodedSize * 1.1) greaseInteger.
-	^ String new: size streamContents: [ :stream |
-		self pathEncodedWith: aCodec on: stream ]
-]
-
-{ #category : #converting }
 WCUrl >> pathStringSafeUnencoded [
+
 	"Answer the path converted to a string without doing URL or HTML escaping.
 	Compared to #pathStringUnencoded, we cannot guarantee to not copy here.
 	"
-	| stream |
-	stream := WriteStream on: (String new: self pathStringUnencodedSize).
-	self pathUnencodedOn: stream.
-	^ stream contents
+
+	^ String
+		  new: self pathStringUnencodedSize
+		  streamContents: [ :stream | self pathUnencodedOn: stream ]
 ]
 
 { #category : #converting }
 WCUrl >> pathStringUnencoded [
+
 	"Answer the path converted to a string without doing URL or HTML escaping."
 
 	"allocate with correct size, avoid copy"
-	| string stream commonElementClass |
+
+	| commonElementClass |
 	commonElementClass := self detectCommonPathElementClass.
-	commonElementClass isNil ifTrue: [
-		^ self pathStringSafeUnencoded ].
-	string := commonElementClass new: self pathStringUnencodedSize.
-	stream := WriteStream on: string.
-	self pathUnencodedOn: stream.
-	^ string
+	commonElementClass isNil ifTrue: [ ^ self pathStringSafeUnencoded ].
+
+	^ String
+		  new: self pathStringUnencodedSize
+		  streamContents: [ :stream | self pathUnencodedOn: stream ]
 ]
 
 { #category : #private }
@@ -748,18 +528,6 @@ WCUrl >> printOn: aStream [
 ]
 
 { #category : #private }
-WCUrl >> privatePathParameterMapAt: anIndex [
-	pathParameters isNil ifTrue: [
-		pathParameters := OrderedCollection new: self path size ].
-	^ pathParameters size >= anIndex
-		ifTrue: [ pathParameters at: anIndex ]
-		ifFalse: [
-			anIndex - pathParameters size - 1 timesRepeat: [
-				pathParameters add: nil ].
-			pathParameters add: GROrderedMultiMap2 new ]
-]
-
-{ #category : #private }
 WCUrl >> privatePathParameterMapAt: anIndex ifPresentDo: aOneArgumentBlock ifAbsent: aZeroArgumentBlock [
 	| parameters |
 	pathParameters isNil ifTrue: [
@@ -774,30 +542,12 @@ WCUrl >> privatePathParameterMapAt: anIndex ifPresentDo: aOneArgumentBlock ifAbs
 { #category : #accessing }
 WCUrl >> queryFields [
 	"Answer a dictionary with the query fields."
-	^ queryFields ifNil: [ queryFields := WARequestFields new ]
+	^ queryFields ifNil: [ queryFields := Dictionary new ]
 ]
 
 { #category : #accessing }
 WCUrl >> queryFields: aDictionary [
 	queryFields := aDictionary
-]
-
-{ #category : #converting }
-WCUrl >> queryString [
-	"Answer the full query part of the URL. It would probably be better to
-	store this as a string somewhere so we can support queries that are not
-	key/value field lists."
-	
-	^ String streamContents: [ :stream |
-		| urlEncoder |
-		urlEncoder := GRPlatform current urlEncoderOn: stream.
-		self queryFields associations
-			do: [ :each |
-				urlEncoder nextPutAll: each key.
-				each value notNil ifTrue: [
-					stream nextPut: $=.
-					urlEncoder nextPutAll: each value greaseString ] ]
-			separatedBy: [ stream nextPut: $& ] ]
 ]
 
 { #category : #adding }

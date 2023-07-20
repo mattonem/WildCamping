@@ -6,12 +6,7 @@ Class {
 
 { #category : #testing }
 WCAbstractCanvasBrushTest class >> isAbstract [
-	^ self name = #WAAbstractCanvasBrushTest
-]
-
-{ #category : #accessing }
-WCAbstractCanvasBrushTest class >> packageNamesUnderTest [
-	^ #('Seaside-Canvas')
+	^ self name = #WCAbstractCanvasBrushTest
 ]
 
 { #category : #private }
