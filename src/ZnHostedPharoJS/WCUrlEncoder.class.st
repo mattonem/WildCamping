@@ -65,7 +65,6 @@ WCUrlEncoder class >> printString: anInteger base: b nDigits: n [
 	result := String new: n.
 	integer := anInteger.
 	n to: 1 by: -1 do: [:i |
-		1halt.
 		next := integer // b.
 		result byteAt: i put: (Character digitValue: (integer - (next * b))).
 		integer := next].
