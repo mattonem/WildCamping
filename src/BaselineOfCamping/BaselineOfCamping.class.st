@@ -11,7 +11,7 @@ BaselineOfCamping >> baseline: spec [
 	spec for: #common do: [
 		spec
 			baseline: 'PharoJS'
-			with: [ spec repository: 'github://PharoJS/PharoJS' ].
+			with: [ spec repository: 'github://PharoJS/PharoJS:pharo11' ].
 		spec baseline: 'Seaside3' with: [
 			spec
 				loads: #( 'Seaside-Canvas' );
