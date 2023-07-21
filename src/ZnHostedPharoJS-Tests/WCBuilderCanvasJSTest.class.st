@@ -1,19 +1,19 @@
 Class {
-	#name : #WCAnchorTagJSTest,
+	#name : #WCBuilderCanvasJSTest,
 	#superclass : #PjAppTestCase,
-	#traits : 'WCAnchorTagTestTrait',
-	#classTraits : 'WCAnchorTagTestTrait classTrait',
+	#traits : 'WCBuilderCanvasTestTrait',
+	#classTraits : 'WCBuilderCanvasTestTrait classTrait',
 	#category : #'ZnHostedPharoJS-Tests'
 }
 
 { #category : #'suite parameters' }
-WCAnchorTagJSTest class >> appClass [
+WCBuilderCanvasJSTest class >> appClass [
 
 	^ PjMinimalWebApplication
 ]
 
-{ #category : #'tests-tags-anchors' }
-WCAnchorTagJSTest >> assert: aBlock gives: aString [
+{ #category : #'as yet unclassified' }
+WCBuilderCanvasJSTest >> assert: aBlock gives: aString [
 	| html |
 	html := self bridge evalBlock:  aBlock.
 	self
