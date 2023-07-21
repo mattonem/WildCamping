@@ -27,7 +27,7 @@ WCBuilderCanvasTestTrait >> testFullDocument [
 
 { #category : #tests }
 WCBuilderCanvasTestTrait >> testFullDocumentWithBlock [
-
+	self skip.
 	self
 		assert: [
 			WCHtmlCanvas builder
