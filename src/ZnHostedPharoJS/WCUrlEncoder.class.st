@@ -13,6 +13,12 @@ WCUrlEncoder class >> codePoint: anInteger [
 ]
 
 { #category : #private }
+WCUrlEncoder class >> digitFor: digit [
+
+	^ '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ' at: digit + 1
+]
+
+{ #category : #private }
 WCUrlEncoder class >> encode: aCharacter on: aStream [ 
 	('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~' includes: aCharacter) ifTrue: [ ^ aStream nextPut: aCharacter ].
 	aStream nextPut: $%.
@@ -60,16 +66,16 @@ WCUrlEncoder class >> print: aNumber on: aStream [
 WCUrlEncoder class >> printString: anInteger base: b nDigits: n [
 	"Return a string representation of this number in base b with n digits (left padded with 0).
 	Should be invoked with: 0 <= self < (b raisedToInteger: n)."
-	
-	| integer next result |
+
+	| integer next |
 	anInteger ifNil: [ ^ '' ].
-	result := String new: n.
+
 	integer := anInteger.
-	n to: 1 by: -1 do: [:i |
-		next := integer // b.
-		result byteAt: i put: (Character digitValue: (integer - (next * b))).
-		integer := next].
-	^result
+	^ (String new: n streamContents: [ :stream |
+		   n to: 1 by: -1 do: [ :i |
+			   next := integer // b.
+			   stream nextPut: (self digitFor: integer - (next * b)).
+			   integer := next ] ]) reversed
 ]
 
 { #category : #accessing }

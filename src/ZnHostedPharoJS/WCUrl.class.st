@@ -19,9 +19,8 @@ Class {
 { #category : #adding }
 WCUrl >> addField: aKey value: aValue [
 	"Add the query field aKey with aValue to the receiving url."
-	
-	aKey isEmpty 
-		ifFalse: [ self queryFields at: aKey add: aValue ]
+
+	self queryFields at: aKey add: aValue
 ]
 
 { #category : #adding }
@@ -66,7 +65,7 @@ WCUrl >> encodeQueryOn: aDocument [
 	self queryFields keysAndValuesDo: [ :key :value |
 		first ifFalse: [ aDocument xmlEncoder nextPut: $& ].
 		first := false.
-		aDocument urlEncoder nextPutAll: key.
+		aDocument urlEncoder nextPutAll: key greaseString.
 		value isNil ifFalse: [
 			aDocument nextPut: $=.
 			aDocument urlEncoder nextPutAll: value greaseString ] ]
