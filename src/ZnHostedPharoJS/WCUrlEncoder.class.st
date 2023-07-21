@@ -62,7 +62,7 @@ WCUrlEncoder class >> printString: anInteger base: b nDigits: n [
 	Should be invoked with: 0 <= self < (b raisedToInteger: n)."
 	
 	| integer next result |
-	integer ifNil: [ ^ '' ].
+	anInteger ifNil: [ ^ '' ].
 	result := String new: n.
 	integer := anInteger.
 	n to: 1 by: -1 do: [:i |

@@ -17,6 +17,14 @@ Class {
 }
 
 { #category : #adding }
+WCUrl >> addField: aKey value: aValue [
+	"Add the query field aKey with aValue to the receiving url."
+	
+	aKey isEmpty 
+		ifFalse: [ self queryFields at: aKey add: aValue ]
+]
+
+{ #category : #adding }
 WCUrl >> addToPath: aString [
 	"Adds the argument as a path element. If the argument contains $/ it is split into multiple elements."
 
@@ -52,6 +60,19 @@ WCUrl >> encodePathOn: aDocument [
 ]
 
 { #category : #encoding }
+WCUrl >> encodeQueryOn: aDocument [ 
+	| first |
+	first := true.
+	self queryFields keysAndValuesDo: [ :key :value |
+		first ifFalse: [ aDocument xmlEncoder nextPut: $& ].
+		first := false.
+		aDocument urlEncoder nextPutAll: key.
+		value isNil ifFalse: [
+			aDocument nextPut: $=.
+			aDocument urlEncoder nextPutAll: value greaseString ] ]
+]
+
+{ #category : #encoding }
 WCUrl >> encodeSchemeAndAuthorityOn: aDocument [
 	host ifNil: [ ^ self ].
 	aDocument nextPutAll: self scheme; nextPutAll: '://'.
@@ -66,6 +87,11 @@ WCUrl >> encodeSchemeAndAuthorityOn: aDocument [
 		((self scheme = 'http' and: [ port = 80 ])
 			or: [ self scheme = 'https' and: [ port = 443 ] ])
 			ifFalse: [ aDocument nextPut: $:; print: port ] ]
+]
+
+{ #category : #accessing }
+WCUrl >> host: aString [ 
+	host := aString
 ]
 
 { #category : #initialization }
@@ -84,6 +110,19 @@ WCUrl >> path [
 { #category : #private }
 WCUrl >> pathElementsIn: aString do: aOneArgumentBlock [
 	(aString splitOn: '/') do: aOneArgumentBlock
+]
+
+{ #category : #accessing }
+WCUrl >> queryFields [
+	"Answer a dictionary with the query fields."
+	^ queryFields ifNil: [ queryFields := WCRequestFields new ]
+]
+
+{ #category : #accessing }
+WCUrl >> scheme [
+	"Answer the URL's scheme."
+
+	^ scheme ifNil: [ 'http' ]
 ]
 
 { #category : #accessing }

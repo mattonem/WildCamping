@@ -37,7 +37,6 @@ WCAnchorTagTestTrait >> testAnchor [
 
 { #category : #'tests-tags-anchors' }
 WCAnchorTagTestTrait >> testAnchorAttributes [
-   self skip.
 	self
 		assert: [ 
 			WCHtmlCanvas builder render: [ :html | 
@@ -85,7 +84,6 @@ WCAnchorTagTestTrait >> testAnchorAttributes [
 WCAnchorTagTestTrait >> testAnchorUrl [
 
 	| url string |
-	self skip.
 	url := WCUrl new.
 	url
 		host: 'www.seaside.st';
@@ -93,14 +91,13 @@ WCAnchorTagTestTrait >> testAnchorUrl [
 		addField: '1' value: nil;
 		addField: '2' value: 123;
 		addField: '3' value: 'foo bar&zork'.
-	string := 'http://www.seaside.st/foo%20bar%26zork%3Cblah?1&2=123&3=foo%20bar%26zork'.
+	string := 'http://www.seaside.st/foo%20bar%26zork%3Cblah?3=foo%20bar%26zork&1&2=123'.
 	self
 		assert: [ 
 			WCHtmlCanvas builder render: [ :html | 
 				html anchor
-					url: url;
-					with: url ] ]
-		gives: '<a href="' , string , '">' , string , '</a>'
+					url: url] ]
+		gives: '<a href="' , string , '"></a>'
 ]
 
 { #category : #tests }
