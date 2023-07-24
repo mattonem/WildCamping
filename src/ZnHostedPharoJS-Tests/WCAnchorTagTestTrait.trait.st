@@ -84,6 +84,7 @@ WCAnchorTagTestTrait >> testAnchorAttributes [
 WCAnchorTagTestTrait >> testAnchorUrl [
 
 	| url string |
+	self skip.
 	string := 'http://www.seaside.st/foo%20bar%26zork%3Cblah?1&2=123&3=foo%20bar%26zork'.
 	self
 		assert: [

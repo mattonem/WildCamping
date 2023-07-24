@@ -9,17 +9,19 @@ Class {
 
 { #category : #'instance creation' }
 WCUrlEncoder class >> codePoint: anInteger [ 
+	<pharoJsSkip>
 	^ (String value: anInteger) first
 ]
 
 { #category : #private }
 WCUrlEncoder class >> digitFor: digit [
-
+	<pharoJsSkip>
 	^ '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ' at: digit + 1
 ]
 
 { #category : #private }
 WCUrlEncoder class >> encode: aCharacter on: aStream [ 
+	<pharoJsSkip>
 	('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~' includes: aCharacter) ifTrue: [ ^ aStream nextPut: aCharacter ].
 	aStream nextPut: $%.
 	self print: aCharacter charCode on: aStream
@@ -27,12 +29,21 @@ WCUrlEncoder class >> encode: aCharacter on: aStream [
 
 { #category : #initialization }
 WCUrlEncoder class >> initialize [
+
+	<javascript: 'this.pj_initializeFromSerializedTable()'>
 	self initializeTable
+]
+
+{ #category : #initialization }
+WCUrlEncoder class >> initializeFromSerializedTable [
+	<javascript: 'return this.table = this.pj_serializedTable()'>
+	^ table := nil
 ]
 
 { #category : #initialization }
 WCUrlEncoder class >> initializeTable [
 	"Initializes the encoding table."
+	<pharoJsSkip>
 	|  characterLimit |
 	characterLimit := self maximumCharacterValue.
 	"character values at zero so we need to add 1"
@@ -52,13 +63,14 @@ WCUrlEncoder class >> initializeTable [
 { #category : #initialization }
 WCUrlEncoder class >> maximumCharacterValue [
 	"String to byte encoding has already happened in the server."
-	
+
+	<pharoJsSkip>
 	^ 16rFF
 ]
 
 { #category : #private }
 WCUrlEncoder class >> print: aNumber on: aStream [
-
+	<pharoJsSkip>
 	aStream << (self  printString: aNumber base: 16 nDigits: 2)
 ]
 
@@ -66,7 +78,7 @@ WCUrlEncoder class >> print: aNumber on: aStream [
 WCUrlEncoder class >> printString: anInteger base: b nDigits: n [
 	"Return a string representation of this number in base b with n digits (left padded with 0).
 	Should be invoked with: 0 <= self < (b raisedToInteger: n)."
-
+	<pharoJsSkip>
 	| integer next |
 	anInteger ifNil: [ ^ '' ].
 
@@ -76,6 +88,12 @@ WCUrlEncoder class >> printString: anInteger base: b nDigits: n [
 			   next := integer // b.
 			   stream nextPut: (self digitFor: integer - (next * b)).
 			   integer := next ] ]) reversed
+]
+
+{ #category : #initialization }
+WCUrlEncoder class >> serializedTable [
+	<jsLiteralGenerator>
+	^ table 
 ]
 
 { #category : #accessing }
