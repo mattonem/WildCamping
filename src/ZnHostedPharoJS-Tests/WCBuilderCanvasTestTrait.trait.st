@@ -14,6 +14,56 @@ WCBuilderCanvasTestTrait >> testBody [
 ]
 
 { #category : #tests }
+WCBuilderCanvasTestTrait >> testDiv [
+
+	self
+		assert: [
+			WCHtmlCanvas builder render: [ :html |
+				html div
+					id: 'anId';
+					with: [ html span with: 'an item' ] ] ]
+		gives: '<div id="anId"><span>an item</span></div>'.
+	self
+		assert: [
+			WCHtmlCanvas builder render: [ :html |
+				html div
+					class: 'aClass';
+					with: [ html span with: 'an item' ] ] ]
+		gives: '<div class="aClass"><span>an item</span></div>'
+]
+
+{ #category : #tests }
+WCBuilderCanvasTestTrait >> testForm [
+
+	self
+		assert: [
+			WCHtmlCanvas builder render: [ :html |
+				html form
+					id: 'anId';
+					with: [
+						html textInput
+							"maxLength: 1."] ] ]
+		gives:
+		'<form id="anId"><input type="text"/></form>'.
+	self
+		assert: [
+			WCHtmlCanvas builder render: [ :html |
+				html form with: [
+					html textInput
+						placeholder: 'placeholder'] ] ]
+		gives:
+		'<form><input placeholder="placeholder" type="text"/></form>'.
+		self
+		assert: [
+			WCHtmlCanvas builder render: [ :html |
+				html form with: [
+					html textInput
+						with: 'value'] ] ]
+		gives:
+		'<form><input value="value" type="text"/></form>'
+]
+
+{ #category : #tests }
 WCBuilderCanvasTestTrait >> testFullDocument [
 
 	self
