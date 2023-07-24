@@ -1,6 +1,6 @@
 Class {
 	#name : #WCAbstractCanvasBrushTest,
-	#superclass : #WAContextTest,
+	#superclass : #TestCase,
 	#category : #'ZnHostedPharoJS-Tests'
 }
 
