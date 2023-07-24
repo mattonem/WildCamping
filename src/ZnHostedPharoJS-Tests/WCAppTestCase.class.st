@@ -10,6 +10,11 @@ WCAppTestCase class >> appClass [
 	^ PjMinimalWebApplication
 ]
 
+{ #category : #'suite parameters' }
+WCAppTestCase class >> isAbstract [
+	^ self name = #WCAppTestCase
+]
+
 { #category : #'tests-tags-anchors' }
 WCAppTestCase >> assert: aBlock gives: aString [
 	| html |
