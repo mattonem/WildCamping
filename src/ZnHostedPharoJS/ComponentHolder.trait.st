@@ -18,5 +18,6 @@ ComponentHolder >> components [
 
 { #category : #'initialize-release' }
 ComponentHolder >> initializeComponentHolder [
-	self components do: [ :component | component start ]
+
+	self components do: [ :component | component initAtRuntime ]
 ]

@@ -3,8 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'uuid',
-		'onStart',
-		'observer'
+		'onStart'
 	],
 	#pools : [
 		'PjBrowserGlobals'
@@ -47,11 +46,13 @@ WCComponent >> initAtRuntime [
 { #category : #'instance creation' }
 WCComponent >> initStartCallback [
 
-	observer := MutationObserver new: [ :aMutation |  
-		            self getComponentRoot ifNotNil: [ 
+	| observer |
+	self getComponentRoot ifNotNil: [ ^ self start ].
+	observer := MutationObserver new: [ :aMutation |
+		            self getComponentRoot ifNotNil: [
 			            self start.
 			            observer disconnect ] ].
-	observer observe: document body with: { 
+	observer observe: document body with: {
 			(#childList -> true).
 			(#subtree -> true) } asJsObject
 ]
@@ -96,4 +97,9 @@ WCComponent >> renderHtmlOn: html [
 { #category : #'instance creation' }
 WCComponent >> start [
 	self onStart do: [ :aBlock | aBlock cull: self ]
+]
+
+{ #category : #accessing }
+WCComponent >> uuid [
+	^ uuid
 ]

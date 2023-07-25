@@ -69,14 +69,12 @@ ZnHostedHelloWorldApp class >> updateHtmlRoot: root [
 { #category : #'initialize-release' }
 ZnHostedHelloWorldApp >> initialize [
 
-	super initialize.
-	self initializeComponentHolder
+	super initialize
 ]
 
 { #category : #'initialize-release' }
 ZnHostedHelloWorldApp >> start [
 
-	|  |
 	super start.
-	
+	self initializeComponentHolder
 ]
