@@ -74,7 +74,6 @@ ZnHostedHelloWorldApp >> initialize [
 
 { #category : #'initialize-release' }
 ZnHostedHelloWorldApp >> start [
-
 	super start.
 	self initializeComponentHolder
 ]

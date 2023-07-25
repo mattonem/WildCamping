@@ -3,7 +3,7 @@ A ZnHostedHelloWorldAppTest is a test class for testing the behavior of ZnHosted
 "
 Class {
 	#name : #ZnHostedHelloWorldAppTest,
-	#superclass : #PjAppTestCase,
+	#superclass : #PjWebAppTestCase,
 	#category : #'ZnHostedPharoJS-Tests'
 }
 

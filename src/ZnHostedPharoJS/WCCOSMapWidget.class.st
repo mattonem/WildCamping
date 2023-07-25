@@ -43,17 +43,19 @@ WCCOSMapWidget >> setView: aPoint [
 
 { #category : #rendering }
 WCCOSMapWidget >> start [
-	map := (L map: (self getElementById: 'map'))
-		       setView: (self jsPoint: 0 @ 0)
-		       with: 13.
-	(L
-		 tileLayer: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
-		 with: { 
-				 (#maxZoom -> 19).
-				 (#attribution
-				  ->
-				  '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>') }
-				 asJsObject) addTo: map.
+
+	map ifNil: [
+		map := (L map: (self getElementById: 'map'))
+			       setView: (self jsPoint: 0 @ 0)
+			       with: 13.
+		(L
+			 tileLayer: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+			 with: {
+					 (#maxZoom -> 19).
+					 (#attribution
+					  ->
+					  '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>') }
+					 asJsObject) addTo: map ].
 	super start.
 	^ map
 ]
