@@ -45,6 +45,11 @@ text/xml					MAY							MAY				MAY				MAY"
 ]
 
 { #category : #accessing }
+WCHtmlRoot >> htmlAttributes [
+	^ htmlAttrs ifNil: [ htmlAttrs := WAHtmlAttributes new ]
+]
+
+{ #category : #accessing }
 WCHtmlRoot >> initialize [
 	super initialize.
 	headElements := OrderedCollection new.
@@ -54,6 +59,11 @@ WCHtmlRoot >> initialize [
 { #category : #accessing }
 WCHtmlRoot >> javascript [
 	^ self script beJavascript; yourself
+]
+
+{ #category : #accessing }
+WCHtmlRoot >> language: aString [
+	self htmlAttributes at: 'lang' put: aString
 ]
 
 { #category : #accessing }
