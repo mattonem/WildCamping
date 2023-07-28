@@ -46,7 +46,7 @@ text/xml					MAY							MAY				MAY				MAY"
 
 { #category : #accessing }
 WCHtmlRoot >> htmlAttributes [
-	^ htmlAttrs ifNil: [ htmlAttrs := WAHtmlAttributes new ]
+	^ htmlAttrs ifNil: [ htmlAttrs := WCHtmlAttributes new ]
 ]
 
 { #category : #accessing }
