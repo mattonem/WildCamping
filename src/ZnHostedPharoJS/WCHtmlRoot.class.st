@@ -61,6 +61,11 @@ WCHtmlRoot >> link [
 	^ self add: (WCLinkElement root: self)
 ]
 
+{ #category : #combining }
+WCHtmlRoot >> meta [
+	^ self add: (WCMetaElement root: self)
+]
+
 { #category : #'instance creation' }
 WCHtmlRoot >> openOn: aDocument [
 	self writeHeadOn: aDocument
