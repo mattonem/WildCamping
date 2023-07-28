@@ -18,3 +18,9 @@ CampsiteNotFoundWidget >> renderHtmlOn: html [
 						class: 'card-title';
 						with: 'Campsite not found' ] ]
 ]
+
+{ #category : #rendering }
+CampsiteNotFoundWidget >> start [ 
+	super start. 
+"	history pushState: { } with: '' and: 'campsite-not-found'."
+]

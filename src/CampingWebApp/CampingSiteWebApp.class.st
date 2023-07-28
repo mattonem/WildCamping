@@ -57,9 +57,21 @@ CampingSiteWebApp >> campingSiteNotFound [
 	self openCampsite: 123
 ]
 
+{ #category : #'as yet unclassified' }
+CampingSiteWebApp >> dispatch [
+	^ { #'campsite-not-found' -> [ self campingSiteNotFound ] } asDictionary
+]
+
 { #category : #'initialize-release' }
 CampingSiteWebApp >> getLocationHash [
 	^ (self _getLocationHash splitOn: '/') allButFirst
+]
+
+{ #category : #'as yet unclassified' }
+CampingSiteWebApp >> indexDispatch [
+
+	console log:  (location href splitOn: '/').
+	(self dispatch at: (location href splitOn: '/') last) value
 ]
 
 { #category : #'as yet unclassified' }
@@ -68,7 +80,6 @@ CampingSiteWebApp >> openCampsite: aString [
 	| client |
 	client := PjHttpClient new.
 	client onLoad: [ 
-		console log: 'yolo: ' , (self getLocationHash at: 1 ifAbsent: '').
 		CampingSite
 			defaultSite: (self getLocationHash at: 1 ifAbsent: '')
 			ifPresent: [ :campsite | 
@@ -91,7 +102,7 @@ CampingSiteWebApp >> openCampsite: aString [
 CampingSiteWebApp >> start [
 
 	super start.
+	self getLocationHash ifEmpty: [ ^ self indexDispatch].
 	self openCampsite:
-		(self getLocationHash at: 1 ifAbsent: [ ^ self campingSiteNotFound ]).
-
+		(self getLocationHash at: 1 ifAbsent: [ ^ self campingSiteNotFound ])
 ]
