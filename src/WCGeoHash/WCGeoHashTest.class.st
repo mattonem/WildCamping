@@ -29,6 +29,22 @@ WCGeoHashTest >> testAllNeighbours [
 ]
 
 { #category : #test }
+WCGeoHashTest >> testBounds [
+
+	| gh |
+	gh := WCGeoHash fromString: 's0000'.
+	self
+		assert: gh bounds
+		closeTo:
+		(Rectangle origin: 0 @ 0 corner: 0.0439453125 @ 0.0439453125).
+	gh := WCGeoHash fromString: 's0001'.
+	self
+		assert: gh bounds
+		closeTo:
+		(Rectangle origin: 0 @ 0.0439453125 corner: 0.0439453125 @ 0.087890625)
+]
+
+{ #category : #test }
 WCGeoHashTest >> testEast [
 
 	| gh |

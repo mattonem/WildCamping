@@ -154,7 +154,7 @@ WCGeoHash >> bounds [
 						ifFalse: [ latMax := latMid ] ].
 			evenBit := evenBit not ] ].
 
-	^ Rectangle origin: latMin @ lonMin corner: latMax @ latMax
+	^ Rectangle origin: latMin @ lonMin corner: latMax @ lonMax
 ]
 
 { #category : #'as yet unclassified' }

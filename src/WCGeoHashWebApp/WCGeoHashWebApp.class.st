@@ -64,6 +64,7 @@ WCGeoHashWebApp >> initialize [
 { #category : #'initialize-release' }
 WCGeoHashWebApp >> start [
 
+	| polygon |
 	(document getElementById: 'calculate')
 		addEventListener: #click
 		block: [
@@ -72,12 +73,11 @@ WCGeoHashWebApp >> start [
 			lat := (document getElementById: 'lat') value asNumber.
 			gh := WCGeoHash hashFor: lon @ lat precision: 5.
 			(document getElementById: 'result') innerHTML: gh stringAddress.
-
-			(self componentNamed: #map)
-				setView: gh center;
-				polygon: {
-						gh bounds topLeft.
-						gh bounds topRight.
-						gh bounds bottomRight.
-						gh bounds bottomLeft } ]
+			polygon ifNotNil: [  polygon remove ].
+			(self componentNamed: #map) setView: gh center.
+			polygon := (self componentNamed: #map) polygon: {
+					           gh bounds topLeft.
+					           gh bounds topRight.
+					           gh bounds bottomRight.
+					           gh bounds bottomLeft } ]
 ]
