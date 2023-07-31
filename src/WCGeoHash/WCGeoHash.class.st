@@ -79,7 +79,7 @@ WCGeoHash class >> hashFor: coordinate precision: precision [
 		bit := bit + 1.
 		bit = 5 ifTrue: [
 			currentPrecision := currentPrecision + 1.
-			geohash byteAt: currentPrecision put: idx.
+			geohash at: currentPrecision put: idx.
 			bit := 0.
 			idx := 0 ] ].
 	^ self fromByteArray: geohash
@@ -126,6 +126,37 @@ WCGeoHash >> allNeighbours [
 	^ result
 ]
 
+{ #category : #accessing }
+WCGeoHash >> bounds [
+
+	| evenBit latMin latMax lonMin lonMax |
+	evenBit := true.
+	latMin := -90.
+	latMax := 90.
+	lonMin := -180.
+	lonMax := 180.
+	byteArray do: [ :aByte |
+		-4 to: 0 do: [ :i |
+			| bitN |
+			bitN := (aByte bitShift: i) bitAnd: 1.
+			evenBit
+				ifTrue: [
+					| lonMid |
+					lonMid := lonMin + lonMax / 2.
+					bitN = 1
+						ifTrue: [ lonMin := lonMid ]
+						ifFalse: [ lonMax := lonMid ] ]
+				ifFalse: [
+					| latMid |
+					latMid := latMin + latMax / 2.
+					bitN = 1
+						ifTrue: [ latMin := latMid ]
+						ifFalse: [ latMax := latMid ] ].
+			evenBit := evenBit not ] ].
+
+	^ Rectangle origin: latMin @ lonMin corner: latMax @ latMax
+]
+
 { #category : #'as yet unclassified' }
 WCGeoHash >> byteArayToString [
 
@@ -142,16 +173,22 @@ WCGeoHash >> byteArray [
 
 { #category : #accessing }
 WCGeoHash >> byteArray: aCollection [
-
-	aCollection do: [ :aByte |
+		aCollection do: [ :aByte |
 		aByte <= self maxByteValue ifFalse: [
-			Exception signal: 'Geohash bytes cannot be higher than 31' ] ].
+			Error signal: 'Geohash bytes cannot be higher than 31' ] ].
+
 	byteArray := aCollection
 ]
 
 { #category : #accessing }
-WCGeoHash >> byteAt: anInteger [ 
-	^ byteArray byteAt: anInteger 
+WCGeoHash >> byteAt: anInteger [
+
+	^ byteArray at: anInteger
+]
+
+{ #category : #'as yet unclassified' }
+WCGeoHash >> center [
+^ (self bounds)  center
 ]
 
 { #category : #'as yet unclassified' }

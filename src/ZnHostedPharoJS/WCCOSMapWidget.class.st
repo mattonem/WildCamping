@@ -28,6 +28,14 @@ WCCOSMapWidget >> jsPoint: aPoint [
 ]
 
 { #category : #rendering }
+WCCOSMapWidget >> polygon: collectionOfPoint [
+
+(	L polygon:
+		(collectionOfPoint collect: [ :aPoint | self jsPoint: aPoint ])
+			asArray) addTo: map
+]
+
+{ #category : #rendering }
 WCCOSMapWidget >> renderHtmlOn: html [
 
 	html div
