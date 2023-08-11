@@ -50,6 +50,14 @@ WCCOSMapWidget >> polygon: collectionOfPoint [
 ]
 
 { #category : #rendering }
+WCCOSMapWidget >> polygon: collectionOfPoint with: options [
+
+	^ (L polygon:
+		   (collectionOfPoint collect: [ :aPoint | self jsPoint: aPoint ])
+			   asArray with: options) addTo: map
+]
+
+{ #category : #rendering }
 WCCOSMapWidget >> renderHtmlOn: html [
 
 	html div
