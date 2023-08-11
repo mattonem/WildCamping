@@ -14,9 +14,15 @@ Class {
 { #category : #rendering }
 WCCOSMapWidget >> addMarker: aPoint [
 
-	(L marker: { 
+	^ (L marker: {
 			 aPoint x.
 			 aPoint y }) addTo: map
+]
+
+{ #category : #rendering }
+WCCOSMapWidget >> fitBounds: aRectangle [
+
+	^ map fitBounds: (self jsRectangle: aRectangle)
 ]
 
 { #category : #rendering }
@@ -25,6 +31,14 @@ WCCOSMapWidget >> jsPoint: aPoint [
 	^ { 
 		  aPoint x.
 		  aPoint y }
+]
+
+{ #category : #rendering }
+WCCOSMapWidget >> jsRectangle: aRectangle [
+
+	^ {
+		  self jsPoint: aRectangle topLeft.
+		  self jsPoint: aRectangle bottomRight.}
 ]
 
 { #category : #rendering }
@@ -39,7 +53,7 @@ WCCOSMapWidget >> polygon: collectionOfPoint [
 WCCOSMapWidget >> renderHtmlOn: html [
 
 	html div
-		style: 'height: 180px;';
+		style: 'height: 300px;';
 		id: 'map'
 ]
 
@@ -47,6 +61,12 @@ WCCOSMapWidget >> renderHtmlOn: html [
 WCCOSMapWidget >> setView: aPoint [
 
 	map setView: (self jsPoint: aPoint)
+]
+
+{ #category : #rendering }
+WCCOSMapWidget >> setView: aPoint zoomLevel: aNumber [
+
+	map setView: (self jsPoint: aPoint) zoomLevel: aNumber
 ]
 
 { #category : #rendering }
