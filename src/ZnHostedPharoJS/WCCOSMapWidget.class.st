@@ -42,6 +42,14 @@ WCCOSMapWidget >> jsRectangle: aRectangle [
 ]
 
 { #category : #rendering }
+WCCOSMapWidget >> on: event do: aBlock [
+
+	^ map
+		  on: event
+		  do: aBlock
+]
+
+{ #category : #rendering }
 WCCOSMapWidget >> polygon: collectionOfPoint [
 
 	^ (L polygon:
