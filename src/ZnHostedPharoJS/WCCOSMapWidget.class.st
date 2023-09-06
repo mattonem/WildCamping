@@ -26,6 +26,16 @@ WCCOSMapWidget >> fitBounds: aRectangle [
 ]
 
 { #category : #rendering }
+WCCOSMapWidget >> getBounds [
+
+	| bounds |
+	bounds := map getBounds.
+	^ Rectangle
+		  origin: bounds getNorthWest lat @ bounds getNorthWest lng
+		  corner: bounds getSouthEast lat @ bounds getSouthEast lng
+]
+
+{ #category : #rendering }
 WCCOSMapWidget >> jsPoint: aPoint [
 
 	^ { 
