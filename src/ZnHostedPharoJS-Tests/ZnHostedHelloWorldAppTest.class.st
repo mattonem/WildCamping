@@ -28,5 +28,7 @@ ZnHostedHelloWorldAppTest >> testHelloWorld [
 { #category : #tests }
 ZnHostedHelloWorldAppTest >> testMap [
 
-	^ self assert: ((self app componentNamed: #map) getBounds) equals: 0 @ 0
+	^ self
+		  assert: (self app componentNamed: #map) getCenter lng
+		  equals: 0
 ]
