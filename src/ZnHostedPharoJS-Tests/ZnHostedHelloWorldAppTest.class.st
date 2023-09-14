@@ -28,7 +28,6 @@ ZnHostedHelloWorldAppTest >> testHelloWorld [
 { #category : #tests }
 ZnHostedHelloWorldAppTest >> testMap [
 
-	^ self
-		  assert: (self app componentNamed: #map) getCenter lng
-		  equals: 0
+	self assert: (self app componentNamed: #map) getCenter lng equals: 0.
+	self assert: (self app componentNamed: #map) getCenter lat equals: 0.
 ]
