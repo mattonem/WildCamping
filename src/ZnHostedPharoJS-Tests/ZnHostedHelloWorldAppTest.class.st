@@ -24,3 +24,9 @@ ZnHostedHelloWorldAppTest >> testHelloWorld [
 	(self app document querySelector: 'button') click.
 	self assert: (self app document querySelector: 'p#main') innerHTML equals: 'Hello Auto Test'.
 ]
+
+{ #category : #tests }
+ZnHostedHelloWorldAppTest >> testMap [
+
+	^ (self app componentNamed: #map) bounds equals: 0 @ 0
+]

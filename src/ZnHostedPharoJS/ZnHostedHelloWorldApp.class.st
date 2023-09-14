@@ -42,15 +42,15 @@ ZnHostedHelloWorldApp class >> generateHtmlUsing: html [
 	<pharoJsSkip>
 	html div
 		class: 'container';
-		with: [ :cont | 
+		with: [ :cont |
 			cont div
 				class: 'card';
-				with: [ :card | 
+				with: [ :card |
 					card div
 						class: 'card-header';
 						with: 'Hello World !'.
 
-					WCCOSMapWidget for: self on: html named: #maps.
+					WCCOSMapWidget for: self on: html named: #map.
 					WCCHelloWorld for: self on: html named: #hello ] ]
 ]
 
