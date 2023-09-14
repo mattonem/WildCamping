@@ -36,6 +36,13 @@ WCCOSMapWidget >> getBounds [
 ]
 
 { #category : #rendering }
+WCCOSMapWidget >> getCenter [
+
+	^  map getCenter.
+
+]
+
+{ #category : #rendering }
 WCCOSMapWidget >> jsPoint: aPoint [
 
 	^ { 
