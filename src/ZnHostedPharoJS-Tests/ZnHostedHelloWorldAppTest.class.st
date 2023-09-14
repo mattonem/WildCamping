@@ -28,5 +28,5 @@ ZnHostedHelloWorldAppTest >> testHelloWorld [
 { #category : #tests }
 ZnHostedHelloWorldAppTest >> testMap [
 
-	^ (self app componentNamed: #map) getBounds equals: 0 @ 0
+	^ self assert: ((self app componentNamed: #map) getBounds) equals: 0 @ 0
 ]
