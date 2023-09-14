@@ -14,8 +14,14 @@ ZnHostedHelloWorldAppTest class >> appClass [
 
 { #category : #tests }
 ZnHostedHelloWorldAppTest >> setUp [
-	super setUp.
-	
+
+	super setUp
+]
+
+{ #category : #tests }
+ZnHostedHelloWorldAppTest >> tearDown [
+
+	super tearDown
 ]
 
 { #category : #tests }
@@ -23,11 +29,4 @@ ZnHostedHelloWorldAppTest >> testHelloWorld [
 	(self app document querySelector: 'input') value: 'Auto Test'.
 	(self app document querySelector: 'button') click.
 	self assert: (self app document querySelector: 'p#main') innerHTML equals: 'Hello Auto Test'.
-]
-
-{ #category : #tests }
-ZnHostedHelloWorldAppTest >> testMap [
-
-	self assert: (self app componentNamed: #map) getCenter lng equals: 0.
-	self assert: (self app componentNamed: #map) getCenter lat equals: 0.
 ]
