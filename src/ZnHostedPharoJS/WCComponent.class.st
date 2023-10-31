@@ -1,6 +1,8 @@
 Class {
 	#name : #WCComponent,
 	#superclass : #Object,
+	#traits : 'PjTDomController',
+	#classTraits : 'PjTDomController classTrait',
 	#instVars : [
 		'uuid',
 		'onStart'
@@ -28,6 +30,11 @@ WCComponent class >> on: aWCHtmlCanvas [
 ]
 
 { #category : #rendering }
+WCComponent >> componentWrapperClassName [
+	^ 'WCComponentWrapper'
+]
+
+{ #category : #rendering }
 WCComponent >> getComponentRoot [
 
 	^ document getElementById: uuid
@@ -35,7 +42,12 @@ WCComponent >> getComponentRoot [
 
 { #category : #rendering }
 WCComponent >> getElementById: aSymbol [
-	^ self getComponentRoot querySelector: '#', aSymbol
+
+	| res |
+	(self getComponentRoot querySelectorAll: '#' , aSymbol)
+		detect: [ :el | (self parentWCOf: el) = self getComponentRoot ]
+		ifFound: [ :el | res := el ].
+	^ res
 ]
 
 { #category : #'instance creation' }
@@ -82,10 +94,21 @@ WCComponent >> onStartDo: aBlock [
 ]
 
 { #category : #rendering }
+WCComponent >> parentWCOf: anElement [
+
+	anElement tagName = 'HTML' ifTrue: [ ^ anElement ].
+	^ (((self cssClassesStringElement:anElement ) splitOn: ' ') includesAll:
+		   { self componentWrapperClassName })
+		  ifTrue: [ anElement ]
+		  ifFalse: [ self parentWCOf: anElement parentElement ]
+]
+
+{ #category : #rendering }
 WCComponent >> renderComponentOn: html [
 
 	html div
 		id: (uuid := WCUUIDGeneratorWrapper next);
+		class: self componentWrapperClassName ;
 		with: [ self renderHtmlOn: html ]
 ]
 
