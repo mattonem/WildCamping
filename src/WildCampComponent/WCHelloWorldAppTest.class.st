@@ -4,7 +4,7 @@ A ZnHostedHelloWorldAppTest is a test class for testing the behavior of ZnHosted
 Class {
 	#name : #WCHelloWorldAppTest,
 	#superclass : #PjWebAppTestCase,
-	#category : #'WildCampComponent-Tests-ExcludeFromCi'
+	#category : #'WildCampComponent-ExcludedTests'
 }
 
 { #category : #'suite parameters' }
