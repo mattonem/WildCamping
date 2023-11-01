@@ -43,11 +43,10 @@ WCComponent >> getComponentRoot [
 { #category : #rendering }
 WCComponent >> getElementById: aSymbol [
 
-	| res |
-	(self getComponentRoot querySelectorAll: '#' , aSymbol)
-		detect: [ :el | (self parentWCOf: el) = self getComponentRoot ]
-		ifFound: [ :el | res := el ].
-	^ res
+	^ (self getComponentRoot querySelectorAll: '#' , aSymbol)
+		  detect: [ :el | (self parentWCOf: el) = self getComponentRoot ]
+		  ifFound: [ :el | el ]
+		  ifNone: [ Error signal: 'Element with id ', aSymbol, ' not found.' ]
 ]
 
 { #category : #'instance creation' }
