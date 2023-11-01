@@ -18,8 +18,7 @@ Class {
 WCHelloWorldApp class >> appClasses [
 
 	<pharoJsSkip>
-	^ super appClasses , { 
-		  WCCOSMapWidget.
+	^ super appClasses , {
 		  WCCHelloWorld }
 ]
 
@@ -50,7 +49,8 @@ WCHelloWorldApp class >> generateHtmlUsing: html [
 						class: 'card-header';
 						with: 'Hello World !'.
 
-					WCCHelloWorld for: self on: html named: #hello ] ]
+					WCCHelloWorld for: self on: html named: #hello ].
+			 ]
 ]
 
 { #category : #description }

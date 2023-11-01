@@ -33,7 +33,7 @@ CampsiteWidget >> renderHtmlOn: html [
 						level: 1;
 						class: 'card-title';
 						with: campsite name ].
-			map := WCCOSMapWidget on: html.
+			map := WCCMap on: html.
 			html div
 				class: 'card-body';
 				with: [ 

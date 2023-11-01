@@ -1,5 +1,5 @@
 Class {
-	#name : #WCCOSMapWidget,
+	#name : #WCCMap,
 	#superclass : #WCComponent,
 	#instVars : [
 		'map',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #rendering }
-WCCOSMapWidget >> addMarker: aPoint [
+WCCMap >> addMarker: aPoint [
 
 	^ (L marker: {
 			 aPoint x.
@@ -20,13 +20,13 @@ WCCOSMapWidget >> addMarker: aPoint [
 ]
 
 { #category : #rendering }
-WCCOSMapWidget >> fitBounds: aRectangle [
+WCCMap >> fitBounds: aRectangle [
 
 	^ map fitBounds: (self jsRectangle: aRectangle)
 ]
 
 { #category : #rendering }
-WCCOSMapWidget >> getBounds [
+WCCMap >> getBounds [
 
 	| bounds |
 	bounds := map getBounds.
@@ -36,14 +36,14 @@ WCCOSMapWidget >> getBounds [
 ]
 
 { #category : #rendering }
-WCCOSMapWidget >> getCenter [
+WCCMap >> getCenter [
 
 	^  map getCenter.
 
 ]
 
 { #category : #rendering }
-WCCOSMapWidget >> jsPoint: aPoint [
+WCCMap >> jsPoint: aPoint [
 
 	^ { 
 		  aPoint x.
@@ -51,7 +51,7 @@ WCCOSMapWidget >> jsPoint: aPoint [
 ]
 
 { #category : #rendering }
-WCCOSMapWidget >> jsRectangle: aRectangle [
+WCCMap >> jsRectangle: aRectangle [
 
 	^ {
 		  self jsPoint: aRectangle topLeft.
@@ -59,7 +59,7 @@ WCCOSMapWidget >> jsRectangle: aRectangle [
 ]
 
 { #category : #rendering }
-WCCOSMapWidget >> on: event do: aBlock [
+WCCMap >> on: event do: aBlock [
 
 	^ map
 		  on: event
@@ -67,7 +67,7 @@ WCCOSMapWidget >> on: event do: aBlock [
 ]
 
 { #category : #rendering }
-WCCOSMapWidget >> polygon: collectionOfPoint [
+WCCMap >> polygon: collectionOfPoint [
 
 	^ (L polygon:
 		 (collectionOfPoint collect: [ :aPoint | self jsPoint: aPoint ])
@@ -75,7 +75,7 @@ WCCOSMapWidget >> polygon: collectionOfPoint [
 ]
 
 { #category : #rendering }
-WCCOSMapWidget >> polygon: collectionOfPoint with: options [
+WCCMap >> polygon: collectionOfPoint with: options [
 
 	^ (L polygon:
 		   (collectionOfPoint collect: [ :aPoint | self jsPoint: aPoint ])
@@ -83,7 +83,7 @@ WCCOSMapWidget >> polygon: collectionOfPoint with: options [
 ]
 
 { #category : #rendering }
-WCCOSMapWidget >> renderHtmlOn: html [
+WCCMap >> renderHtmlOn: html [
 
 	html div
 		style: 'height: 300px;';
@@ -91,19 +91,19 @@ WCCOSMapWidget >> renderHtmlOn: html [
 ]
 
 { #category : #rendering }
-WCCOSMapWidget >> setView: aPoint [
+WCCMap >> setView: aPoint [
 
 	map setView: (self jsPoint: aPoint)
 ]
 
 { #category : #rendering }
-WCCOSMapWidget >> setView: aPoint zoomLevel: aNumber [
+WCCMap >> setView: aPoint zoomLevel: aNumber [
 
 	map setView: (self jsPoint: aPoint) zoomLevel: aNumber
 ]
 
 { #category : #rendering }
-WCCOSMapWidget >> start [
+WCCMap >> start [
 
 	map ifNil: [
 		map := (L map: (self getElementById: 'map'))
