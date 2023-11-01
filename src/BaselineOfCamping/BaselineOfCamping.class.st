@@ -22,5 +22,8 @@ BaselineOfCamping >> baseline: spec [
 			with: [ spec requires: #( Leafletjs PharoJS Seaside3 ) ].
 		spec
 			package: #'ZnHostedPharoJS-Tests'
+			with: [ spec requires: #( ZnHostedPharoJS ) ].
+		spec
+			package: #WildCampComponent
 			with: [ spec requires: #( ZnHostedPharoJS ) ] ]
 ]

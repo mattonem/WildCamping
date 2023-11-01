@@ -2,7 +2,7 @@ SmalltalkCISpec {
   #loading : [
     SCIMetacelloLoadSpec {
       #baseline : 'Camping',
-      #load : ['ZnHostedPharoJS-Tests', 'ZnHostedPharoJS'],
+      #load : ['ZnHostedPharoJS-Tests', 'ZnHostedPharoJS', 'WildCampComponent'],
       #directory : 'src',  
       #platforms : [ #pharo ]
     }
@@ -11,9 +11,9 @@ SmalltalkCISpec {
     'scripts/setup.st'
   ],
   #testing : { 
-    #packages : [ 'ZnHostedPharoJS.*' ],
+    #categories : [ 'ZnHostedPharoJS.*', 'WildCampComponent-Tests' ],
     #coverage : {
-      #packages : [ 'ZnHostedPharoJS.*' ]
+      #packages : [ 'ZnHostedPharoJS.*', 'WildCampComponent.*' ]
     }
   }
 }
