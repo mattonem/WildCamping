@@ -27,7 +27,6 @@ WCHelloWorldAppTest >> tearDown [
 { #category : #tests }
 WCHelloWorldAppTest >> testHelloWorld [
 
-	self skip.
 	(self app document querySelector: 'input') value: 'Auto Test'.
 	(self app document querySelector: 'button') click.
 	self
