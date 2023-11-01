@@ -75,6 +75,7 @@ WCHelloWorldApp >> initialize [
 
 { #category : #'initialize-release' }
 WCHelloWorldApp >> start [
+
 	super start.
 	self initializeComponentHolder
 ]

@@ -9,21 +9,30 @@ Class {
 { #category : #rendering }
 WCCHelloWorld >> renderHtmlOn: html [
 
-	html textInput id: 'nameInput'; value: 'World'.
+	html textInput
+		id: 'nameInput';
+		value: 'World'.
 	html button
 		id: 'submitButton';
 		with: 'Say hello!'.
-	WCCParagraph for: self on: html named: #greetingMessage.
+	self
+		addComponent: (WCCParagraph new
+				 content: 'Hi guys';
+				 on: html)
+		named: #greetingMessage
 ]
 
 { #category : #rendering }
 WCCHelloWorld >> start [
 
-	| nameInput sayHelloButton greetingParagraph |
+	| nameInput sayHelloButton greetingMessage |
+	self initializeComponentHolder.
 	nameInput := self getElementById: #nameInput.
 	sayHelloButton := self getElementById: #submitButton.
-	greetingParagraph := self getElementById: #greetingMessage.
-	sayHelloButton addEventListener: #click block: [ :event | 
-		(self componentNamed: #greetingMessage) content:
-			'Hello ' , nameInput value ]
+	greetingMessage := self componentNamed: #greetingMessage.
+
+	sayHelloButton
+		addEventListener: #click
+		block: [ :event |
+		greetingMessage content: 'Hello ' , nameInput value ].
 ]

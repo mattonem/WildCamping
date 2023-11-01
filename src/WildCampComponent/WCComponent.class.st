@@ -36,17 +36,24 @@ WCComponent >> componentWrapperClassName [
 
 { #category : #rendering }
 WCComponent >> getComponentRoot [
-
+	uuid ifNil: [ ^ nil ].
 	^ document getElementById: uuid
 ]
 
 { #category : #rendering }
 WCComponent >> getElementById: aSymbol [
 
+self getComponentRoot ifNil: [ ^ nil ].
 	^ (self getComponentRoot querySelectorAll: '#' , aSymbol)
 		  detect: [ :el | (self parentWCOf: el) = self getComponentRoot ]
 		  ifFound: [ :el | el ]
-		  ifNone: [ Error signal: 'Element with id ', aSymbol, ' not found.' ]
+		  ifNone: [ nil ]
+]
+
+{ #category : #accessing }
+WCComponent >> getElementById: aString whenReadyDo: aBlock [
+	<javascript:'return this.pj_jsGetElementById_whenReadyDo_(aString, aBlock)'>
+	
 ]
 
 { #category : #'instance creation' }
@@ -71,6 +78,15 @@ WCComponent >> initStartCallback [
 { #category : #'initialize-release' }
 WCComponent >> initialize [
 	super initialize.
+]
+
+{ #category : #accessing }
+WCComponent >> jsGetElementById: aString whenReadyDo: aBlock [
+
+	^ (self getElementById: aString)
+		  ifNotNil: [ :el | aBlock cull: el ]
+		  ifNil: [
+		  self onStartDo: [ aBlock cull: (self getElementById: aString) ] ]
 ]
 
 { #category : #'instance creation' }
