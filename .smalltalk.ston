@@ -11,12 +11,9 @@ SmalltalkCISpec {
     'scripts/setup.st'
   ],
   #testing : { 
-    #packages : [ 'ZnHostedPharoJS.*', 'WildCampComponent.*' ],
+    #packages : [ 'ZnHostedPharoJS.*' ],
     #coverage : {
       #packages : [ 'ZnHostedPharoJS.*', 'WildCampComponent.*' ]
-    },
-    #exclude : {
-      #classes : [ #WCHelloWorldAppTest ]
     }
   }
 }
