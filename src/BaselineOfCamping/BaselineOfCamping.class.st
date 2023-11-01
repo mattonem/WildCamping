@@ -23,8 +23,7 @@ BaselineOfCamping >> baseline: spec [
 		spec
 			package: #'ZnHostedPharoJS-Tests'
 			with: [ spec requires: #( ZnHostedPharoJS ) ].
-			spec
-			package: #'WildCamping'
-			with: [ spec requires: #( ZnHostedPharoJS ) ]  ].
-		
+		spec
+			package: #WildCampComponent
+			with: [ spec requires: #( ZnHostedPharoJS ) ] ]
 ]
