@@ -3,7 +3,7 @@ Class {
 	#superclass : #WCComponent,
 	#traits : 'InstanceComponentHolder',
 	#classTraits : 'InstanceComponentHolder classTrait',
-	#category : #WildCampComponent
+	#category : #'WildCampComponent-Examples'
 }
 
 { #category : #rendering }
@@ -12,9 +12,11 @@ WCCHelloWorld >> renderHtmlOn: html [
 	html textInput
 		id: 'nameInput';
 		value: 'World'.
-	html button
-		id: 'submitButton';
-		with: 'Say hello!'.
+	self
+		addComponent: (WCCButton new
+				 label: 'Say hello!';
+				 on: html)
+		named: #greetButton.
 	self
 		addComponent: (WCCParagraph new
 				 content: 'Hi guys';
@@ -27,12 +29,12 @@ WCCHelloWorld >> start [
 
 	| nameInput sayHelloButton greetingMessage |
 	self initializeComponentHolder.
+	super start.
 	nameInput := self getElementById: #nameInput.
-	sayHelloButton := self getElementById: #submitButton.
+	sayHelloButton := self componentNamed: #greetButton.
 	greetingMessage := self componentNamed: #greetingMessage.
 
 	sayHelloButton
-		addEventListener: #click
-		block: [ :event |
-		greetingMessage content: 'Hello ' , nameInput value ].
+		onClick: [ :event |
+		greetingMessage content: 'Hello ' , nameInput value ]
 ]

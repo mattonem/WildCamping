@@ -50,7 +50,6 @@ WCHelloWorldApp class >> generateHtmlUsing: html [
 						class: 'card-header';
 						with: 'Hello World !'.
 
-					WCCOSMapWidget for: self on: html named: #map.
 					WCCHelloWorld for: self on: html named: #hello ] ]
 ]
 
