@@ -1,5 +1,8 @@
 # WildCamp
 
+[![Coverage Status](https://coveralls.io/repos/github/mattonem/WildCamping/badge.svg?branch=master)](https://coveralls.io/github/mattonem/WildCamping?branch=master)
+[![CI](https://github.com/mattonem/WCGeohashWebApp/actions/workflows/main.yml/badge.svg)](https://github.com/mattonem/WCGeohashWebApp/actions/workflows/main.yml)
+
 WildCamp is html component implementation built with [PharoJS](https://github.com/PharoJS/PharoJS).
 
 - The component parent class to be used is `WCComponent`. 
