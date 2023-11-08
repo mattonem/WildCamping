@@ -2,6 +2,8 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/mattonem/WildCamping/badge.svg?branch=master)](https://coveralls.io/github/mattonem/WildCamping?branch=master)
 [![CI](https://github.com/mattonem/WCGeohashWebApp/actions/workflows/main.yml/badge.svg)](https://github.com/mattonem/WCGeohashWebApp/actions/workflows/main.yml)
+![Static Badge](https://img.shields.io/badge/Pharo%20Smalltalk-11-ff69b4)
+
 
 WildCamp is html component implementation built with [PharoJS](https://github.com/PharoJS/PharoJS).
 
