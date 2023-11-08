@@ -35,6 +35,18 @@ WCUrl >> addToPath: aString [
 ]
 
 { #category : #encoding }
+WCUrl >> asString [
+
+	^ String streamContents: [ :s |
+		  s << scheme << '://' << host << ':' << port asString.
+		  path isNil ifFalse: [
+			  path keysAndValuesDo: [ :index :each |
+				  s nextPut: $/.
+				  s nextPutAll: each.
+				  ] ] ]
+]
+
+{ #category : #encoding }
 WCUrl >> encodeOn: aDocument [
 	self encodeSchemeAndAuthorityOn: aDocument.
 	self encodePathOn: aDocument.
@@ -112,6 +124,11 @@ WCUrl >> pathElementsIn: aString do: aOneArgumentBlock [
 ]
 
 { #category : #accessing }
+WCUrl >> port: anInteger [ 
+	port := anInteger
+]
+
+{ #category : #accessing }
 WCUrl >> queryFields [
 	"Answer a dictionary with the query fields."
 	^ queryFields ifNil: [ queryFields := WCRequestFields new ]
@@ -125,6 +142,21 @@ WCUrl >> scheme [
 ]
 
 { #category : #accessing }
+WCUrl >> scheme: aString [
+
+	^ scheme := aString
+]
+
+{ #category : #accessing }
 WCUrl >> slash: aBoolean [
 	slash := aBoolean
+]
+
+{ #category : #adding }
+WCUrl >> withPath: aString [
+	"Adds the argument as a path element. If the argument contains $/ it is split into multiple elements."
+
+	^ self copy
+		  addToPath: aString;
+		  yourself
 ]
