@@ -15,13 +15,15 @@ WCCHelloWorld >> renderHtmlOn: html [
 	self
 		addComponent: (WCCButton new
 				 label: 'Say hello!';
-				 on: html)
-		named: #greetButton.
+				 yourself)
+		named: #greetButton
+		on:html .
 	self
 		addComponent: (WCCParagraph new
 				 content: 'Hi guys';
-				 on: html)
+				yourself)
 		named: #greetingMessage
+		on: html
 ]
 
 { #category : #rendering }
@@ -33,8 +35,6 @@ WCCHelloWorld >> start [
 	nameInput := self getElementById: #nameInput.
 	sayHelloButton := self componentNamed: #greetButton.
 	greetingMessage := self componentNamed: #greetingMessage.
-
-	sayHelloButton
-		onClick: [ :event |
+	sayHelloButton onClick: [ :event |
 		greetingMessage content: 'Hello ' , nameInput value ]
 ]

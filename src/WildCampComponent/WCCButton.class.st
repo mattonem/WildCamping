@@ -31,6 +31,7 @@ WCCButton >> label: anObject [
 { #category : #accessing }
 WCCButton >> onClick: aBlock [
 
+(self getElementById: 'button')disabled: false.
 	^ (self getElementById: 'button')
 		  addEventListener: #click
 		  block: aBlock
@@ -42,5 +43,6 @@ WCCButton >> renderHtmlOn: html [
 	html button
 		class: 'btn btn-primary';
 		id: 'button';
+		disabled;
 		with: label
 ]

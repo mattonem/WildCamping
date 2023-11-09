@@ -18,8 +18,7 @@ Class {
 WCHelloWorldApp class >> appClasses [
 
 	<pharoJsSkip>
-	^ super appClasses , {
-		  WCCHelloWorld }
+	^ super appClasses , { WCCHelloWorld. WCCCounterMultiple  }
 ]
 
 { #category : #description }
@@ -50,7 +49,16 @@ WCHelloWorldApp class >> generateHtmlUsing: html [
 						with: 'Hello World !'.
 
 					WCCHelloWorld for: self on: html named: #hello ].
-			 ]
+			cont div
+				class: 'card';
+				with: [ :card |
+					card div
+						class: 'card-header';
+						with: 'Multiple Counter'.
+					card div
+						class: 'card-body';
+						with: 
+					[WCCCounterMultiple for: self on: html named: #multipleCounter ]] ]
 ]
 
 { #category : #description }

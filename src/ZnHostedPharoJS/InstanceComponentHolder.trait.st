@@ -10,14 +10,22 @@ Trait {
 
 { #category : #'initialize-release' }
 InstanceComponentHolder >> _components [
-	<pharoJsSkip>
+
 	^ components ifNil: [ components := Dictionary new ]
 ]
 
 { #category : #'initialize-release' }
-InstanceComponentHolder >> addComponent: aWCCParagraph named: aString [ 
+InstanceComponentHolder >> addComponent: aWCCParagraph named: aString [
 	<pharoJsSkip>
 	^ self _components at: aString put: aWCCParagraph
+]
+
+{ #category : #'initialize-release' }
+InstanceComponentHolder >> addComponent: aWCCParagraph named: aString on: html [
+
+	^ self _components at: aString put: (aWCCParagraph
+			   on: html;
+			   yourself)
 ]
 
 { #category : #'initialize-release' }

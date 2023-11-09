@@ -29,6 +29,18 @@ WCComponent class >> on: aWCHtmlCanvas [
 		  yourself
 ]
 
+{ #category : #'event init' }
+WCComponent >> addComponent: aComp in: anHtmlElment [
+
+	| frag |
+	frag := document createElement: 'template'.
+	frag innerHTML: (WCHtmlCanvas builder
+			 fullDocument: false;
+			 render: [ :html | aComp on: html ]).
+		anHtmlElment 	appendChild: frag content.
+
+]
+
 { #category : #rendering }
 WCComponent >> componentWrapperClassName [
 	^ 'WCComponentWrapper'
@@ -123,7 +135,8 @@ WCComponent >> renderComponentOn: html [
 
 	html div
 		id: (uuid := WCUUIDGeneratorWrapper next);
-		class: self componentWrapperClassName ;
+		class: self componentWrapperClassName;
+		style: 'width: fit-content; display: inline-block;';
 		with: [ self renderHtmlOn: html ]
 ]
 

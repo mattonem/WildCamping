@@ -2,10 +2,21 @@ Class {
 	#name : #WCCParagraph,
 	#superclass : #WCComponent,
 	#instVars : [
-		'content'
+		'content',
+		'cssClass',
+		'class'
 	],
 	#category : #WildCampComponent
 }
+
+{ #category : #rendering }
+WCCParagraph >> class: aCssClass [
+
+	class := aCssClass.
+	self
+		getElementById: 'main'
+		whenReadyDo: [ :el | el classList add: aCssClass ]
+]
 
 { #category : #rendering }
 WCCParagraph >> content: aString [
@@ -27,6 +38,7 @@ WCCParagraph >> renderHtmlOn: html [
 
 	html paragraph
 		id: #main;
+		class: class;
 		with: content
 ]
 
