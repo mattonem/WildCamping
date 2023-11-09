@@ -9,7 +9,8 @@ Class {
 
 { #category : #'suite parameters' }
 WCHelloWorldAppTest class >> appClass [
-	^WCHelloWorldApp
+ 
+	^ WCHelloWorldApp
 ]
 
 { #category : #tests }
