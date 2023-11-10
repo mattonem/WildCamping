@@ -38,12 +38,25 @@ WCUrl >> addToPath: aString [
 WCUrl >> asString [
 
 	^ String streamContents: [ :s |
-		  s << scheme << '://' << host << ':' << port asString.
+		scheme ifNotNil: [ s << scheme << '://'  ].
+		host ifNotNil: [ s << host ].
+		port ifNotNil: [ s << ':' << port asString ].
 		  path isNil ifFalse: [
 			  path keysAndValuesDo: [ :index :each |
 				  s nextPut: $/.
 				  s nextPutAll: each.
 				  ] ] ]
+]
+
+{ #category : #initialization }
+WCUrl >> copy [
+
+	^ self class new
+		  scheme: scheme;
+		  host: host;
+		  port: port;
+		  path: path copy;
+		  yourself
 ]
 
 { #category : #encoding }
@@ -116,6 +129,12 @@ WCUrl >> path [
 	"Answer the path part of the URL."
 
 	^ path ifNil: [ path := OrderedCollection new: 5 ]
+]
+
+{ #category : #accessing }
+WCUrl >> path: aColl [
+
+	path := aColl
 ]
 
 { #category : #private }
