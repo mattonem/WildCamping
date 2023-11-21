@@ -42,6 +42,12 @@ WCHtmlCanvas >> button [
 	^ self brush: WCButtonTag new
 ]
 
+{ #category : #accessing }
+WCHtmlCanvas >> checkbox [
+
+	^ self brush: WCCheckboxInputTag new
+]
+
 { #category : #'tags-styles' }
 WCHtmlCanvas >> div [
 	"Defines a section in a document."
