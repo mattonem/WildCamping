@@ -136,7 +136,7 @@ WCComponent >> renderComponentOn: html [
 	html div
 		id: (uuid := WCUUIDGeneratorWrapper next);
 		class: self componentWrapperClassName;
-		style: 'display: inline-block;';
+		style: 'display: contents;';
 		with: [ self renderHtmlOn: html ]
 ]
 
