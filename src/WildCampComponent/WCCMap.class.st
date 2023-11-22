@@ -3,7 +3,8 @@ Class {
 	#superclass : #WCComponent,
 	#instVars : [
 		'map',
-		'view'
+		'view',
+		'layers'
 	],
 	#pools : [
 		'LeafletjsGlobals'
@@ -12,11 +13,19 @@ Class {
 }
 
 { #category : #rendering }
+WCCMap >> addLayer: aLayer [
+
+	layers add: aLayer.
+aLayer addTo: map.
+	^ aLayer
+]
+
+{ #category : #rendering }
 WCCMap >> addMarker: aPoint [
 
-	^ (L marker: {
-			 aPoint x.
-			 aPoint y }) addTo: map
+	^ self addLayer: (L marker: {
+			   aPoint x.
+			   aPoint y })
 ]
 
 { #category : #rendering }
@@ -40,6 +49,12 @@ WCCMap >> getCenter [
 
 	^  map getCenter.
 
+]
+
+{ #category : #rendering }
+WCCMap >> initialize [
+	super initialize.
+	layers := Set new.
 ]
 
 { #category : #rendering }
@@ -69,17 +84,25 @@ WCCMap >> on: event do: aBlock [
 { #category : #rendering }
 WCCMap >> polygon: collectionOfPoint [
 
-	^ (L polygon:
-		 (collectionOfPoint collect: [ :aPoint | self jsPoint: aPoint ])
-			 asArray) addTo: map
+	^ self addLayer: (L polygon:
+		   (collectionOfPoint collect: [ :aPoint | self jsPoint: aPoint ])
+			   asArray) 
 ]
 
 { #category : #rendering }
 WCCMap >> polygon: collectionOfPoint with: options [
 
-	^ (L polygon:
-		   (collectionOfPoint collect: [ :aPoint | self jsPoint: aPoint ])
-			   asArray with: options) addTo: map
+	^ self addLayer: (L
+		   polygon:
+			   (collectionOfPoint collect: [ :aPoint | self jsPoint: aPoint ])
+				   asArray
+		   with: options)
+]
+
+{ #category : #rendering }
+WCCMap >> removeAllLayers [
+	layers do: [ :aLayer | aLayer remove ].
+	layers removeAll.
 ]
 
 { #category : #rendering }
