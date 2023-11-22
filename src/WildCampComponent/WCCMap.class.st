@@ -142,12 +142,7 @@ WCCMap >> start [
 					  ->
 					  '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>') }
 					 asJsObject) addTo: map ].
-	map
-		on: 'zoomend'
-		do: [
-			map
-				panTo: map getCenter wrap
-				options: { (#animate -> false) } asJsObject ].
+	
 	super start.
 	^ map
 ]
