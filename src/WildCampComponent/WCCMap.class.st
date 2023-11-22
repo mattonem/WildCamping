@@ -129,7 +129,9 @@ WCCMap >> setView: aPoint zoomLevel: aNumber [
 WCCMap >> start [
 
 	map ifNil: [
-		map := (L map: (self getElementById: 'map'))
+		map := (L
+			        map: (self getElementById: 'map')
+			        with: { (#worldCopyJump -> true) } asJsObject)
 			       setView: (self jsPoint: 0 @ 0)
 			       with: 13.
 		(L
@@ -140,6 +142,12 @@ WCCMap >> start [
 					  ->
 					  '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>') }
 					 asJsObject) addTo: map ].
+	map
+		on: 'zoomend'
+		do: [
+			map
+				panTo: map getCenter wrap
+				options: { (#animate -> false) } asJsObject ].
 	super start.
 	^ map
 ]
