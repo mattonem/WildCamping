@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'name',
 		'coordinates',
-		'qualities'
+		'attributes',
+		'description'
 	],
 	#category : #CampingWebApp
 }
@@ -15,7 +16,7 @@ CampingSite class >> defaultSite [
 	^ self new
 		  coordinates: 50 @ 20;
 		  name: 'Lovely campsite';
-		  qualities: {CampsiteDrinkingWater instance. CampsiteRunningWater instance};
+		  attributes: {CampsiteDrinkingWater instance. CampsiteRunningWater instance};
 		  yourself
 ]
 
@@ -25,6 +26,18 @@ CampingSite class >> defaultSite: aUID ifPresent: aBlock ifAbsent: anotherBlock 
 		  at: aUID
 		  ifPresent: aBlock
 		  ifAbsent: anotherBlock
+]
+
+{ #category : #accessing }
+CampingSite >> attributes [
+
+	^ attributes
+]
+
+{ #category : #accessing }
+CampingSite >> attributes: anObject [
+
+	attributes := anObject
 ]
 
 { #category : #accessing }
@@ -40,8 +53,20 @@ CampingSite >> coordinates: anObject [
 ]
 
 { #category : #accessing }
+CampingSite >> description [
+
+	^ description
+]
+
+{ #category : #accessing }
+CampingSite >> description: anObject [
+
+	description := anObject
+]
+
+{ #category : #accessing }
 CampingSite >> initialize [ 
-	qualities := Set new.
+	attributes := Set new.
 ]
 
 { #category : #accessing }
@@ -54,16 +79,4 @@ CampingSite >> name [
 CampingSite >> name: anObject [
 
 	name := anObject
-]
-
-{ #category : #accessing }
-CampingSite >> qualities [
-
-	^ qualities
-]
-
-{ #category : #accessing }
-CampingSite >> qualities: anObject [
-
-	qualities := anObject
 ]

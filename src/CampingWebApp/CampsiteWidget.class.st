@@ -42,7 +42,7 @@ CampsiteWidget >> renderHtmlOn: html [
 						with: campsite coordinates x asString , 'N'
 							, campsite coordinates y asString , 'E'.
 					CampsiteQualitiesWidget new
-						list: (campsite qualities select: [ :aQual | 
+						list: (campsite attributes select: [ :aQual | 
 									 aQual categories includes: #waterAccess ]);
 						on: html ] ]
 ]

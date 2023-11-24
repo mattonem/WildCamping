@@ -1,6 +1,6 @@
 Class {
 	#name : #CampsiteWaterAccess,
-	#superclass : #CampingSiteQuality,
+	#superclass : #CampingSiteAttributes,
 	#category : #CampingWebApp
 }
 

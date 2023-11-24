@@ -29,6 +29,20 @@ WCCMap >> addMarker: aPoint [
 ]
 
 { #category : #rendering }
+WCCMap >> addMarker: aPoint with: option [
+
+	^ self addLayer: (L marker: {
+				   aPoint x.
+				   aPoint y } with: option)
+]
+
+{ #category : #rendering }
+WCCMap >> center [
+
+	^ map getCenter wrap lat @ map getCenter wrap lng
+]
+
+{ #category : #rendering }
 WCCMap >> fitBounds: aRectangle [
 
 	^ map fitBounds: (self jsRectangle: aRectangle)

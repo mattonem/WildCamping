@@ -1,15 +1,15 @@
 Class {
-	#name : #CampingSiteQuality,
+	#name : #CampingSiteAttributes,
 	#superclass : #Object,
 	#category : #CampingWebApp
 }
 
 { #category : #visiting }
-CampingSiteQuality >> accept: aClass with: aWCHtmlCanvas [ 
+CampingSiteAttributes >> accept: aClass with: aWCHtmlCanvas [ 
 	self subclassResponsibility .
 ]
 
 { #category : #accessing }
-CampingSiteQuality >> categories [
+CampingSiteAttributes >> categories [
 	^ {  }
 ]

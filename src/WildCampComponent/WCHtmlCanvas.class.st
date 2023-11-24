@@ -163,6 +163,12 @@ WCHtmlCanvas >> text: anObject [
 ]
 
 { #category : #accessing }
+WCHtmlCanvas >> textArea [
+
+	^ self brush: WCTextAreaTag new
+]
+
+{ #category : #accessing }
 WCHtmlCanvas >> textInput [
 	^ self brush: WCTextInputTag new
 ]
