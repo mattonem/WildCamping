@@ -90,7 +90,6 @@ self subclassResponsibility
 { #category : #accessing }
 WCComponentApp class >> staticComponents [
 
-	console log: self staticComponentsSerialized .
 	^ staticComponents ifNil: [
 		  staticComponents := PhxJsonReader readFromString:
 			                      self staticComponentsSerialized ]

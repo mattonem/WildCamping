@@ -41,9 +41,20 @@ WCComponent >> addComponent: aComp in: anHtmlElment [
 
 ]
 
+{ #category : #creating }
+WCComponent >> addEventListener: eventName block: block [	
+	self getComponentRoot addEventListener: eventName block: block	 
+]
+
 { #category : #rendering }
 WCComponent >> componentWrapperClassName [
 	^ 'WCComponentWrapper'
+]
+
+{ #category : #rendering }
+WCComponent >> dispatchEvent: anEvent [
+	self getComponentRoot dispatchEvent: anEvent
+	
 ]
 
 { #category : #rendering }
