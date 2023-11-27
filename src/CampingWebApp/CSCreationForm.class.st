@@ -7,6 +7,32 @@ Class {
 }
 
 { #category : #rendering }
+CSCreationForm >> key [
+	"
+	| k key d |
+	k := 'key' asByteArray.
+	key := #( 16r01 16r23 16r45 16r67 16r89 16rAB 16rCD 16rEF 16r01 16r23
+	          16r45 16r67 16r89 16rAB 16rCD 16rEF 16r01 16r23 16r45 16r67
+	          16r89 16rAB 16rCD 16rEF ) asByteArray.
+	d := TripleDES key: key.
+	(d encryptBlock: k).
+	(String streamContents: [:s | k do: [:each | s << each hex asString] separatedBy: [s << ' ']]) .	
+"
+
+	<jsLiteralGenerator>
+	| s key d |
+	s := #( 16r6A 16rA4 16r9F 16rA2 16r18 16r5B 16r7F 16rB6 16r72 16r6C
+	        16r69 16r7A 16r79 16r54 16r78 16r56 16r72 16r4C 16r43 16r32
+	        16r68 16r45 ) asByteArray.
+	key := #( 16r01 16r23 16r45 16r67 16r89 16rAB 16rCD 16rEF 16r01 16r23
+	          16r45 16r67 16r89 16rAB 16rCD 16rEF 16r01 16r23 16r45 16r67
+	          16r89 16rAB 16rCD 16rEF ) asByteArray.
+	d := TripleDES key: key.
+	d decryptBlock: s.
+	^ s asString
+]
+
+{ #category : #rendering }
 CSCreationForm >> renderHtmlOn: html [
 
 	self addComponent: WCCMap new named: #map on: html.
@@ -64,13 +90,12 @@ CSCreationForm >> sendSubmission [
 	cs := CampingSite new
 		      name: (self getElementById: #name) value;
 		      description: (self getElementById: #description) value;
-		      coordinates:
-			      (self getElementById: #lat) value asNumber
+		      coordinates: (self getElementById: #lat) value asNumber
 			      @ (self getElementById: #lng) value asNumber;
 		      yourself.
 	PjHttpClient new
 		getUrl:
-			'https://maker.ifttt.com/trigger/WCContrib/with/key/dMR5jJEOKOx6URx7sDYmVN?value1='
+			'https://maker.ifttt.com/trigger/WCContrib/with/key/',self key,'?value1='
 			, cs asPhxJsonString
 		do: [  ]
 ]
