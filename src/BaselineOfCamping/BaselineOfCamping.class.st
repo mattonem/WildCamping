@@ -9,10 +9,7 @@ BaselineOfCamping >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [
-		spec
-			baseline: 'Cryptography'
-			with: [
-			spec repository: 'github://pharo-contributions/Cryptography' ].
+
 		spec
 			baseline: 'PharoJS'
 			with: [ spec repository: 'github://PharoJS/PharoJS:pharo11' ].
@@ -30,5 +27,5 @@ BaselineOfCamping >> baseline: spec [
 			with: [ spec requires: #( ZnHostedPharoJS ) ].
 		spec
 			package: #WildCampComponent
-			with: [ spec requires: #( ZnHostedPharoJS Cryptography ) ] ]
+			with: [ spec requires: #( ZnHostedPharoJS ) ] ]
 ]
