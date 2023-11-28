@@ -8,6 +8,14 @@ Class {
 	#category : #WildCampComponent
 }
 
+{ #category : #accessing }
+WCCButton >> disable [
+
+	self
+		getElementById: 'button'
+		whenReadyDo: [ :el | el setAttribute: #disabled value: true  ]
+]
+
 { #category : #rendering }
 WCCButton >> initialize [ 
 	label := 'Default button label'
