@@ -2,57 +2,16 @@ Class {
 	#name : #WCComponentApp,
 	#superclass : #PjFileBasedWebApp,
 	#classInstVars : [
-		'staticComponents'
+		'component'
 	],
 	#category : #WildCampComponent
 }
 
 { #category : #accessing }
-WCComponentApp class >> _resetComponents [
-
-	<script>
-	<pharoJsSkip> 
-	^ staticComponents := Dictionary new
-]
-
-{ #category : #accessing }
-WCComponentApp class >> _staticComponents [
-
-	<pharoJsSkip>
-	^ staticComponents ifNil: [ staticComponents := Dictionary new ] 
-]
-
-{ #category : #accessing }
-WCComponentApp class >> addComponent: aWCCParagraph named: aString [
-
-	<pharoJsSkip>
-	^ self addStaticComponent: aWCCParagraph named: aString 
-]
-
-{ #category : #accessing }
-WCComponentApp class >> addComponent: aWCCParagraph named: aString on: html [
-
-	<pharoJsSkip>
-	^ self
-		  addStaticComponent: (aWCCParagraph
-				   on: html; 
-				   yourself)
-		  named: aString
-]
-
-{ #category : #accessing }
-WCComponentApp class >> addStaticComponent: aWCCParagraph named: aString [
-
-	<pharoJsSkip>
-	^ self _staticComponents at: aString put: aWCCParagraph 
-]
-
-{ #category : #accessing }
 WCComponentApp class >> appClasses [
 
 	<pharoJsSkip>
-	^ super appClasses , {
-		  CSUpdateForm }
+	^ super appClasses , { self rootComponentClass }
 ]
 
 { #category : #accessing }
@@ -63,9 +22,11 @@ WCComponentApp class >> bridgeClientClass [
 ]
 
 { #category : #accessing }
-WCComponentApp class >> components [
+WCComponentApp class >> component [
 
-	^ self staticComponents
+	^ component ifNil: [
+		  component := PhxJsonReader readFromString:
+			                      self staticComponentSerialized ]
 ]
 
 { #category : #accessing }
@@ -79,7 +40,7 @@ WCComponentApp class >> exporterClass [
 WCComponentApp class >> generateHtmlUsing: html [
 
 	<pharoJsSkip>
-	self addComponent: self rootComponentClass new named: #form on: html
+	component := self rootComponentClass new on: html; yourself
 ]
 
 { #category : #accessing }
@@ -88,23 +49,15 @@ self subclassResponsibility
 ]
 
 { #category : #accessing }
-WCComponentApp class >> staticComponents [
-
-	^ staticComponents ifNil: [
-		  staticComponents := PhxJsonReader readFromString:
-			                      self staticComponentsSerialized ]
-]
-
-{ #category : #accessing }
-WCComponentApp class >> staticComponentsSerialized [
+WCComponentApp class >> staticComponentSerialized [
 
 	<pharoJsSkip>
-	self subclassResponsibility.
+	self subclassResponsibility
 	"subclasses should implement: 
-	staticComponentsSerialized
+	staticComponentSerialized
 
 	<jsLiteralGenerator>
-	^ self _staticComponents asPhxJsonString"
+	^ component asPhxJsonString"
 ]
 
 { #category : #'as yet unclassified' }
@@ -115,14 +68,15 @@ WCComponentApp class >> staticFoldersToExpose [
 ]
 
 { #category : #'as yet unclassified' }
-WCComponentApp >> components [
-	^ self class components
+WCComponentApp >> component [
+
+	^ self class component
 ]
 
 { #category : #'as yet unclassified' }
 WCComponentApp >> initializeComponentHolder [
 
-	self components do: [ :component | component initStartCallback ]
+	self component initStartCallback
 ]
 
 { #category : #'as yet unclassified' }
