@@ -39,7 +39,7 @@ PjZnHostedBrowserBridgeClient >> initZnServer [
 	self server delegate map: 'web' to: (ZnPrefixMappingDelegate new
 			 map: 'web'
 			 to: (ZnPrefixMappingDelegate new
-					  map: 'index.html' to: [ :request | 
+					  map: 'index.html' to: [ :request |
 						  | response |
 						  response := ZnResponse ok: (ZnEntity html: html).
 						  response headers
@@ -48,7 +48,7 @@ PjZnHostedBrowserBridgeClient >> initZnServer [
 						  response headers at: 'Pragma' put: 'no-cache'.
 						  response headers at: 'Expires' put: '0'.
 						  response ];
-					  map: 'index.js' to: [ :request | 
+					  map: 'index.js' to: [ :request |
 						  | response |
 						  response := ZnResponse ok:
 								              (ZnEntity javascript: stream contents).
@@ -57,7 +57,13 @@ PjZnHostedBrowserBridgeClient >> initZnServer [
 							  put: 'no-cache, no-store, must-revalidate'.
 						  response headers at: 'Pragma' put: 'no-cache'.
 						  response headers at: 'Expires' put: '0'.
-						  response ]))
+						  response ])).
+	exporter staticFoldersToExpose keysAndValuesDo: [ :name :aFileReference |
+		((self server delegate prefixMap at: 'web') prefixDictionary at:
+			 'web') map: name to: (ZnStaticFileServerDelegate new
+				 prefixFromString: '/' ;
+				 directory: aFileReference;
+				 yourself) ]
 ]
 
 { #category : #actions }

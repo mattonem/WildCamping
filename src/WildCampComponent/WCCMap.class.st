@@ -114,6 +114,15 @@ WCCMap >> polygon: collectionOfPoint with: options [
 ]
 
 { #category : #rendering }
+WCCMap >> remove [
+
+	map off.
+	map remove	.
+	super remove.
+
+]
+
+{ #category : #rendering }
 WCCMap >> removeAllLayers [
 	layers do: [ :aLayer | aLayer remove ].
 	layers removeAll.

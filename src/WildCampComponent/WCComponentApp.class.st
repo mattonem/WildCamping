@@ -52,7 +52,7 @@ WCComponentApp class >> appClasses [
 
 	<pharoJsSkip>
 	^ super appClasses , {
-		  CSCreationForm }
+		  CSUpdateForm }
 ]
 
 { #category : #accessing }
@@ -105,6 +105,13 @@ WCComponentApp class >> staticComponentsSerialized [
 
 	<jsLiteralGenerator>
 	^ self _staticComponents asPhxJsonString"
+]
+
+{ #category : #'as yet unclassified' }
+WCComponentApp class >> staticFoldersToExpose [
+
+	<pharoJsSkip>
+	^ {  } asDictionary
 ]
 
 { #category : #'as yet unclassified' }

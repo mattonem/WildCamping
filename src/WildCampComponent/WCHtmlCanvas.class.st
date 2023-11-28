@@ -86,6 +86,13 @@ WCHtmlCanvas >> heading [
 ]
 
 { #category : #accessing }
+WCHtmlCanvas >> image [
+	"Defines an image."
+
+	^ self brush: WCImageTag new
+]
+
+{ #category : #accessing }
 WCHtmlCanvas >> label [
 	"Defines a label for a form control."
 

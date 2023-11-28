@@ -41,6 +41,17 @@ WCComponent >> addComponent: aComp in: anHtmlElment [
 
 ]
 
+{ #category : #'event init' }
+WCComponent >> addComponentIn: anHtmlElment [
+
+	| frag |
+	frag := document createElement: 'template'.
+	frag innerHTML: (WCHtmlCanvas builder
+			 fullDocument: false;
+			 render: [ :html | self on: html ]).
+	anHtmlElment appendChild: frag content
+]
+
 { #category : #creating }
 WCComponent >> addEventListener: eventName block: block [	
 	self getComponentRoot addEventListener: eventName block: block	 
@@ -49,6 +60,11 @@ WCComponent >> addEventListener: eventName block: block [
 { #category : #rendering }
 WCComponent >> componentWrapperClassName [
 	^ 'WCComponentWrapper'
+]
+
+{ #category : #accessing }
+WCComponent >> components [
+	^ {  }
 ]
 
 { #category : #rendering }
@@ -139,6 +155,13 @@ WCComponent >> parentWCOf: anElement [
 		   { self componentWrapperClassName })
 		  ifTrue: [ anElement ]
 		  ifFalse: [ self parentWCOf: anElement parentElement ]
+]
+
+{ #category : #accessing }
+WCComponent >> remove [
+
+	self components do: [ :aComp | aComp remove ].
+	self getComponentRoot remove.
 ]
 
 { #category : #rendering }
