@@ -9,10 +9,9 @@ BaselineOfCamping >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [
-
 		spec
 			baseline: 'PharoJS'
-			with: [ spec repository: 'github://PharoJS/PharoJS:pharo11' ].
+			with: [ spec repository: 'github://mattonem/PharoJS:patch-10' ].
 
 		spec baseline: 'Seaside3' with: [
 			spec
