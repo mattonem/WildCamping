@@ -38,14 +38,14 @@ WCUrl >> addToPath: aString [
 WCUrl >> asString [
 
 	^ String streamContents: [ :s |
-		scheme ifNotNil: [ s << scheme << '://'  ].
-		host ifNotNil: [ s << host ].
-		port ifNotNil: [ s << ':' << port asString ].
+		  scheme ifNotNil: [ s << scheme << '://' ].
+		  host ifNotNil: [ s << host ].
+		  port ifNotNil: [ s << ':' << port asString ].
 		  path isNil ifFalse: [
-			  path keysAndValuesDo: [ :index :each |
+			  s nextPutAll: path first.
+			  path allButFirst do: [ :each |
 				  s nextPut: $/.
-				  s nextPutAll: each.
-				  ] ] ]
+				  s nextPutAll: each ] ] ]
 ]
 
 { #category : #initialization }
