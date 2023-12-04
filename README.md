@@ -1,5 +1,5 @@
 # WildCamp
-
+ 
 [![Coverage Status](https://coveralls.io/repos/github/mattonem/WildCamping/badge.svg?branch=master)](https://coveralls.io/github/mattonem/WildCamping?branch=master)
 [![Continuous Integration (CI)](https://github.com/mattonem/WildCamping/actions/workflows/ci.yml/badge.svg)](https://github.com/mattonem/WildCamping/actions/workflows/ci.yml)
 ![Static Badge](https://img.shields.io/badge/Pharo%20Smalltalk-11-ff69b4)
