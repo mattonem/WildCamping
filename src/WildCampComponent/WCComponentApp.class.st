@@ -2,7 +2,7 @@ Class {
 	#name : #WCComponentApp,
 	#superclass : #PjFileBasedWebApp,
 	#classInstVars : [
-		'component'
+		'#component => JavascriptSerializedInstanceVariableSlot'
 	],
 	#category : #WildCampComponent
 }
@@ -24,9 +24,7 @@ WCComponentApp class >> bridgeClientClass [
 { #category : #accessing }
 WCComponentApp class >> component [
 
-	^ component ifNil: [
-		  component := PhxJsonReader readFromString:
-			                      self staticComponentSerialized ]
+	^ component 
 ]
 
 { #category : #accessing }
