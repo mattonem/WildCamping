@@ -2,7 +2,7 @@ Class {
 	#name : #WCComponentApp,
 	#superclass : #PjFileBasedWebApp,
 	#classInstVars : [
-		'component'
+		'#component => JavascriptSerializedInstanceVariableSlot'
 	],
 	#category : #WildCampComponent
 }
@@ -24,9 +24,7 @@ WCComponentApp class >> bridgeClientClass [
 { #category : #accessing }
 WCComponentApp class >> component [
 
-	^ component ifNil: [
-		  component := PhxJsonReader readFromString:
-			                      self staticComponentSerialized ]
+	^ component 
 ]
 
 { #category : #accessing }
@@ -46,18 +44,6 @@ WCComponentApp class >> generateHtmlUsing: html [
 { #category : #accessing }
 WCComponentApp class >> rootComponentClass [
 self subclassResponsibility 
-]
-
-{ #category : #accessing }
-WCComponentApp class >> staticComponentSerialized [
-
-	<pharoJsSkip>
-	self subclassResponsibility
-	"subclasses should implement: 
-	staticComponentSerialized
-
-	<jsLiteralGenerator>
-	^ component asPhxJsonString"
 ]
 
 { #category : #'as yet unclassified' }
