@@ -46,18 +46,6 @@ WCComponentApp class >> rootComponentClass [
 self subclassResponsibility 
 ]
 
-{ #category : #accessing }
-WCComponentApp class >> staticComponentSerialized [
-
-	<pharoJsSkip>
-	self subclassResponsibility
-	"subclasses should implement: 
-	staticComponentSerialized
-
-	<jsLiteralGenerator>
-	^ component asPhxJsonString"
-]
-
 { #category : #'as yet unclassified' }
 WCComponentApp class >> staticFoldersToExpose [
 
