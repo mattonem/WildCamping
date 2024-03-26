@@ -61,6 +61,13 @@ WCHelloWorldApp class >> generateHtmlUsing: html [
 					[WCCCounterMultiple for: self on: html named: #multipleCounter ]] ]
 ]
 
+{ #category : #accessing }
+WCHelloWorldApp class >> staticComponentsSerialized [
+
+	<jsLiteralGenerator>
+	^ self _staticComponents asPhxJsonString
+]
+
 { #category : #description }
 WCHelloWorldApp class >> updateHtmlRoot: root [
 

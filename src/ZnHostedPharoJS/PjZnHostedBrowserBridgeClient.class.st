@@ -71,7 +71,7 @@ PjZnHostedBrowserBridgeClient >> openWebBrowserOn: appHtmlFileUrlString [
 
 	WebBrowser
 		openOn: appHtmlFileUrlString
-		inBackground: self openBrowserInBackground
+		
 ]
 
 { #category : #actions }
