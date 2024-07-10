@@ -1,46 +1,47 @@
 Class {
-	#name : #WCHtmlElement,
-	#superclass : #Object,
+	#name : 'WCHtmlElement',
+	#superclass : 'Object',
 	#instVars : [
 		'children',
 		'attributes',
 		'root'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WCHtmlElement class >> root: aRoot [
 	^ self basicNew initializeWithRoot: aRoot; yourself
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WCHtmlElement >> add: anElement [
 	children ifNil: [ children := OrderedCollection new ].
 	children add: anElement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCHtmlElement >> attributeAt: aString put: anObject [
 	^ self attributes at: aString put: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCHtmlElement >> attributes [
 	^ attributes ifNil: [ attributes := WCHtmlAttributes new ]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 WCHtmlElement >> encodeAfterOn: aDocument [
 	aDocument closeTag: self tag
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 WCHtmlElement >> encodeBeforeOn: aDocument [
 	aDocument openTag: self tag attributes: attributes closed: self isClosed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCHtmlElement >> encodeOn: aDocument [
 	self encodeBeforeOn: aDocument.
 	self isClosed ifTrue: [ ^ self ].
@@ -48,13 +49,13 @@ WCHtmlElement >> encodeOn: aDocument [
 	self encodeAfterOn: aDocument
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WCHtmlElement >> initializeWithRoot: aRoot [
 	self initialize.
 	root := aRoot
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 WCHtmlElement >> isClosed [
 	^ true
 ]

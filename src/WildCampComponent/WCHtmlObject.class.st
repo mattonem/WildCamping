@@ -1,18 +1,19 @@
 Class {
-	#name : #WCHtmlObject,
-	#superclass : #Object,
+	#name : 'WCHtmlObject',
+	#superclass : 'Object',
 	#instVars : [
 		'root'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WCHtmlObject class >> root: aRoot [
 	^ self basicNew initializeWithRoot: aRoot; yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WCHtmlObject >> initializeWithRoot: aRoot [
 	self initialize.
 	root := aRoot

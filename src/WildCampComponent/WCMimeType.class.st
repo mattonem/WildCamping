@@ -1,15 +1,16 @@
 Class {
-	#name : #WCMimeType,
-	#superclass : #Object,
+	#name : 'WCMimeType',
+	#superclass : 'Object',
 	#instVars : [
 		'main',
 		'sub',
 		'parameters'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WCMimeType class >> main: aMainString sub: aSubString [
 	^ self new
 		main: aMainString;
@@ -17,22 +18,22 @@ WCMimeType class >> main: aMainString sub: aSubString [
 		yourself
 ]
 
-{ #category : #convenience }
+{ #category : 'convenience' }
 WCMimeType class >> textCss [
 	^ self main: 'text' sub: 'css'
 ]
 
-{ #category : #convenience }
+{ #category : 'convenience' }
 WCMimeType class >> textJavascript [
 	^ self main: 'text' sub: 'javascript'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCMimeType >> encodeOn: aDocument [ 
 	aDocument print: self greaseString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCMimeType >> greaseString [
 	| stringSize string stream |
 	stringSize := main size + 1 + sub size.
@@ -57,12 +58,12 @@ WCMimeType >> greaseString [
 	^ stream contents
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCMimeType >> main: aString [
 	main := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCMimeType >> sub: aString [
 	sub := aString
 ]

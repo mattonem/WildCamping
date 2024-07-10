@@ -2,15 +2,17 @@
 A WCHtmlAttributesTest is a test class for testing the behavior of WCHtmlAttributes
 "
 Class {
-	#name : #WCHtmlAttributesTest,
-	#superclass : #TestCase,
+	#name : 'WCHtmlAttributesTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'attributes'
 	],
-	#category : #'WildCampComponent-Tests'
+	#category : 'WildCampComponent-Tests',
+	#package : 'WildCampComponent',
+	#tag : 'Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCHtmlAttributesTest >> assert: aBlock gives: aString [
 
 	| stream |
@@ -24,13 +26,13 @@ WCHtmlAttributesTest >> assert: aBlock gives: aString [
 		resumable: true
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCHtmlAttributesTest >> setUp [
 	attributes := WCHtmlAttributes new.
 	super setUp 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCHtmlAttributesTest >> testAddClass [
 	self
 		assert: [ :attr | attr addClass: 'foo' ]
@@ -40,7 +42,7 @@ WCHtmlAttributesTest >> testAddClass [
 		gives: ' class="foo bar"'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCHtmlAttributesTest >> testAtAppend [
 	self
 		assert: [ :attr | attr at: 'onclick' append: 'this' separator: ';' ]
@@ -65,7 +67,7 @@ WCHtmlAttributesTest >> testAtAppend [
 		gives: ' onclick="1;2"'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCHtmlAttributesTest >> testAtPut [
 	self
 		assert: [ :attr | attr at: 'id' put: 'foo' ]
@@ -84,14 +86,14 @@ WCHtmlAttributesTest >> testAtPut [
 		gives: ''
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCHtmlAttributesTest >> testCaseSensititve [
 	self
 		assert: [ :attr | attr at: 'lastBuildDate' put: 'Sat, 07 Sep 2002 09:42:31 GMT' ]
 		gives: ' lastBuildDate="Sat, 07 Sep 2002 09:42:31 GMT"'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCHtmlAttributesTest >> testOrder [
 	self
 		assert: [ :attr | attr at: 'a' put: 1; at: 'b' put: 2; at: 'c' put: 3 ]
@@ -101,7 +103,7 @@ WCHtmlAttributesTest >> testOrder [
 		gives: ' a="1" b="4" c="3"'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCHtmlAttributesTest >> testRemoveKey [
 
 	attributes at: 'id' put: 'foo'.

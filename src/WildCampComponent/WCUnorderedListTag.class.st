@@ -1,10 +1,11 @@
 Class {
-	#name : #WCUnorderedListTag,
-	#superclass : #WCListTag,
-	#category : #WildCampComponent
+	#name : 'WCUnorderedListTag',
+	#superclass : 'WCListTag',
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCUnorderedListTag >> tag [
 	^ 'ul'
 ]

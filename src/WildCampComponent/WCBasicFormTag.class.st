@@ -1,10 +1,11 @@
 Class {
-	#name : #WCBasicFormTag,
-	#superclass : #WCTagBrush,
-	#category : #WildCampComponent
+	#name : 'WCBasicFormTag',
+	#superclass : 'WCTagBrush',
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCBasicFormTag >> tag [
 	^ 'form'
 ]

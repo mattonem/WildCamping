@@ -1,26 +1,27 @@
 Class {
-	#name : #WCConcatenatedHtmlAttributeValue,
-	#superclass : #Object,
+	#name : 'WCConcatenatedHtmlAttributeValue',
+	#superclass : 'Object',
 	#instVars : [
 		'separator',
 		'values'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WCConcatenatedHtmlAttributeValue class >> separator: aSeparator value: anFirstObject value: aSecondObject [
 	^ self basicNew initializeWithSeparator: aSeparator value: anFirstObject value: aSecondObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WCConcatenatedHtmlAttributeValue >> encodeOn: aDocument [ 
 	values
 		do: [ :each | aDocument print: each ]
 		separatedBy: [ aDocument print: separator ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WCConcatenatedHtmlAttributeValue >> initializeWithSeparator: aSeparator value: anFirstObject value: aSecondObject [
 	self initialize.
 	separator := aSeparator.
@@ -29,7 +30,7 @@ WCConcatenatedHtmlAttributeValue >> initializeWithSeparator: aSeparator value: a
 	values add: aSecondObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WCConcatenatedHtmlAttributeValue >> isConcatenatedHtmlAttributeValue [
 	^ true
 ]

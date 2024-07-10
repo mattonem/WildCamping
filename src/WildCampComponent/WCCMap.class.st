@@ -1,6 +1,6 @@
 Class {
-	#name : #WCCMap,
-	#superclass : #WCComponent,
+	#name : 'WCCMap',
+	#superclass : 'WCComponent',
 	#instVars : [
 		'map',
 		'view',
@@ -9,10 +9,11 @@ Class {
 	#pools : [
 		'LeafletjsGlobals'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> addLayer: aLayer [
 
 	layers add: aLayer.
@@ -20,7 +21,7 @@ aLayer addTo: map.
 	^ aLayer
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> addMarker: aPoint [
 
 	^ self addLayer: (L marker: {
@@ -28,7 +29,7 @@ WCCMap >> addMarker: aPoint [
 			   aPoint y })
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> addMarker: aPoint with: option [
 
 	^ self addLayer: (L marker: {
@@ -36,19 +37,19 @@ WCCMap >> addMarker: aPoint with: option [
 				   aPoint y } with: option)
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> center [
 
 	^ map getCenter wrap lat @ map getCenter wrap lng
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> fitBounds: aRectangle [
 
 	^ map fitBounds: (self jsRectangle: aRectangle)
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> getBounds [
 
 	| bounds |
@@ -58,20 +59,20 @@ WCCMap >> getBounds [
 		  corner: bounds getSouthEast lat @ bounds getSouthEast lng
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> getCenter [
 
 	^  map getCenter.
 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> initialize [
 	super initialize.
 	layers := Set new.
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> jsPoint: aPoint [
 
 	^ { 
@@ -79,7 +80,7 @@ WCCMap >> jsPoint: aPoint [
 		  aPoint y }
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> jsRectangle: aRectangle [
 
 	^ {
@@ -87,7 +88,7 @@ WCCMap >> jsRectangle: aRectangle [
 		  self jsPoint: aRectangle bottomRight.}
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> on: event do: aBlock [
 
 	^ map
@@ -95,7 +96,7 @@ WCCMap >> on: event do: aBlock [
 		  do: aBlock
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> polygon: collectionOfPoint [
 
 	^ self addLayer: (L polygon:
@@ -103,7 +104,7 @@ WCCMap >> polygon: collectionOfPoint [
 			   asArray) 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> polygon: collectionOfPoint with: options [
 
 	^ self addLayer: (L
@@ -113,7 +114,7 @@ WCCMap >> polygon: collectionOfPoint with: options [
 		   with: options)
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> remove [
 
 	map off.
@@ -122,13 +123,13 @@ WCCMap >> remove [
 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> removeAllLayers [
 	layers do: [ :aLayer | aLayer remove ].
 	layers removeAll.
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> renderHtmlOn: html [
 
 	html div
@@ -136,19 +137,19 @@ WCCMap >> renderHtmlOn: html [
 		id: 'map'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> setView: aPoint [
 
 	map setView: (self jsPoint: aPoint)
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> setView: aPoint zoomLevel: aNumber [
 
 	map setView: (self jsPoint: aPoint) zoomLevel: aNumber
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCMap >> start [
 
 	map ifNil: [

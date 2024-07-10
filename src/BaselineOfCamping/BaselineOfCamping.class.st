@@ -1,17 +1,18 @@
 Class {
-	#name : #BaselineOfCamping,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfCamping
+	#name : 'BaselineOfCamping',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfCamping',
+	#package : 'BaselineOfCamping'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfCamping >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [
 		spec
 			baseline: 'PharoJS'
-			with: [ spec repository: 'github://PharoJS/PharoJS:pharo11' ].
+			with: [ spec repository: 'github://PharoJS/PharoJS:pharo12' ].
 
 		spec baseline: 'Seaside3' with: [
 			spec

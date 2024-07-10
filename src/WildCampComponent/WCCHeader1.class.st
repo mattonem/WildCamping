@@ -1,13 +1,14 @@
 Class {
-	#name : #WCCHeader1,
-	#superclass : #WCComponent,
+	#name : 'WCCHeader1',
+	#superclass : 'WCComponent',
 	#instVars : [
 		'content'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCHeader1 >> content: aString [
 
 	content := aString.
@@ -16,12 +17,12 @@ WCCHeader1 >> content: aString [
 		whenReadyDo: [ :el | el innerHTML: aString ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCHeader1 >> initialize [ 
 	content := 'Default Title'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCHeader1 >> renderHtmlOn: html [
 
 	html heading

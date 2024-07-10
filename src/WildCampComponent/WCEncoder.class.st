@@ -1,29 +1,30 @@
 Class {
-	#name : #WCEncoder,
-	#superclass : #Object,
+	#name : 'WCEncoder',
+	#superclass : 'Object',
 	#instVars : [
 		'stream'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WCEncoder class >> on: aStream [
 	^ self basicNew initializeOn: aStream
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WCEncoder >> initializeOn: aStream [
 	self initialize.
 	stream := aStream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCEncoder >> nextPut: aCharacter [ 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCEncoder >> nextPutAll: aString [
 	self subclassResponsibility
 ]

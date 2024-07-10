@@ -1,6 +1,6 @@
 Class {
-	#name : #WCHtmlRoot,
-	#superclass : #WCHtmlObject,
+	#name : 'WCHtmlRoot',
+	#superclass : 'WCHtmlObject',
 	#instVars : [
 		'headElements',
 		'docType',
@@ -11,27 +11,28 @@ Class {
 		'styles',
 		'scripts'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 WCHtmlRoot >> add: aHtmlElement [
 	"Add a HTML head element to the receiver."
 
 	^ headElements add: aHtmlElement
 ]
 
-{ #category : #doctype }
+{ #category : 'doctype' }
 WCHtmlRoot >> beHtml5 [
 	self docType: '<!DOCTYPE html>'
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 WCHtmlRoot >> closeOn: aDocument [
 	self writeFootOn: aDocument
 ]
 
-{ #category : #doctype }
+{ #category : 'doctype' }
 WCHtmlRoot >> docType: aString [
 	"Set the document-type of the receiver. The table at http://www.w3.org/TR/2002/NOTE-xhtml-media-types-20020430/ summarizes the recommendation to content authors for labeling their XHTML documents:
 
@@ -44,71 +45,71 @@ text/xml					MAY							MAY				MAY				MAY"
 	docType := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCHtmlRoot >> htmlAttributes [
 	^ htmlAttrs ifNil: [ htmlAttrs := WCHtmlAttributes new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCHtmlRoot >> initialize [
 	super initialize.
 	headElements := OrderedCollection new.
 	title := docType := String new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCHtmlRoot >> javascript [
 	^ self script beJavascript; yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCHtmlRoot >> language: aString [
 	self htmlAttributes at: 'lang' put: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCHtmlRoot >> link [
 	^ self add: (WCLinkElement root: self)
 ]
 
-{ #category : #combining }
+{ #category : 'combining' }
 WCHtmlRoot >> meta [
 	^ self add: (WCMetaElement root: self)
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WCHtmlRoot >> openOn: aDocument [
 	self writeHeadOn: aDocument
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCHtmlRoot >> script [
 	^ self add: (WCScriptElement root: self)
 ]
 
-{ #category : #elements }
+{ #category : 'elements' }
 WCHtmlRoot >> stylesheet [
 	^ self link beStylesheet; beCss; yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCHtmlRoot >> title: aString [
 	title := aString
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 WCHtmlRoot >> writeElementsOn: aDocument [
 	aDocument openTag: 'title'; nextPutAll: title; closeTag: 'title'.
 	headElements do: [ :each | aDocument print: each ]
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 WCHtmlRoot >> writeFootOn: aDocument [
 	aDocument closeTag: 'body'.
 	aDocument closeTag: 'html'
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 WCHtmlRoot >> writeHeadOn: aDocument [
 	aDocument nextPutAll: docType.
 	aDocument openTag: 'html' attributes: htmlAttrs.
@@ -120,7 +121,7 @@ WCHtmlRoot >> writeHeadOn: aDocument [
 	aDocument openTag: 'body' attributes: bodyAttrs
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 WCHtmlRoot >> writeScriptsOn: aDocument [
 	scripts ifNil: [ ^ self ].
 	scripts do: [ :each |
@@ -130,7 +131,7 @@ WCHtmlRoot >> writeScriptsOn: aDocument [
 			yourself) ]
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 WCHtmlRoot >> writeStylesOn: aDocument [
 	styles ifNil: [ ^ self ].
 	styles do: [ :each |

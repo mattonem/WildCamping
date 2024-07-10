@@ -1,12 +1,14 @@
 Class {
-	#name : #WCCCounterMultiple,
-	#superclass : #WCComponent,
+	#name : 'WCCCounterMultiple',
+	#superclass : 'WCComponent',
 	#traits : 'InstanceComponentHolder',
 	#classTraits : 'InstanceComponentHolder classTrait',
-	#category : #'WildCampComponent-Examples'
+	#category : 'WildCampComponent-Examples',
+	#package : 'WildCampComponent',
+	#tag : 'Examples'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCCounterMultiple >> renderHtmlOn: html [
 
 	html div id: #counters.
@@ -18,7 +20,7 @@ WCCCounterMultiple >> renderHtmlOn: html [
 			named: #newCounter ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCCounterMultiple >> start [
 
 	| addButton |

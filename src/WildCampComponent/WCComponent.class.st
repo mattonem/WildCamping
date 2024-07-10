@@ -1,6 +1,6 @@
 Class {
-	#name : #WCComponent,
-	#superclass : #Object,
+	#name : 'WCComponent',
+	#superclass : 'Object',
 	#traits : 'PjTDomController',
 	#classTraits : 'PjTDomController classTrait',
 	#instVars : [
@@ -10,10 +10,11 @@ Class {
 	#pools : [
 		'PjBrowserGlobals'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 WCComponent class >> for: anObject on: aWCHtmlCanvas named: aString [
 	
 	| inst |
@@ -21,7 +22,7 @@ WCComponent class >> for: anObject on: aWCHtmlCanvas named: aString [
 	^ inst
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WCComponent class >> on: aWCHtmlCanvas [
 
 	^ self new
@@ -29,7 +30,7 @@ WCComponent class >> on: aWCHtmlCanvas [
 		  yourself
 ]
 
-{ #category : #'event init' }
+{ #category : 'event init' }
 WCComponent >> addComponent: aComp in: anHtmlElment [
 
 	| frag |
@@ -41,7 +42,7 @@ WCComponent >> addComponent: aComp in: anHtmlElment [
 
 ]
 
-{ #category : #'event init' }
+{ #category : 'event init' }
 WCComponent >> addComponentIn: anHtmlElment [
 
 	| frag |
@@ -52,34 +53,34 @@ WCComponent >> addComponentIn: anHtmlElment [
 	anHtmlElment appendChild: frag content
 ]
 
-{ #category : #creating }
+{ #category : 'creating' }
 WCComponent >> addEventListener: eventName block: block [	
 	self getComponentRoot addEventListener: eventName block: block	 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCComponent >> componentWrapperClassName [
 	^ 'WCComponentWrapper'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCComponent >> components [
 	^ {  }
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCComponent >> dispatchEvent: anEvent [
 	self getComponentRoot dispatchEvent: anEvent
 	
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCComponent >> getComponentRoot [
 	uuid ifNil: [ ^ nil ].
 	^ document getElementById: uuid
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCComponent >> getElementById: aSymbol [
 
 self getComponentRoot ifNil: [ ^ nil ].
@@ -89,18 +90,18 @@ self getComponentRoot ifNil: [ ^ nil ].
 		  ifNone: [ nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCComponent >> getElementById: aString whenReadyDo: aBlock [
 	<javascript:'return this.pj_jsGetElementById_whenReadyDo_(aString, aBlock)'>
 	
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WCComponent >> initAtRuntime [
 	<javascript:'return this.pj_initStartCallback()'>
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WCComponent >> initStartCallback [
 
 	| observer |
@@ -114,12 +115,12 @@ WCComponent >> initStartCallback [
 			(#subtree -> true) } asJsObject
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 WCComponent >> initialize [
 	super initialize.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCComponent >> jsGetElementById: aString whenReadyDo: aBlock [
 
 	^ (self getElementById: aString)
@@ -128,7 +129,7 @@ WCComponent >> jsGetElementById: aString whenReadyDo: aBlock [
 		  self onStartDo: [ aBlock cull: (self getElementById: aString) ] ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WCComponent >> on: aWCHtmlCanvas [
 
 	
@@ -136,18 +137,18 @@ WCComponent >> on: aWCHtmlCanvas [
 	self renderComponentOn: aWCHtmlCanvas.
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WCComponent >> onStart [
 
 	^ onStart ifNil: [ onStart := OrderedCollection new ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WCComponent >> onStartDo: aBlock [
 	self onStart add: aBlock
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCComponent >> parentWCOf: anElement [
 
 	anElement tagName = 'HTML' ifTrue: [ ^ anElement ].
@@ -157,14 +158,14 @@ WCComponent >> parentWCOf: anElement [
 		  ifFalse: [ self parentWCOf: anElement parentElement ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCComponent >> remove [
 
 	self components do: [ :aComp | aComp remove ].
 	self getComponentRoot remove.
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCComponent >> renderComponentOn: html [
 
 	html div
@@ -174,17 +175,17 @@ WCComponent >> renderComponentOn: html [
 		with: [ self renderHtmlOn: html ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCComponent >> renderHtmlOn: html [
 	self subclassResponsibility
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WCComponent >> start [
 	self onStart do: [ :aBlock | aBlock cull: self ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCComponent >> uuid [
 	^ uuid
 ]

@@ -1,10 +1,11 @@
 Class {
-	#name : #WCCollectionTag,
-	#superclass : #WCTagBrush,
+	#name : 'WCCollectionTag',
+	#superclass : 'WCTagBrush',
 	#instVars : [
 		'list',
 		'selected',
 		'labelBlock'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }

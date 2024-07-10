@@ -1,12 +1,14 @@
 Class {
-	#name : #WCCHelloWorld,
-	#superclass : #WCComponent,
+	#name : 'WCCHelloWorld',
+	#superclass : 'WCComponent',
 	#traits : 'InstanceComponentHolder',
 	#classTraits : 'InstanceComponentHolder classTrait',
-	#category : #'WildCampComponent-Examples'
+	#category : 'WildCampComponent-Examples',
+	#package : 'WildCampComponent',
+	#tag : 'Examples'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCHelloWorld >> renderHtmlOn: html [
 
 	html textInput
@@ -26,7 +28,7 @@ WCCHelloWorld >> renderHtmlOn: html [
 		on: html
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCHelloWorld >> start [
 
 	| nameInput sayHelloButton greetingMessage |

@@ -1,32 +1,33 @@
 Class {
-	#name : #WCRequestFields,
-	#superclass : #Object,
+	#name : 'WCRequestFields',
+	#superclass : 'Object',
 	#instVars : [
 		'dictionary'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCRequestFields >> at: aString add: anUndefinedObject [
 
 	^ (self dictionary at: aString ifAbsentPut: [ OrderedCollection new ]) 
 		  add: anUndefinedObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCRequestFields >> dictionary [
 
 	^ dictionary ifNil: [ dictionary := Dictionary new ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 WCRequestFields >> isEmpty [
 
 	^ dictionary isEmptyOrNil
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 WCRequestFields >> keysAndValuesDo: aFullBlockClosure [
 
 	^ self dictionary keysAndValuesDo: [ :aKey :aColl |

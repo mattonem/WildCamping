@@ -1,6 +1,6 @@
 Class {
-	#name : #WCBuilder,
-	#superclass : #Object,
+	#name : 'WCBuilder',
+	#superclass : 'Object',
 	#instVars : [
 		'rendererClass',
 		'rootClass',
@@ -8,17 +8,18 @@ Class {
 		'fullDocument',
 		'rootBlock'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 WCBuilder class >> on: aRendererClass [
 	^ self new
 		rendererClass: aRendererClass;
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 WCBuilder >> closeDocument: aDocument [
 	self fullDocument 
 		ifTrue: [ aDocument close ]
@@ -28,32 +29,32 @@ WCBuilder >> closeDocument: aDocument [
 				ifTrue: [ aDocument close ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCBuilder >> documentClass [
 	^ documentClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCBuilder >> documentClass: aDocumentClass [
 	documentClass := aDocumentClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCBuilder >> fullDocument [
 	^ fullDocument
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCBuilder >> fullDocument: aBoolean [
 	fullDocument := aBoolean
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCBuilder >> initialize [ 
 	fullDocument := false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 WCBuilder >> openDocument: aDocument [
 	| documentRoot |
 	self fullDocument ifFalse: [ ^ self ].
@@ -62,7 +63,7 @@ WCBuilder >> openDocument: aDocument [
 	aDocument open: documentRoot
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCBuilder >> render: anObject [
 	^ String streamContents: [ :stream |
 		self
@@ -70,7 +71,7 @@ WCBuilder >> render: anObject [
 			on: stream ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCBuilder >> render: anObject on: aStream [
 
 	"Render anObject and return the contents of the resulting Document as a String.
@@ -90,32 +91,32 @@ WCBuilder >> render: anObject on: aStream [
 	self closeDocument: document
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCBuilder >> rendererClass [
 	^ rendererClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCBuilder >> rendererClass: aRendererClass [ 
 	rendererClass := aRendererClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCBuilder >> rootBlock [
 	^ rootBlock ifNil: [ rootBlock := [ :root | ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCBuilder >> rootBlock: anObject [
 	rootBlock := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCBuilder >> rootClass [
 	^ rootClass ifNil: [ rootClass := WCHtmlRoot ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCBuilder >> rootClass: aRootClass [
 	rootClass := aRootClass
 ]

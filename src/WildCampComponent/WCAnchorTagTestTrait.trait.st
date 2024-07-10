@@ -1,9 +1,11 @@
 Trait {
-	#name : #WCAnchorTagTestTrait,
-	#category : #'WildCampComponent-Tests'
+	#name : 'WCAnchorTagTestTrait',
+	#category : 'WildCampComponent-Tests',
+	#package : 'WildCampComponent',
+	#tag : 'Tests'
 }
 
-{ #category : #'tests-tags-anchors' }
+{ #category : 'tests-tags-anchors' }
 WCAnchorTagTestTrait >> testAnchor [
 
 	self
@@ -35,7 +37,7 @@ WCAnchorTagTestTrait >> testAnchor [
 		gives: '<a href=""/?zork"">foo</a>'"
 ]
 
-{ #category : #'tests-tags-anchors' }
+{ #category : 'tests-tags-anchors' }
 WCAnchorTagTestTrait >> testAnchorAttributes [
 	self
 		assert: [ 
@@ -80,7 +82,7 @@ WCAnchorTagTestTrait >> testAnchorAttributes [
 		gives: '<a type="text/plain"></a>'
 ]
 
-{ #category : #'tests-tags-anchors' }
+{ #category : 'tests-tags-anchors' }
 WCAnchorTagTestTrait >> testAnchorUrl [
 
 	| url string |
@@ -100,7 +102,7 @@ WCAnchorTagTestTrait >> testAnchorUrl [
 		gives: '<a href="' , string , '"></a>'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCAnchorTagTestTrait >> testTargetBlank [
 
 	self
@@ -112,7 +114,7 @@ WCAnchorTagTestTrait >> testTargetBlank [
 		gives: '<a target="_blank">foo</a>'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCAnchorTagTestTrait >> testTargetParent [
 
 	self
@@ -124,7 +126,7 @@ WCAnchorTagTestTrait >> testTargetParent [
 		gives: '<a target="_parent">foo</a>'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCAnchorTagTestTrait >> testTargetSelf [
 
 	self
@@ -136,7 +138,7 @@ WCAnchorTagTestTrait >> testTargetSelf [
 		gives: '<a target="_self">foo</a>'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCAnchorTagTestTrait >> testTargetTop [
 
 	self

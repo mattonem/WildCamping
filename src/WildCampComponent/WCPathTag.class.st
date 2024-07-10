@@ -1,17 +1,18 @@
 Class {
-	#name : #WCPathTag,
-	#superclass : #WCTagBrush,
-	#category : #WildCampComponent
+	#name : 'WCPathTag',
+	#superclass : 'WCTagBrush',
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #'accessing - structure variables' }
+{ #category : 'accessing - structure variables' }
 WCPathTag >> d: aString [ 
 	self attributes 
 		at: 'd'
 		put: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCPathTag >> tag [
 	^ 'path'
 ]

@@ -1,24 +1,25 @@
 Class {
-	#name : #WCGenericTag,
-	#superclass : #WCTagBrush,
+	#name : 'WCGenericTag',
+	#superclass : 'WCTagBrush',
 	#instVars : [
 		'tag'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCGenericTag class >> tag: aString [
 	^ self basicNew initializeWithTag: aString; yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WCGenericTag >> initializeWithTag: aString [
 	self initialize.
 	tag := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCGenericTag >> tag [
 	^ tag
 ]

@@ -1,14 +1,15 @@
 Class {
-	#name : #WCCButton,
-	#superclass : #WCComponent,
+	#name : 'WCCButton',
+	#superclass : 'WCComponent',
 	#instVars : [
 		'label',
 		'onClick'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCCButton >> disable [
 
 	self
@@ -16,18 +17,18 @@ WCCButton >> disable [
 		whenReadyDo: [ :el | el setAttribute: #disabled value: true  ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCButton >> initialize [ 
 	label := 'Default button label'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCCButton >> label [
 
 	^ label
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCCButton >> label: anObject [
 
 	label := anObject.
@@ -36,7 +37,7 @@ WCCButton >> label: anObject [
 		whenReadyDo: [ :el | el innerHTML: anObject ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCCButton >> onClick: aBlock [
 
 (self getElementById: 'button')disabled: false.
@@ -45,7 +46,7 @@ WCCButton >> onClick: aBlock [
 		  block: aBlock
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCButton >> renderHtmlOn: html [
 
 	html button

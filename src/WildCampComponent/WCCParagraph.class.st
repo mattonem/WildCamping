@@ -1,15 +1,16 @@
 Class {
-	#name : #WCCParagraph,
-	#superclass : #WCComponent,
+	#name : 'WCCParagraph',
+	#superclass : 'WCComponent',
 	#instVars : [
 		'content',
 		'cssClass',
 		'class'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCParagraph >> class: aCssClass [
 
 	class := aCssClass.
@@ -18,7 +19,7 @@ WCCParagraph >> class: aCssClass [
 		whenReadyDo: [ :el | el classList add: aCssClass ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCParagraph >> content: aString [
 
 	content := aString.
@@ -27,13 +28,13 @@ WCCParagraph >> content: aString [
 		whenReadyDo: [ :el | el innerHTML: aString ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCParagraph >> initialize [
 
 	content := 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCParagraph >> renderHtmlOn: html [
 
 	html paragraph
@@ -42,7 +43,7 @@ WCCParagraph >> renderHtmlOn: html [
 		with: content
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 WCCParagraph >> start [
 
 	super start

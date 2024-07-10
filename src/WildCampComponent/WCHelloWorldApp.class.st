@@ -1,6 +1,6 @@
 Class {
-	#name : #WCHelloWorldApp,
-	#superclass : #PjFileBasedWebApp,
+	#name : 'WCHelloWorldApp',
+	#superclass : 'PjFileBasedWebApp',
 	#traits : 'StaticComponentHolder',
 	#classTraits : 'StaticComponentHolder classTrait',
 	#instVars : [
@@ -11,30 +11,32 @@ Class {
 		'AngryGreetingParagraph',
 		'GreetingParagraph'
 	],
-	#category : #'WildCampComponent-Examples'
+	#category : 'WildCampComponent-Examples',
+	#package : 'WildCampComponent',
+	#tag : 'Examples'
 }
 
-{ #category : #description }
+{ #category : 'description' }
 WCHelloWorldApp class >> appClasses [
 
 	<pharoJsSkip>
 	^ super appClasses , { WCCHelloWorld. WCCCounterMultiple  }
 ]
 
-{ #category : #description }
+{ #category : 'description' }
 WCHelloWorldApp class >> bridgeClass [
 	<pharoJsSkip>
 	^ PjBridge
 ]
 
-{ #category : #description }
+{ #category : 'description' }
 WCHelloWorldApp class >> bridgeClientClass [
 	<pharoJsSkip>
 	
 	^ PjZnHostedBrowserBridgeClient
 ]
 
-{ #category : #description }
+{ #category : 'description' }
 WCHelloWorldApp class >> generateHtmlUsing: html [
 
 	<pharoJsSkip>
@@ -61,14 +63,14 @@ WCHelloWorldApp class >> generateHtmlUsing: html [
 					[WCCCounterMultiple for: self on: html named: #multipleCounter ]] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCHelloWorldApp class >> staticComponentsSerialized [
 
 	<jsLiteralGenerator>
 	^ self _staticComponents asPhxJsonString
 ]
 
-{ #category : #description }
+{ #category : 'description' }
 WCHelloWorldApp class >> updateHtmlRoot: root [
 
 	<pharoJsSkip>
@@ -81,13 +83,13 @@ WCHelloWorldApp class >> updateHtmlRoot: root [
 		'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 WCHelloWorldApp >> initialize [
 
 	super initialize
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 WCHelloWorldApp >> start [
 
 	super start.

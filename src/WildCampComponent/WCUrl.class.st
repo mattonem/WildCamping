@@ -1,6 +1,6 @@
 Class {
-	#name : #WCUrl,
-	#superclass : #Object,
+	#name : 'WCUrl',
+	#superclass : 'Object',
 	#instVars : [
 		'scheme',
 		'user',
@@ -13,17 +13,18 @@ Class {
 		'fragment',
 		'pathParameters'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 WCUrl >> addField: aKey value: aValue [
 	"Add the query field aKey with aValue to the receiving url."
 
 	self queryFields at: aKey add: aValue
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WCUrl >> addToPath: aString [
 	"Adds the argument as a path element. If the argument contains $/ it is split into multiple elements."
 
@@ -34,7 +35,7 @@ WCUrl >> addToPath: aString [
 	self slash: (aString notEmpty and: [ aString last = $/ ])
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 WCUrl >> asString [
 
 	^ String streamContents: [ :s |
@@ -48,7 +49,7 @@ WCUrl >> asString [
 				  s nextPutAll: each ] ] ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WCUrl >> copy [
 
 	^ self class new
@@ -59,7 +60,7 @@ WCUrl >> copy [
 		  yourself
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 WCUrl >> encodeOn: aDocument [
 	self encodeSchemeAndAuthorityOn: aDocument.
 	self encodePathOn: aDocument.
@@ -71,7 +72,7 @@ WCUrl >> encodeOn: aDocument [
 		self encodeFragmentOn: aDocument ]
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 WCUrl >> encodePathOn: aDocument [
 	path isNil ifFalse: [
 		path keysAndValuesDo: [ :index :each |
@@ -83,7 +84,7 @@ WCUrl >> encodePathOn: aDocument [
 		ifTrue: [ aDocument nextPut: $/ ]
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 WCUrl >> encodeQueryOn: aDocument [ 
 	| first |
 	first := true.
@@ -96,7 +97,7 @@ WCUrl >> encodeQueryOn: aDocument [
 			aDocument urlEncoder nextPutAll: value greaseString ] ]
 ]
 
-{ #category : #encoding }
+{ #category : 'encoding' }
 WCUrl >> encodeSchemeAndAuthorityOn: aDocument [
 	host ifNil: [ ^ self ].
 	aDocument nextPutAll: self scheme; nextPutAll: '://'.
@@ -113,65 +114,65 @@ WCUrl >> encodeSchemeAndAuthorityOn: aDocument [
 			ifFalse: [ aDocument nextPut: $:; print: port ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCUrl >> host: aString [ 
 	host := aString
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 WCUrl >> initialize [
 	super initialize.
 	slash := false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCUrl >> path [
 	"Answer the path part of the URL."
 
 	^ path ifNil: [ path := OrderedCollection new: 5 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCUrl >> path: aColl [
 
 	path := aColl
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 WCUrl >> pathElementsIn: aString do: aOneArgumentBlock [
 	(aString splitOn: '/') do: aOneArgumentBlock
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCUrl >> port: anInteger [ 
 	port := anInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCUrl >> queryFields [
 	"Answer a dictionary with the query fields."
 	^ queryFields ifNil: [ queryFields := WCRequestFields new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCUrl >> scheme [
 	"Answer the URL's scheme."
 
 	^ scheme ifNil: [ 'http' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCUrl >> scheme: aString [
 
 	^ scheme := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCUrl >> slash: aBoolean [
 	slash := aBoolean
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 WCUrl >> withPath: aString [
 	"Adds the argument as a path element. If the argument contains $/ it is split into multiple elements."
 

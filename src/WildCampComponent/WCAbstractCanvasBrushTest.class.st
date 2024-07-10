@@ -1,15 +1,17 @@
 Class {
-	#name : #WCAbstractCanvasBrushTest,
-	#superclass : #TestCase,
-	#category : #'WildCampComponent-Tests'
+	#name : 'WCAbstractCanvasBrushTest',
+	#superclass : 'TestCase',
+	#category : 'WildCampComponent-Tests',
+	#package : 'WildCampComponent',
+	#tag : 'Tests'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 WCAbstractCanvasBrushTest class >> isAbstract [
 	^ self name = #WCAbstractCanvasBrushTest
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 WCAbstractCanvasBrushTest >> assert: aBlock gives: aString [
 	| html |
 	html := aBlock value.

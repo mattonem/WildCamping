@@ -1,21 +1,23 @@
 Class {
-	#name : #WCAppTestCase,
-	#superclass : #PjAppTestCase,
-	#category : #'WildCampComponent-Tests'
+	#name : 'WCAppTestCase',
+	#superclass : 'PjAppTestCase',
+	#category : 'WildCampComponent-Tests',
+	#package : 'WildCampComponent',
+	#tag : 'Tests'
 }
 
-{ #category : #'suite parameters' }
+{ #category : 'suite parameters' }
 WCAppTestCase class >> appClass [
 
 	^ PjMinimalWebApplication
 ]
 
-{ #category : #'suite parameters' }
+{ #category : 'suite parameters' }
 WCAppTestCase class >> isAbstract [
 	^ self name = #WCAppTestCase
 ]
 
-{ #category : #'tests-tags-anchors' }
+{ #category : 'tests-tags-anchors' }
 WCAppTestCase >> assert: aBlock gives: aString [
 	| html |
 	html := self bridge evalBlock:  aBlock.

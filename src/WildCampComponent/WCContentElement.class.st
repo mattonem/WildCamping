@@ -1,16 +1,17 @@
 Class {
-	#name : #WCContentElement,
-	#superclass : #WCHtmlElement,
-	#category : #WildCampComponent
+	#name : 'WCContentElement',
+	#superclass : 'WCHtmlElement',
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 WCContentElement >> encodeChildrenOn: aDocument [ 
 	children isEmptyOrNil ifTrue: [ ^ self ].
 	children do: [ :each | aDocument nextPutAll: each greaseString ]
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 WCContentElement >> isClosed [
 	^ false
 ]

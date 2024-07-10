@@ -1,23 +1,24 @@
 Class {
-	#name : #WCImageTag,
-	#superclass : #WCTagBrush,
-	#category : #WildCampComponent
+	#name : 'WCImageTag',
+	#superclass : 'WCTagBrush',
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #attributes }
+{ #category : 'attributes' }
 WCImageTag >> altText: aString [
 	"The alt attribute provides a short description of the image."
 
 	self attributes at: 'alt' put: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCImageTag >> tag [
 
 	^ 'img'
 ]
 
-{ #category : #attributes }
+{ #category : 'attributes' }
 WCImageTag >> url: aString [
 
 	self attributes at: 'src' put: aString

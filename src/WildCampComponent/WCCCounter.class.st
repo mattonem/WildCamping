@@ -1,20 +1,22 @@
 Class {
-	#name : #WCCCounter,
-	#superclass : #WCComponent,
+	#name : 'WCCCounter',
+	#superclass : 'WCComponent',
 	#traits : 'InstanceComponentHolder',
 	#classTraits : 'InstanceComponentHolder classTrait',
 	#instVars : [
 		'counter'
 	],
-	#category : #'WildCampComponent-Examples'
+	#category : 'WildCampComponent-Examples',
+	#package : 'WildCampComponent',
+	#tag : 'Examples'
 }
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 WCCCounter >> initialize [ 
 	counter := 0.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 WCCCounter >> renderHtmlOn: html [
 
 	html div
@@ -50,7 +52,7 @@ WCCCounter >> renderHtmlOn: html [
 						on: html ] ]]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 WCCCounter >> start [
 
 	| incrementButton counterElement decrementButton |

@@ -1,27 +1,28 @@
 Class {
-	#name : #WCComponentApp,
-	#superclass : #PjFileBasedWebApp,
+	#name : 'WCComponentApp',
+	#superclass : 'PjFileBasedWebApp',
 	#classInstVars : [
 		'component'
 	],
-	#category : #WildCampComponent
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCComponentApp class >> appClasses [
 
 	<pharoJsSkip>
 	^ super appClasses , { self rootComponentClass }
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCComponentApp class >> bridgeClientClass [
 
 	<pharoJsSkip>
 	^ PjZnHostedBrowserBridgeClient
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCComponentApp class >> component [
 
 	^ component ifNil: [
@@ -29,26 +30,26 @@ WCComponentApp class >> component [
 			                      self staticComponentSerialized ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCComponentApp class >> exporterClass [
 
 	<pharoJsSkip>
 	^ PjFileExporterWithIndexHtml
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCComponentApp class >> generateHtmlUsing: html [
 
 	<pharoJsSkip>
 	component := self rootComponentClass new on: html; yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCComponentApp class >> rootComponentClass [
 self subclassResponsibility 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCComponentApp class >> staticComponentSerialized [
 
 	<pharoJsSkip>
@@ -60,26 +61,26 @@ WCComponentApp class >> staticComponentSerialized [
 	^ component asPhxJsonString"
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 WCComponentApp class >> staticFoldersToExpose [
 
 	<pharoJsSkip>
 	^ {  } asDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 WCComponentApp >> component [
 
 	^ self class component
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 WCComponentApp >> initializeComponentHolder [
 
 	self component initStartCallback
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 WCComponentApp >> start [
 
 	super start.

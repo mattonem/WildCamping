@@ -1,15 +1,16 @@
 Class {
-	#name : #WCMetaElement,
-	#superclass : #WCHtmlElement,
-	#category : #WildCampComponent
+	#name : 'WCMetaElement',
+	#superclass : 'WCHtmlElement',
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCMetaElement >> language: aString [
 	self attributeAt: 'lang' put: aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCMetaElement >> tag [
 	^ 'meta'
 ]

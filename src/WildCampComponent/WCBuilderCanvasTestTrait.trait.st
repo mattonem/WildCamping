@@ -1,9 +1,10 @@
 Trait {
-	#name : #WCBuilderCanvasTestTrait,
-	#category : #WildCampComponent
+	#name : 'WCBuilderCanvasTestTrait',
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCBuilderCanvasTestTrait >> testBody [
 
 	self
@@ -13,7 +14,7 @@ WCBuilderCanvasTestTrait >> testBody [
 		gives: '<ul><li>an item</li></ul>'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCBuilderCanvasTestTrait >> testDiv [
 
 	self
@@ -32,7 +33,7 @@ WCBuilderCanvasTestTrait >> testDiv [
 		gives: '<div class="aClass"><span>an item</span></div>'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCBuilderCanvasTestTrait >> testForm [
 
 	self
@@ -63,7 +64,7 @@ WCBuilderCanvasTestTrait >> testForm [
 		'<form><input value="value" type="text"/></form>'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCBuilderCanvasTestTrait >> testFullDocument [
 
 	self
@@ -75,7 +76,7 @@ WCBuilderCanvasTestTrait >> testFullDocument [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 WCBuilderCanvasTestTrait >> testFullDocumentWithBlock [
 	self skip.
 	self

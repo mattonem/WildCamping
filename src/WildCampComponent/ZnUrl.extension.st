@@ -1,6 +1,6 @@
-Extension { #name : #ZnUrl }
+Extension { #name : 'ZnUrl' }
 
-{ #category : #'*WildCampComponent' }
+{ #category : '*WildCampComponent' }
 ZnUrl >> withPath: aString [
 
 	^ self / aString

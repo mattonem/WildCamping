@@ -1,1 +1,1 @@
-Package { #name : #WildCampComponent }
+Package { #name : 'WildCampComponent' }

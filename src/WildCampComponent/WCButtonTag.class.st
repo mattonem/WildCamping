@@ -1,10 +1,11 @@
 Class {
-	#name : #WCButtonTag,
-	#superclass : #WCTagBrush,
-	#category : #WildCampComponent
+	#name : 'WCButtonTag',
+	#superclass : 'WCTagBrush',
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #attributes }
+{ #category : 'attributes' }
 WCButtonTag >> disabled [
 	"When set for a form control, this boolean attribute disables the control for user input.
 When set, the disabled attribute has the following effects on an element:
@@ -17,14 +18,14 @@ When set, the disabled attribute has the following effects on an element:
 	self disabled: true
 ]
 
-{ #category : #attributes }
+{ #category : 'attributes' }
 WCButtonTag >> disabled: aBoolean [
 	"The disabled attribute is a boolean attribute that, if present, indicates that the command is not available in the current state."
 
 	self attributeAt: 'disabled' put: aBoolean
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCButtonTag >> tag [
 	^ 'button'
 ]

@@ -1,15 +1,16 @@
 Class {
-	#name : #WCXmlEncoder,
-	#superclass : #WCEncoder,
-	#category : #WildCampComponent
+	#name : 'WCXmlEncoder',
+	#superclass : 'WCEncoder',
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCXmlEncoder >> nextPut: aCharacter [
 	stream nextPut: aCharacter
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 WCXmlEncoder >> nextPutAll: aString [
 	"uses #to:do: for speed reasons (on Pharo)
 	this is not premature optimization, this is a hotspot method method
