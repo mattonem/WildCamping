@@ -40,7 +40,7 @@ WCCButton >> label: anObject [
 { #category : 'accessing' }
 WCCButton >> onClick: aBlock [
 
-(self getElementById: 'button')disabled: false.
+	(self getElementById: 'button') disabled: false.
 	^ (self getElementById: 'button')
 		  addEventListener: #click
 		  block: aBlock

@@ -5,6 +5,18 @@ Class {
 	#package : 'WildCampComponent'
 }
 
+{ #category : 'attributes' }
+WCFormInputTag >> disabled [
+	self disabled: true
+]
+
+{ #category : 'attributes' }
+WCFormInputTag >> disabled: aBoolean [
+	"The disabled attribute is a boolean attribute that, if present, indicates that the command is not available in the current state."
+
+	self attributeAt: 'disabled' put: aBoolean
+]
+
 { #category : 'testing' }
 WCFormInputTag >> isClosed [
 	^ true

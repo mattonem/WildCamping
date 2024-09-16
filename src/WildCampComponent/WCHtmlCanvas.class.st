@@ -86,6 +86,12 @@ WCHtmlCanvas >> heading [
 	^ self brush: WCHeadingTag new
 ]
 
+{ #category : 'as yet unclassified' }
+WCHtmlCanvas >> idiomatic [
+	"Defines a section in a document."
+	^ self brush: WCIdiomaticTag new
+]
+
 { #category : 'accessing' }
 WCHtmlCanvas >> image [
 	"Defines an image."

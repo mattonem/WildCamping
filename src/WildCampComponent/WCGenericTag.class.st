@@ -8,12 +8,12 @@ Class {
 	#package : 'WildCampComponent'
 }
 
-{ #category : 'accessing' }
+{ #category : 'as yet unclassified' }
 WCGenericTag class >> tag: aString [
 	^ self basicNew initializeWithTag: aString; yourself
 ]
 
-{ #category : 'initialization' }
+{ #category : 'as yet unclassified' }
 WCGenericTag >> initializeWithTag: aString [
 	self initialize.
 	tag := aString
