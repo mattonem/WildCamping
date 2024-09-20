@@ -63,7 +63,7 @@ WCHelloWorldApp class >> generateHtmlUsing: html [
 					[WCCCounterMultiple for: self on: html named: #multipleCounter ]] ]
 ]
 
-{ #category : 'accessing' }
+{ #category : 'as yet unclassified' }
 WCHelloWorldApp class >> staticComponentsSerialized [
 
 	<jsLiteralGenerator>

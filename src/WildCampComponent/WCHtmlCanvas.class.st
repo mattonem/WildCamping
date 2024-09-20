@@ -155,6 +155,11 @@ WCHtmlCanvas >> span [
 	^ self tag: 'span'
 ]
 
+{ #category : 'form-buttons' }
+WCHtmlCanvas >> submitButton [
+	^ self brush: WCSubmitButtonTag new
+]
+
 { #category : 'as yet unclassified' }
 WCHtmlCanvas >> svg [
 	^ self brush: WCSVGTag new

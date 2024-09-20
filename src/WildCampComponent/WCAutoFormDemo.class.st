@@ -1,5 +1,5 @@
 Class {
-	#name : 'WCEditableComponentsDemo',
+	#name : 'WCAutoFormDemo',
 	#superclass : 'PjFileBasedWebApp',
 	#traits : 'StaticComponentHolder',
 	#classTraits : 'StaticComponentHolder classTrait',
@@ -9,27 +9,27 @@ Class {
 }
 
 { #category : 'description' }
-WCEditableComponentsDemo class >> appClasses [
+WCAutoFormDemo class >> appClasses [
 
 	<pharoJsSkip>
-	^ super appClasses , {WCEditableTextInput} 
+	^ super appClasses , {WCAutoForm. WCEFMockModel} 
 ]
 
 { #category : 'description' }
-WCEditableComponentsDemo class >> bridgeClass [
+WCAutoFormDemo class >> bridgeClass [
 	<pharoJsSkip>
 	^ PjBridge
 ]
 
 { #category : 'description' }
-WCEditableComponentsDemo class >> bridgeClientClass [
+WCAutoFormDemo class >> bridgeClientClass [
 	<pharoJsSkip>
 	
 	^ PjZnHostedBrowserBridgeClient
 ]
 
 { #category : 'description' }
-WCEditableComponentsDemo class >> generateHtmlUsing: html [
+WCAutoFormDemo class >> generateHtmlUsing: html [
 
 	<pharoJsSkip>
 	html div
@@ -39,12 +39,14 @@ WCEditableComponentsDemo class >> generateHtmlUsing: html [
 				class: 'card';
 				with: [ :card |
 					self
-						addComponent: (WCEditableTextInput new on: html)
-						named: #newCounter ] ]
+						addComponent: (WCAutoForm new
+								 model: WCEFMockModel new;
+								 on: html)
+						named: #autoForm ] ]
 ]
 
 { #category : 'description' }
-WCEditableComponentsDemo class >> updateHtmlRoot: root [
+WCAutoFormDemo class >> updateHtmlRoot: root [
 
 	<pharoJsSkip>
 	root language: 'en'.
@@ -56,13 +58,13 @@ WCEditableComponentsDemo class >> updateHtmlRoot: root [
 ]
 
 { #category : 'initialize-release' }
-WCEditableComponentsDemo >> initialize [
+WCAutoFormDemo >> initialize [
 
 	super initialize.
 ]
 
 { #category : 'initialize-release' }
-WCEditableComponentsDemo >> start [
+WCAutoFormDemo >> start [
 
 	super start.
 	self initializeComponentHolder.

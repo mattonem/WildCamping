@@ -28,6 +28,11 @@ WCFormInputTag >> tag [
 ]
 
 { #category : 'accessing' }
+WCFormInputTag >> type [
+	^ nil
+]
+
+{ #category : 'accessing' }
 WCFormInputTag >> value: anObject [
 	anObject isNil
 		ifFalse: [ self attributes at: 'value' put: anObject ]
