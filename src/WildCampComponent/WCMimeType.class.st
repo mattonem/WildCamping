@@ -10,6 +10,11 @@ Class {
 	#package : 'WildCampComponent'
 }
 
+{ #category : 'convenience' }
+WCMimeType class >> imageXIcon [
+	^ self main: 'image' sub: 'x-icon'
+]
+
 { #category : 'instance creation' }
 WCMimeType class >> main: aMainString sub: aSubString [
 	^ self new
