@@ -13,6 +13,11 @@ WCGenericTag class >> tag: aString [
 	^ self basicNew initializeWithTag: aString; yourself
 ]
 
+{ #category : 'accessing' }
+WCGenericTag >> height: anInteger [
+	self attributeAt: 'height' put: anInteger
+]
+
 { #category : 'as yet unclassified' }
 WCGenericTag >> initializeWithTag: aString [
 	self initialize.
@@ -22,4 +27,9 @@ WCGenericTag >> initializeWithTag: aString [
 { #category : 'accessing' }
 WCGenericTag >> tag [
 	^ tag
+]
+
+{ #category : 'accessing' }
+WCGenericTag >> width: anInteger [
+	self attributeAt: 'width' put: anInteger
 ]

@@ -44,6 +44,11 @@ WCHtmlCanvas >> button [
 ]
 
 { #category : 'accessing' }
+WCHtmlCanvas >> canvas [
+	^ self tag: 'canvas'
+]
+
+{ #category : 'accessing' }
 WCHtmlCanvas >> checkbox [
 
 	^ self brush: WCCheckboxInputTag new
