@@ -29,9 +29,10 @@ WCHelloWorldAppTest >> tearDown [
 
 { #category : 'tests' }
 WCHelloWorldAppTest >> testHelloWorld [
-
+	self waitUntil: [ document readyState = 'complete' ].
 	(self app document querySelector: 'input') value: 'Auto Test'.
 	(self app document querySelector: 'button') click.
+	
 	self
 		assert: (self app document querySelector: 'p#main') innerHTML
 		equals: 'Hello Auto Test'
