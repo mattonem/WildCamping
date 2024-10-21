@@ -104,6 +104,11 @@ WCHtmlCanvas >> image [
 	^ self brush: WCImageTag new
 ]
 
+{ #category : 'as yet unclassified' }
+WCHtmlCanvas >> inputRange [
+	^ self brush: WCRangeInputTag new
+]
+
 { #category : 'accessing' }
 WCHtmlCanvas >> label [
 	"Defines a label for a form control."
