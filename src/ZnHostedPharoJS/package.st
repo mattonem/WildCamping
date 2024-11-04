@@ -1,1 +1,1 @@
-Package { #name : #ZnHostedPharoJS }
+Package { #name : 'ZnHostedPharoJS' }

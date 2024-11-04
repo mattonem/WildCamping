@@ -1,6 +1,6 @@
-Extension { #name : #PjFunction }
+Extension { #name : 'PjFunction' }
 
-{ #category : #'*ZnHostedPharoJS' }
+{ #category : '*ZnHostedPharoJS' }
 PjFunction >> renderOn: aRenderer [
 	self cull: aRenderer
 ]

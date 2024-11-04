@@ -1,35 +1,35 @@
 Class {
-	#name : #ZnHostedCodeGenerator,
-	#superclass : #PjClientCodeGenerator,
-	#category : #ZnHostedPharoJS
+	#name : 'ZnHostedCodeGenerator',
+	#superclass : 'PjClientCodeGenerator',
+	#category : 'ZnHostedPharoJS',
+	#package : 'ZnHostedPharoJS'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ZnHostedCodeGenerator >> generateHtmlUsing: aCanvas [
-
 	^ aCanvas
 		  fullDocument: true;
 		  rootBlock: [ :root | 
 			  root beHtml5.
 			  root title: self appClass title.
-			  root javascript url: '/web/index.js'.
+			  root javascript defer url: '/web/index.js'.
 			  self appClass updateHtmlRoot: root ];
 		  render: [ :html | self appClass generateHtmlUsing: html ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ZnHostedCodeGenerator >> html [
 
 	^ self generateHtmlUsing: self htmlGenerator.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ZnHostedCodeGenerator >> htmlGenerator [
 
 	^ htmlGenerator ifNil: [ htmlGenerator := WCHtmlCanvas builder ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ZnHostedCodeGenerator >> withClientLogging [
 
 	^ PjLoggingWithHtmlClientCodeGenerator new

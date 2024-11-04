@@ -1,15 +1,16 @@
 Class {
-	#name : #PjZnHostedBrowserBridgeClient,
-	#superclass : #PjFileBasedBridgeClient,
+	#name : 'PjZnHostedBrowserBridgeClient',
+	#superclass : 'PjFileBasedBridgeClient',
 	#traits : 'PjTWebBridgeClient',
 	#classTraits : 'PjTWebBridgeClient classTrait',
 	#instVars : [
 		'uuid'
 	],
-	#category : #ZnHostedPharoJS
+	#category : 'ZnHostedPharoJS',
+	#package : 'ZnHostedPharoJS'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PjZnHostedBrowserBridgeClient >> codeGeneratorClass [
 
 	self codeGenerator ifNil: [ ^ ZnHostedCodeGenerator ].
@@ -17,19 +18,19 @@ PjZnHostedBrowserBridgeClient >> codeGeneratorClass [
 	"Allows keeping the behavior upon reseting the client in the bridge. See PjBridge>>#resetClient"
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : 'accessing - defaults' }
 PjZnHostedBrowserBridgeClient >> defaultAppClass [
 
 	^ PjMinimalFileBasedWebApp
 ]
 
-{ #category : #'accessing - defaults' }
+{ #category : 'accessing - defaults' }
 PjZnHostedBrowserBridgeClient >> exporterClass [
 
 	^ PjFileExporter
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PjZnHostedBrowserBridgeClient >> initZnServer [
 
 	| stream html |
@@ -66,7 +67,7 @@ PjZnHostedBrowserBridgeClient >> initZnServer [
 				 yourself) ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PjZnHostedBrowserBridgeClient >> openWebBrowserOn: appHtmlFileUrlString [
 
 	WebBrowser
@@ -74,13 +75,13 @@ PjZnHostedBrowserBridgeClient >> openWebBrowserOn: appHtmlFileUrlString [
 		
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 PjZnHostedBrowserBridgeClient >> start [
 	self initZnServer. 
 	super start
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PjZnHostedBrowserBridgeClient >> urlString [
 
 	^ (self server url / 'web' / 'index.html') asString .

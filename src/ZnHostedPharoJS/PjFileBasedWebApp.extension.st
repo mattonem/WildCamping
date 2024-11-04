@@ -1,6 +1,6 @@
-Extension { #name : #PjFileBasedWebApp }
+Extension { #name : 'PjFileBasedWebApp' }
 
-{ #category : #'*ZnHostedPharoJS' }
+{ #category : '*ZnHostedPharoJS' }
 PjFileBasedWebApp class >> staticFoldersToExpose [
 
 	<pharoJsSkip>

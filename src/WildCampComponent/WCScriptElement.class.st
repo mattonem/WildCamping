@@ -5,9 +5,21 @@ Class {
 	#package : 'WildCampComponent'
 }
 
+{ #category : 'converting' }
+WCScriptElement >> async [
+
+	self attributes at: 'async' put: true
+]
+
 { #category : 'types' }
 WCScriptElement >> beJavascript [
 	self type: WCMimeType textJavascript
+]
+
+{ #category : 'converting' }
+WCScriptElement >> defer [
+
+	self attributes at: 'defer' put: true
 ]
 
 { #category : 'accessing' }

@@ -1,31 +1,32 @@
 Trait {
-	#name : #StaticComponentHolder,
+	#name : 'StaticComponentHolder',
 	#traits : 'ComponentHolder',
 	#classTraits : 'ComponentHolder classTrait',
-	#category : #ZnHostedPharoJS
+	#category : 'ZnHostedPharoJS',
+	#package : 'ZnHostedPharoJS'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StaticComponentHolder classSide >> _resetComponents [
 	<script>
 	<pharoJsSkip>
 	^ staticComponents := Dictionary new.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StaticComponentHolder classSide >> _staticComponents [
 
 	<pharoJsSkip>
 	^ staticComponents ifNil: [ staticComponents := Dictionary new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StaticComponentHolder classSide >> addComponent: aWCCParagraph named: aString [ 
 	<pharoJsSkip>
 	^ self addStaticComponent: aWCCParagraph named: aString 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StaticComponentHolder classSide >> addComponent: aWCCParagraph named: aString on: html [
 
 	<pharoJsSkip>
@@ -35,13 +36,13 @@ StaticComponentHolder classSide >> addComponent: aWCCParagraph named: aString on
 	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StaticComponentHolder classSide >> addStaticComponent: aWCCParagraph named: aString [ 
 	<pharoJsSkip>
 	^ self _staticComponents at: aString put: aWCCParagraph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StaticComponentHolder classSide >> staticComponents [
 
 	^ staticComponents ifNil: [ 
@@ -49,19 +50,19 @@ StaticComponentHolder classSide >> staticComponents [
 			                      self staticComponentsSerialized ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StaticComponentHolder classSide >> staticComponentsSerialized [
 
 	<jsLiteralGenerator>
 	^ self _staticComponents asPhxJsonString
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StaticComponentHolder >> components [
 	^ self staticComponents
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 StaticComponentHolder >> staticComponents [
 	^ self class staticComponents
 ]

@@ -1,11 +1,11 @@
-Extension { #name : #PjString }
+Extension { #name : 'PjString' }
 
-{ #category : #'*ZnHostedPharoJS' }
+{ #category : '*ZnHostedPharoJS' }
 PjString >> encodeOn: aDocument [
 	aDocument xmlEncoder nextPutAll: self
 ]
 
-{ #category : #'*ZnHostedPharoJS' }
+{ #category : '*ZnHostedPharoJS' }
 PjString >> greaseInteger [
 
 	"Convert the receiver to an integer, answer nil if this is not a number."
@@ -36,7 +36,7 @@ PjString >> greaseInteger [
 			  ifTrue: [ number ] ]
 ]
 
-{ #category : #'*ZnHostedPharoJS' }
+{ #category : '*ZnHostedPharoJS' }
 PjString >> renderOn: aRenderer [
 	"This method is called on all objects passed as an argument to the #render: method of a WARenderer subclass. Override this method to customize how objects render themselves. The default is the return value of #displayString.
 	Subclasses of WAPainter (including Components) should override #renderContentOn: and #rendererClass instead."

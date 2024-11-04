@@ -1,14 +1,15 @@
 Class {
-	#name : #PjFileExporterWithIndexHtml,
-	#superclass : #PjFileExporter,
+	#name : 'PjFileExporterWithIndexHtml',
+	#superclass : 'PjFileExporter',
 	#instVars : [
 		'htmlStream',
 		'htmlGenerator'
 	],
-	#category : #ZnHostedPharoJS
+	#category : 'ZnHostedPharoJS',
+	#package : 'ZnHostedPharoJS'
 }
 
-{ #category : #writing }
+{ #category : 'writing' }
 PjFileExporterWithIndexHtml >> createHtmlFileNamed: someFileName startingWith: beginning and: string ifEditableDo: aBlock [
 
 	| fileReference |
@@ -22,7 +23,7 @@ PjFileExporterWithIndexHtml >> createHtmlFileNamed: someFileName startingWith: b
 		do: aBlock
 ]
 
-{ #category : #generating }
+{ #category : 'generating' }
 PjFileExporterWithIndexHtml >> generateHtmlUsing: aCanvas [
 
 	^ aCanvas
@@ -30,24 +31,24 @@ PjFileExporterWithIndexHtml >> generateHtmlUsing: aCanvas [
 		  rootBlock: [ :root | 
 			  root beHtml5.
 			  root title: self appClass title.
-			  root javascript url: 'index.js'.
+			  root javascript defer url: 'index.js'.
 			  self appClass updateHtmlRoot: root ];
 		  render: [ :html | self appClass generateHtmlUsing: html ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PjFileExporterWithIndexHtml >> html [
 
 	^ self generateHtmlUsing: self htmlGenerator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PjFileExporterWithIndexHtml >> htmlGenerator [
 
 	^ htmlGenerator ifNil: [ htmlGenerator := WCHtmlCanvas builder ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PjFileExporterWithIndexHtml >> htmlStream: aStream do: aBlock [ 
 	
 	| savedStream |
@@ -58,28 +59,28 @@ PjFileExporterWithIndexHtml >> htmlStream: aStream do: aBlock [
 	] ensure: [ htmlStream := savedStream ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PjFileExporterWithIndexHtml >> indexHtmlFileName [
 	^ self appClass appFullHtmlFileName
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PjFileExporterWithIndexHtml >> writeFiles [
 	self writeHtmlFileNamed: self indexHtmlFileName.
 	self writeJavascriptFileNamed: self fileName
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PjFileExporterWithIndexHtml >> writeHmlCodeOn: aZnCharacterWriteStream [ 
 	self htmlStream: aZnCharacterWriteStream do: [ self writeHtmlCode ]
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PjFileExporterWithIndexHtml >> writeHtmlCode [
 	htmlStream << self html
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PjFileExporterWithIndexHtml >> writeHtmlFileNamed: aFileLocator [ 
 	"Delete file first, because Windows can't open it for writing later when the file is open."
 	
@@ -92,7 +93,7 @@ PjFileExporterWithIndexHtml >> writeHtmlFileNamed: aFileLocator [
 	
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 PjFileExporterWithIndexHtml >> writeHtmlInto: fileReference match: string startingWith: beginning  do: aBlock [
 
 	| fileStream |

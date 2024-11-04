@@ -1,6 +1,6 @@
-Extension { #name : #PjFileExporter }
+Extension { #name : 'PjFileExporter' }
 
-{ #category : #'*ZnHostedPharoJS' }
+{ #category : '*ZnHostedPharoJS' }
 PjFileExporter >> staticFoldersToExpose [
 	^ self appClass rawAppClass staticFoldersToExpose
 ]

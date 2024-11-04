@@ -1,5 +1,5 @@
-Extension { #name : #PjUndefinedObject }
+Extension { #name : 'PjUndefinedObject' }
 
-{ #category : #'*ZnHostedPharoJS' }
+{ #category : '*ZnHostedPharoJS' }
 PjUndefinedObject >> encodeOn: aDocument [
 ]

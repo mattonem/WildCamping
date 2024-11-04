@@ -1,11 +1,11 @@
-Extension { #name : #PjNumber }
+Extension { #name : 'PjNumber' }
 
-{ #category : #'*ZnHostedPharoJS' }
+{ #category : '*ZnHostedPharoJS' }
 PjNumber >> encodeOn: aDocument [
 	self printOn: aDocument
 ]
 
-{ #category : #'*ZnHostedPharoJS' }
+{ #category : '*ZnHostedPharoJS' }
 PjNumber >> greaseInteger [
 	^ self truncated
 ]

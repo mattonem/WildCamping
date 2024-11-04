@@ -1,22 +1,23 @@
 Trait {
-	#name : #ComponentHolder,
+	#name : 'ComponentHolder',
 	#classInstVars : [
 		'staticComponents'
 	],
-	#category : #ZnHostedPharoJS
+	#category : 'ZnHostedPharoJS',
+	#package : 'ZnHostedPharoJS'
 }
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ComponentHolder >> componentNamed: aString [
 	^ self components at: aString 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ComponentHolder >> components [
 	^ self subclassResponsibility
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 ComponentHolder >> initializeComponentHolder [
 
 	self components do: [ :component | component initStartCallback ]

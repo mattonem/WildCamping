@@ -1,26 +1,27 @@
 Trait {
-	#name : #InstanceComponentHolder,
+	#name : 'InstanceComponentHolder',
 	#instVars : [
 		'components'
 	],
 	#traits : 'ComponentHolder',
 	#classTraits : 'ComponentHolder classTrait',
-	#category : #ZnHostedPharoJS
+	#category : 'ZnHostedPharoJS',
+	#package : 'ZnHostedPharoJS'
 }
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 InstanceComponentHolder >> _components [
 
 	^ components ifNil: [ components := Dictionary new ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 InstanceComponentHolder >> addComponent: aWCCParagraph named: aString [
 	<pharoJsSkip>
 	^ self _components at: aString put: aWCCParagraph
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 InstanceComponentHolder >> addComponent: aWCCParagraph named: aString on: html [
 
 	^ self _components at: aString put: (aWCCParagraph
@@ -28,13 +29,13 @@ InstanceComponentHolder >> addComponent: aWCCParagraph named: aString on: html [
 			   yourself)
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 InstanceComponentHolder >> components [
 	^ components ifNil: [ components := PhxJsonReader readFromString:
 			                      self componentsSerialized ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 InstanceComponentHolder >> componentsSerialized [
 
 	<jsLiteralGenerator>
