@@ -31,7 +31,7 @@ PjFileExporterWithIndexHtml >> generateHtmlUsing: aCanvas [
 		  rootBlock: [ :root | 
 			  root beHtml5.
 			  root title: self appClass title.
-			  root javascript defer url: 'index.js'.
+			  root javascript  url: 'index.js'.
 			  self appClass updateHtmlRoot: root ];
 		  render: [ :html | self appClass generateHtmlUsing: html ]
 ]
