@@ -1,8 +1,9 @@
 Class {
 	#name : 'WCEditableTextInput',
 	#superclass : 'WCComponent',
-	#category : 'WildCampComponent',
-	#package : 'WildCampComponent'
+	#category : 'WildCampComponent-Examples',
+	#package : 'WildCampComponent',
+	#tag : 'Examples'
 }
 
 { #category : 'rendering' }
