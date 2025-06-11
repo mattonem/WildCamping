@@ -214,3 +214,8 @@ WCHtmlCanvas >> unorderedList [
 
 	^ self brush: WCUnorderedListTag new
 ]
+
+{ #category : 'accessing' }
+WCHtmlCanvas >> numberInput [
+	^ self brush: WCNumberInputTag new
+]
