@@ -219,3 +219,24 @@ WCHtmlCanvas >> unorderedList [
 WCHtmlCanvas >> numberInput [
 	^ self brush: WCNumberInputTag new
 ]
+
+{ #category : 'tags-tables' }
+WCHtmlCanvas >> table [
+	^ self brush: WCTableTag new
+]
+
+WCHtmlCanvas >> tableBody [
+	^ self brush: WCTableBodyTag new
+]
+
+WCHtmlCanvas >> tableHead [
+	^ self brush: WCTableHeadTag new
+]
+
+WCHtmlCanvas >> tableColumn [
+	^ self brush: WCTableColumnTag new
+]
+
+WCHtmlCanvas >> tableRow [
+	^ self brush: WCTableRowTag new
+]
