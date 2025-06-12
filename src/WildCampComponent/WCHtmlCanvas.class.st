@@ -240,3 +240,8 @@ WCHtmlCanvas >> tableColumn [
 WCHtmlCanvas >> tableRow [
 	^ self brush: WCTableRowTag new
 ]
+
+{ #category : 'tags-tables' }
+WCHtmlCanvas >> tableHeading [
+	^ self brush: WCTableHeadingTag new
+]
