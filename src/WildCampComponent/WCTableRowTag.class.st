@@ -5,6 +5,6 @@ Class {
 }
 
 { #category : 'accessing' }
-WCTableHeadTag >> tag [
+WCTableRowTag >> tag [
 	^ 'tr'
 ]
