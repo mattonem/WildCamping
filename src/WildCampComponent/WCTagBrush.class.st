@@ -58,6 +58,12 @@ WCTagBrush >> document [
 ]
 
 { #category : 'accessing' }
+WCTagBrush >> hidden: aBoolean [
+
+	self attributeAt: 'hidden' put: aBoolean
+]
+
+{ #category : 'accessing' }
 WCTagBrush >> id: aString [
 	"The id attribute assigns a identifier to an element. The id of an element must be unique within a document."
 

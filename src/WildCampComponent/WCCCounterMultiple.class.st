@@ -16,7 +16,7 @@ WCCCounterMultiple >> renderHtmlOn: html [
 		self
 			addComponent: (WCCButton new
 					 label: 'New Counter';
-					 on: html)
+					 on: html) 
 			named: #newCounter ]
 ]
 

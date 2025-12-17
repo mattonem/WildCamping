@@ -1,7 +1,8 @@
 Class {
 	#name : 'WCTableHeadingTag',
 	#superclass : 'WCTagBrush',
-	#category : 'WildCampComponent'
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
 
 { #category : 'accessing' }

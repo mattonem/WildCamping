@@ -1,9 +1,9 @@
 Class {
 	#name : 'WCTableBodyTag',
 	#superclass : 'WCTagBrush',
-	#category : 'WildCampComponent'
+	#category : 'WildCampComponent',
+	#package : 'WildCampComponent'
 }
-
 
 { #category : 'accessing' }
 WCTableBodyTag >> tag [

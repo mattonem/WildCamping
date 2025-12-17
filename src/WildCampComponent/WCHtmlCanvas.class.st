@@ -72,6 +72,11 @@ WCHtmlCanvas >> document: aWCHtmlDocument [
 ]
 
 { #category : 'accessing' }
+WCHtmlCanvas >> fileInput [
+	^ self brush: WCFileInputTag new
+]
+
+{ #category : 'accessing' }
 WCHtmlCanvas >> flush [
 	currentBrush isNil
 		ifTrue: [ ^ self ].
@@ -133,6 +138,11 @@ WCHtmlCanvas >> nest: aBlock [
 ]
 
 { #category : 'accessing' }
+WCHtmlCanvas >> numberInput [
+	^ self brush: WCNumberInputTag new
+]
+
+{ #category : 'accessing' }
 WCHtmlCanvas >> paragraph [
 	"Defines a paragraph."
 
@@ -181,6 +191,36 @@ WCHtmlCanvas >> svg [
 	^ self brush: WCSVGTag new
 ]
 
+{ #category : 'tags-tables' }
+WCHtmlCanvas >> table [
+	^ self brush: WCTableTag new
+]
+
+{ #category : 'as yet unclassified' }
+WCHtmlCanvas >> tableBody [
+	^ self brush: WCTableBodyTag new
+]
+
+{ #category : 'as yet unclassified' }
+WCHtmlCanvas >> tableColumn [
+	^ self brush: WCTableColumnTag new
+]
+
+{ #category : 'as yet unclassified' }
+WCHtmlCanvas >> tableHead [
+	^ self brush: WCTableHeadTag new
+]
+
+{ #category : 'tags-tables' }
+WCHtmlCanvas >> tableHeading [
+	^ self brush: WCTableHeadingTag new
+]
+
+{ #category : 'as yet unclassified' }
+WCHtmlCanvas >> tableRow [
+	^ self brush: WCTableRowTag new
+]
+
 { #category : 'accessing' }
 WCHtmlCanvas >> tag: aString [
 	"Defines a generic tag with the name aString."
@@ -213,35 +253,4 @@ WCHtmlCanvas >> unorderedList [
 	"Defines an unordered list."
 
 	^ self brush: WCUnorderedListTag new
-]
-
-{ #category : 'accessing' }
-WCHtmlCanvas >> numberInput [
-	^ self brush: WCNumberInputTag new
-]
-
-{ #category : 'tags-tables' }
-WCHtmlCanvas >> table [
-	^ self brush: WCTableTag new
-]
-
-WCHtmlCanvas >> tableBody [
-	^ self brush: WCTableBodyTag new
-]
-
-WCHtmlCanvas >> tableHead [
-	^ self brush: WCTableHeadTag new
-]
-
-WCHtmlCanvas >> tableColumn [
-	^ self brush: WCTableColumnTag new
-]
-
-WCHtmlCanvas >> tableRow [
-	^ self brush: WCTableRowTag new
-]
-
-{ #category : 'tags-tables' }
-WCHtmlCanvas >> tableHeading [
-	^ self brush: WCTableHeadingTag new
 ]

@@ -1,11 +1,11 @@
 Class {
-	#name : 'WCTableRowTag',
-	#superclass : 'WCTagBrush',
+	#name : 'WCFileInputTag',
+	#superclass : 'WCFormInputTag',
 	#category : 'WildCampComponent',
 	#package : 'WildCampComponent'
 }
 
 { #category : 'accessing' }
-WCTableRowTag >> tag [
-	^ 'tr'
+WCFileInputTag >> type [
+	^ 'file'
 ]
