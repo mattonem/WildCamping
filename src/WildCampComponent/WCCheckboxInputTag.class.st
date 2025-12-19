@@ -11,6 +11,13 @@ WCCheckboxInputTag >> checked [
 ]
 
 { #category : 'accessing' }
+WCCheckboxInputTag >> checked: aBoolean [
+	self attributes 
+		at: 'checked'
+		put: aBoolean
+]
+
+{ #category : 'accessing' }
 WCCheckboxInputTag >> type [
 	^ 'checkbox'
 ]

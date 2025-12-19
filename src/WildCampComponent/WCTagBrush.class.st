@@ -93,6 +93,13 @@ WCTagBrush >> parent [
 	^ parent
 ]
 
+{ #category : 'private' }
+WCTagBrush >> role: aString [
+	"This attribute offers advisory information about the element for which it is set. Visual browsers frequently display the title as a 'tool tip'."
+
+	self attributes at: 'role' put: aString
+]
+
 { #category : 'initialization' }
 WCTagBrush >> setParent: aBrush canvas: aCanvas [
 	parent := aBrush.
