@@ -102,6 +102,13 @@ WCHtmlCanvas >> heading [
 	^ self brush: WCHeadingTag new
 ]
 
+{ #category : 'accessing' }
+WCHtmlCanvas >> horizontalRule [
+	"Defines a horizontal rule."
+
+	^ self brush: WCHorizontalRuleTag new
+]
+
 { #category : 'as yet unclassified' }
 WCHtmlCanvas >> idiomatic [
 	"Defines a section in a document."
