@@ -30,6 +30,12 @@ WCHtmlCanvas >> anchor [
 	^ self brush: WCAnchorTag new
 ]
 
+{ #category : 'accessing' }
+WCHtmlCanvas >> break [
+
+	^ self brush: WCBreakTag new
+]
+
 { #category : 'public' }
 WCHtmlCanvas >> brush: aBrush [
 	self flush.
