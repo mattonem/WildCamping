@@ -155,6 +155,11 @@ WCHtmlCanvas >> numberInput [
 	^ self brush: WCNumberInputTag new
 ]
 
+{ #category : 'instance creation' }
+WCHtmlCanvas >> option [
+	^ self brush: WCOptionTag new
+]
+
 { #category : 'accessing' }
 WCHtmlCanvas >> paragraph [
 	"Defines a paragraph."
@@ -185,6 +190,11 @@ WCHtmlCanvas >> render: anObject [
 WCHtmlCanvas >> section [
 	"The section element represents a generic document or application section. A section, in this context, is a thematic grouping of content, typically with a header, possibly with a footer."
 	^ self tag: 'section'
+]
+
+{ #category : 'tags' }
+WCHtmlCanvas >> select [
+	^ self brush: WCSelectTag new
 ]
 
 { #category : 'accessing' }
