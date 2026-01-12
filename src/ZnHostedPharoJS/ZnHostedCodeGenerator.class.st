@@ -29,8 +29,23 @@ ZnHostedCodeGenerator >> htmlGenerator [
 	^ htmlGenerator ifNil: [ htmlGenerator := WCHtmlCanvas builder ]
 ]
 
+{ #category : 'as yet unclassified' }
+ZnHostedCodeGenerator >> jsForWorker: aClass [
+
+	^ String streamContents: [ :aStream |
+		  (PjExporter newWithAppClass: aClass) writeJsCodeOn: aStream ]
+]
+
 { #category : 'accessing' }
 ZnHostedCodeGenerator >> withClientLogging [
 
 	^ PjLoggingWithHtmlClientCodeGenerator new
+]
+
+{ #category : 'accessing' }
+ZnHostedCodeGenerator >> workers [
+
+	^ [ appClass workers ]
+		  on: MessageNotUnderstood
+		  do: [ ^ {  } ]
 ]
