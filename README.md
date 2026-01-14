@@ -61,3 +61,41 @@ WildCamping provides an abstraction layer over HTML and DOM manipulation:
 - **Maintainability**: Object-oriented architecture makes large applications easier to understand and maintain
 - **Testability**: Comprehensive testing facilities built into Pharo and the framework (WIP)
 - **Composability**: Build complex UIs from simple, reusable components
+
+## How It Works
+
+### Building Your Application
+
+Your application entry point should subclass `PjFileBasedWebApp`:
+
+```smalltalk
+MyWebApp class >> generateHtmlUsing: html
+    html div
+        id: 'app';
+        with: (MyComponent new)
+```
+
+The class-side `generateHtmlUsing:` method generates the initial HTML structure using the canvas tag brush API. This HTML can then be dynamically manipulated through the `start` method.
+
+### Creating Components
+
+Components are the building blocks of WildCamping applications. Each component should subclass `WCComponent` and define:
+
+```smalltalk
+MyComponent >> renderHtmlOn: html
+    "Define your component's HTML structure"
+    html div
+        id: 'someId';
+        with: 'Your content here'
+
+MyComponent >> start
+    "Initialize event handlers and dynamic behavior"
+    (self getElementById: 'someId') 
+        addEventListener: 'click' 
+        do: [ self handleClick ]
+```
+
+### Component Scoping
+
+Each component maintains its own DOM scope. When you call `getElementById:` within a component's scope, it only returns elements that were created by that specific component. Elements with the same ID in nested subcomponents are not returned—each component only sees and manages its own elements.
+
