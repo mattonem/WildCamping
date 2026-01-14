@@ -20,14 +20,13 @@ WildCamping is a component-oriented framework that bridges the gap between serve
 
 ## Getting Started
 
-### Component Architecture
+### Component Lifecycle
 
-The framework centers around the `WCComponent` base class. Each component defines:
+The framework centers around the `WCComponent` base class. Each component goes through three key phases:
 
-
-1. **Initialization 1** (`initialize`): Initialize your components instance variable, models, etc...
-2. **HTML Structure** (`renderHtmlOn:`): Define your component's HTML template using the tag brush API
-3. **Initialization 2** (`start`): Set up callbacks, event handlers, and component state
+1. **Instance Setup** (`initialize`): Initialize your component's instance variables, models, and state
+2. **HTML Structure** (`renderHtmlOn:`): Define your component's HTML template using the canvas-based tag brush API
+3. **Event Initialization** (`start`): Set up callbacks, event handlers, and initialize dynamic behavior
 
 Example:
 
@@ -48,12 +47,12 @@ WCCHelloWorld >> start
 
 ## Architecture
 
-WildCamping abstracts HTML and DOM manipulation through:
+WildCamping provides an abstraction layer over HTML and DOM manipulation:
 
-- **Canvas API**: Object-oriented HTML building with fluent interfaces
-- **Component Hierarchy**: Composable components with encapsulated state and behavior
-- **Automatic Transpilation**: Seamless conversion of Pharo methods to JavaScript
-- **Event Handling**: Declarative event binding with automatic callback management
+- **Tag Brush Canvas API**: Fluent, object-oriented interface for building HTML with method chaining (e.g., `html div class: 'container'; with: [...]`)
+- **Component Tree**: Hierarchical component composition where components can contain other components, enabling complex UIs through simple building blocks
+- **PharoJS Transpilation**: Automatic and transparent conversion of Pharo methods to optimized JavaScript for browser execution
+- **Event System**: Declarative event binding with automatic callback management and state synchronization
 
 ## Why WildCamping?
 
