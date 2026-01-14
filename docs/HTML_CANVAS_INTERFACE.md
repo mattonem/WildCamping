@@ -306,7 +306,7 @@ html section
 ```
 
 
-### 3. Use Blocks for Complex Nesting
+### 2. Use Blocks for Complex Nesting
 
 ```smalltalk
 "Good: Clear nesting with blocks"
@@ -320,7 +320,7 @@ html div
 html div with: html heading with: 'Title'
 ```
 
-### 4. Set IDs for JavaScript Access
+### 3. Set IDs for JavaScript Access
 
 ```smalltalk
 "Elements you plan to access from JavaScript should have IDs"
