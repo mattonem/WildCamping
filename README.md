@@ -49,7 +49,7 @@ WCCHelloWorld >> start
 
 WildCamping provides an abstraction layer over HTML and DOM manipulation:
 
-- **Tag Brush Canvas API**: Fluent, object-oriented interface for building HTML with method chaining (e.g., `html div class: 'container'; with: [...]`)
+- **Tag Brush Canvas API**: Fluent, object-oriented interface for building [HTML](docs/HTML_CANVAS_INTERFACE.md) with method chaining (e.g., `html div class: 'container'; with: [...]`)
 - **Component Tree**: Hierarchical component composition where components can contain other components, enabling complex UIs through simple building blocks
 - **Logical Encapsulation**: Each component maintains its own DOM scope without relying on Shadow DOM, offering better CSS inheritance and easier debugging
 - **PharoJS Transpilation**: Automatic and transparent conversion of Pharo methods to optimized JavaScript for browser execution
