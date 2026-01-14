@@ -51,6 +51,7 @@ WildCamping provides an abstraction layer over HTML and DOM manipulation:
 
 - **Tag Brush Canvas API**: Fluent, object-oriented interface for building HTML with method chaining (e.g., `html div class: 'container'; with: [...]`)
 - **Component Tree**: Hierarchical component composition where components can contain other components, enabling complex UIs through simple building blocks
+- **Logical Encapsulation**: Each component maintains its own DOM scope without relying on Shadow DOM, offering better CSS inheritance and easier debugging
 - **PharoJS Transpilation**: Automatic and transparent conversion of Pharo methods to optimized JavaScript for browser execution
 - **Event System**: Declarative event binding with automatic callback management and state synchronization
 
@@ -59,6 +60,7 @@ WildCamping provides an abstraction layer over HTML and DOM manipulation:
 - **Unified Language**: Write frontend and backend logic in Pharo without JavaScript
 - **Productive Development**: Leverage Smalltalk's interactive development environment and powerful IDE features
 - **Maintainability**: Object-oriented architecture makes large applications easier to understand and maintain
+- **True Encapsulation**: Components achieve full encapsulation without Shadow DOM, providing better CSS control and simpler debugging
 - **Testability**: Comprehensive testing facilities built into Pharo and the framework (WIP)
 - **Composability**: Build complex UIs from simple, reusable components
 
@@ -95,7 +97,13 @@ MyComponent >> start
         do: [ self handleClick ]
 ```
 
-### Component Scoping
+### Component Scoping Without Shadow DOM
 
-Each component maintains its own DOM scope. When you call `getElementById:` within a component's scope, it only returns elements that were created by that specific component. Elements with the same ID in nested subcomponents are not returned—each component only sees and manages its own elements.
+Each component maintains its own logical DOM scope through a lightweight scoping mechanism—**without using Shadow DOM**. When you call `getElementById:` within a component, it only returns elements created by that specific component. Elements with the same ID in nested subcomponents are not returned.
+
+**Why this is a plus:**
+
+- **CSS Transparency**: Your styles apply naturally throughout the component hierarchy without the complications of Shadow DOM style boundaries
+- **Easier Debugging**: DOM remains fully visible and inspectable in browser DevTools without the abstraction overhead
+- **Simpler Integration**: Components play nicely with existing CSS frameworks and global styles
 
