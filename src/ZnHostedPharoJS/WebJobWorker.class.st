@@ -17,8 +17,7 @@ WebJobWorker >> start [
 
 	onmessage := [ :aMessage |
 	             | job |
-	             job := (PhxJsonReader readFromString: aMessage data)
-		                    copy.
+	             job := PhxJsonReader readFromString: aMessage data.
 	             job data: (self onMessage: job data).
 	             self postMessage: job ]
 ]
