@@ -334,21 +334,6 @@ html button
     do: [ self handleClick ]
 ```
 
-## Generic Tags
-
-For tags not explicitly supported by the canvas, use `tag:`:
-
-```smalltalk
-html tag: 'article'
-    with: 'Article content'.
-
-html tag: 'details'
-    with: [
-        html tag: 'summary' with: 'More info'.
-        html paragraph with: 'Details here'
-    ]
-```
-
 ## Integration with Components
 
 In WildCamping components, use the passed canvas in `renderHtmlOn:`:
