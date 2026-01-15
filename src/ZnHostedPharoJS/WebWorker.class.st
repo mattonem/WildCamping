@@ -12,7 +12,6 @@ Class {
 { #category : 'private' }
 WebWorker class >> appJsFileName [
 
-	<jsLiteralGenerator>
 	^ self name , '.js'
 ]
 
@@ -36,8 +35,6 @@ WebWorker >> _postMessage: aMessage [
 { #category : 'start-stop' }
 WebWorker >> onMessage: aMessage [
 
-	SignalingAnswerReceived new.
-	self postMessage: aMessage
 ]
 
 { #category : 'start-stop' }
