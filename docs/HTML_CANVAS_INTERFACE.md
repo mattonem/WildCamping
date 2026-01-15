@@ -195,7 +195,7 @@ Any object that implements `renderOn:` can be rendered through the canvas:
 
 ```smalltalk
 html div
-    with: (MyComponent new)
+    with: [ AComponentClass for: self on: html named: #myComponent ]
 ```
 
 ### Collection Rendering
