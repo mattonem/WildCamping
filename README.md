@@ -74,7 +74,7 @@ Your application entry point should subclass `PjFileBasedWebApp`:
 MyWebApp class >> generateHtmlUsing: html
     html div
         id: 'app';
-        with: (MyComponent new)
+        with: [ html paragraph with: 'my super app' ]
 ```
 
 The class-side `generateHtmlUsing:` method generates the initial HTML structure using the canvas tag brush API. This HTML can then be dynamically manipulated through the `start` method.
@@ -96,6 +96,34 @@ MyComponent >> start
         addEventListener: 'click' 
         do: [ self handleClick ]
 ```
+
+#### Component Lifecycle (Pharo Instantiation)
+
+When a component is statically instantiated in Pharo and exported to JavaScript, it follows this lifecycle:
+
+1. **Pharo Initialization** (`initialize`): Your component's instance is created with all instance variables initialized
+2. **HTML Generation** (`renderHtmlOn:`): The component's HTML structure is rendered into HTML file
+3. **JavaScript Export**: The component instance is serialized in the application's JavaScript
+4. **Browser Reconsolidation**: When the page loads in the browser, the component instance is automatically reconsolidated and reconnected to its generated HTML
+5. **Client Initialization** (`start`): Event handlers and dynamic behavior are initialized for this component instance
+
+### Adding Components to Your Application
+
+To integrate components into your application, your application class must use the `StaticComponentHolder` trait:
+
+```smalltalk
+MyWebApp class >> traits
+    ^ { StaticComponentHolder }
+```
+
+The `StaticComponentHolder` trait provides the infrastructure to:
+- Export statically instantiated components as HTML and JavaScript
+- Automatically serialize component state and logic
+- Reconsolidate components in the browser when the page loads
+- Maintain proper component lifecycle management
+
+This approach allows you to define component instances at the Pharo level and have them seamlessly available in the browser with their state preserved. 
+
 
 ### Component Scoping Without Shadow DOM
 
