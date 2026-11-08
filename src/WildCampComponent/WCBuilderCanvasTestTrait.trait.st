@@ -34,6 +34,35 @@ WCBuilderCanvasTestTrait >> testDiv [
 ]
 
 { #category : 'tests' }
+WCBuilderCanvasTestTrait >> testSemanticAndTextTags [
+	self
+		assert: [
+			WCHtmlCanvas builder render: [ :html |
+				html article with: [
+					html header with: [ html strong with: 'Title' ].
+					html main with: [
+						html blockquote with: [ html code with: 'example' ] ] ] ] ]
+		gives: '<article><header><strong>Title</strong></header><main><blockquote><code>example</code></blockquote></main></article>'.
+	self
+		assert: [
+			WCHtmlCanvas builder render: [ :html |
+				html descriptionList with: [
+					html descriptionTerm with: 'Term'.
+					html descriptionDefinition with: 'Definition' ] ] ]
+		gives: '<dl><dt>Term</dt><dd>Definition</dd></dl>'.
+	self
+		assert: [
+			WCHtmlCanvas builder render: [ :html |
+				html navigation with: [
+					html orderedList with: [ html listItem with: 'First' ] ].
+				html details with: [ html summary with: 'More' ].
+				html figure with: [ html figcaption with: 'Caption' ].
+				html aside with: [ html mark with: [ html emphasis with: 'Note' ] ].
+				html footer with: [ html time with: 'Today' ] ] ]
+		gives: '<nav><ol><li>First</li></ol></nav><details><summary>More</summary></details><figure><figcaption>Caption</figcaption></figure><aside><mark><em>Note</em></mark></aside><footer><time>Today</time></footer>'
+]
+
+{ #category : 'tests' }
 WCBuilderCanvasTestTrait >> testForm [
 
 	self

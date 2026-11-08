@@ -30,6 +30,21 @@ WCHtmlCanvas >> anchor [
 	^ self brush: WCAnchorTag new
 ]
 
+{ #category : 'tags-semantic' }
+WCHtmlCanvas >> article [
+	^ self brush: WCArticleTag new
+]
+
+{ #category : 'tags-semantic' }
+WCHtmlCanvas >> aside [
+	^ self brush: WCAsideTag new
+]
+
+{ #category : 'tags-text' }
+WCHtmlCanvas >> blockquote [
+	^ self brush: WCBlockquoteTag new
+]
+
 { #category : 'accessing' }
 WCHtmlCanvas >> break [
 
@@ -54,6 +69,11 @@ WCHtmlCanvas >> canvas [
 	^ self tag: 'canvas'
 ]
 
+{ #category : 'tags-text' }
+WCHtmlCanvas >> code [
+	^ self brush: WCCodeTag new
+]
+
 { #category : 'accessing' }
 WCHtmlCanvas >> checkbox [
 
@@ -65,6 +85,26 @@ WCHtmlCanvas >> div [
 	"Defines a section in a document."
 
 	^ self tag: 'div'
+]
+
+{ #category : 'tags-lists' }
+WCHtmlCanvas >> descriptionDefinition [
+	^ self brush: WCDescriptionDefinitionTag new
+]
+
+{ #category : 'tags-lists' }
+WCHtmlCanvas >> descriptionList [
+	^ self brush: WCDescriptionListTag new
+]
+
+{ #category : 'tags-lists' }
+WCHtmlCanvas >> descriptionTerm [
+	^ self brush: WCDescriptionTermTag new
+]
+
+{ #category : 'tags-text' }
+WCHtmlCanvas >> emphasis [
+	^ self brush: WCEmphasisTag new
 ]
 
 { #category : 'accessing' }
@@ -82,6 +122,16 @@ WCHtmlCanvas >> fileInput [
 	^ self brush: WCFileInputTag new
 ]
 
+{ #category : 'tags-semantic' }
+WCHtmlCanvas >> figure [
+	^ self brush: WCFigureTag new
+]
+
+{ #category : 'tags-semantic' }
+WCHtmlCanvas >> figcaption [
+	^ self brush: WCFigcaptionTag new
+]
+
 { #category : 'accessing' }
 WCHtmlCanvas >> flush [
 	currentBrush isNil
@@ -93,6 +143,16 @@ WCHtmlCanvas >> flush [
 { #category : 'accessing' }
 WCHtmlCanvas >> form [
 	^ self brush: WCFormTag new
+]
+
+{ #category : 'tags-semantic' }
+WCHtmlCanvas >> footer [
+	^ self brush: WCFooterTag new
+]
+
+{ #category : 'tags-semantic' }
+WCHtmlCanvas >> header [
+	^ self brush: WCHeaderTag new
 ]
 
 { #category : 't - rotating' }
@@ -107,6 +167,21 @@ WCHtmlCanvas >> horizontalRule [
 	"Defines a horizontal rule."
 
 	^ self brush: WCHorizontalRuleTag new
+]
+
+{ #category : 'tags-text' }
+WCHtmlCanvas >> mark [
+	^ self brush: WCMarkTag new
+]
+
+{ #category : 'tags-semantic' }
+WCHtmlCanvas >> main [
+	^ self brush: WCHtmlMainTag new
+]
+
+{ #category : 'tags-semantic' }
+WCHtmlCanvas >> navigation [
+	^ self brush: WCNavigationTag new
 ]
 
 { #category : 'as yet unclassified' }
@@ -155,6 +230,11 @@ WCHtmlCanvas >> numberInput [
 	^ self brush: WCNumberInputTag new
 ]
 
+{ #category : 'tags-lists' }
+WCHtmlCanvas >> orderedList [
+	^ self brush: WCOrderedListTag new
+]
+
 { #category : 'instance creation' }
 WCHtmlCanvas >> option [
 	^ self brush: WCOptionTag new
@@ -192,6 +272,11 @@ WCHtmlCanvas >> section [
 	^ self tag: 'section'
 ]
 
+{ #category : 'tags-semantic' }
+WCHtmlCanvas >> details [
+	^ self brush: WCDetailsTag new
+]
+
 { #category : 'tags' }
 WCHtmlCanvas >> select [
 	^ self brush: WCSelectTag new
@@ -202,6 +287,21 @@ WCHtmlCanvas >> span [
 	"Defines a section in a document."
 
 	^ self tag: 'span'
+]
+
+{ #category : 'tags-semantic' }
+WCHtmlCanvas >> summary [
+	^ self brush: WCSummaryTag new
+]
+
+{ #category : 'tags-text' }
+WCHtmlCanvas >> strong [
+	^ self brush: WCStrongTag new
+]
+
+{ #category : 'tags-semantic' }
+WCHtmlCanvas >> time [
+	^ self brush: WCTimeTag new
 ]
 
 { #category : 'form-buttons' }

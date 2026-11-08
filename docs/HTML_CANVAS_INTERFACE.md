@@ -66,6 +66,9 @@ html div
 - `div` - Generic container
 - `section` - Thematic grouping of content
 - `span` - Inline container
+- `article`, `aside`, `header`, `footer`, `main`, `navigation` - Semantic page regions
+- `figure`, `figcaption` - Self-contained media and its caption
+- `details`, `summary` - Disclosure widget and its label
 
 ### Text Tags
 
@@ -75,10 +78,13 @@ html div
 - `horizontalRule` - Horizontal rule
 - `preformatted` - Preformatted text
 - `idiomatic` - Idiomatic text
+- `blockquote`, `code`, `emphasis`, `strong`, `mark`, `time` - Semantic text elements
 
 ### List Tags
 
 - `unorderedList` - Unordered list
+- `orderedList` - Ordered list
+- `descriptionList`, `descriptionTerm`, `descriptionDefinition` - Description list and entries
 - `listItem` - List item
 
 ### Table Tags
