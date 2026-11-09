@@ -27,7 +27,7 @@ jobs:
       - uses: hpi-swa/setup-smalltalkCI@v1
         id: smalltalkci
         with:
-          smalltalk-image: 'Pharo64-12'
+          smalltalk-image: 'Pharo64-13'
           cache: 'smalltalk-image'
       - uses: browser-actions/setup-chrome@v1
         with:
